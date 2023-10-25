@@ -1,0 +1,53 @@
+{
+    "general": {
+        "currentLanguage": "Українська",
+        "pageName": "InventoGuard",
+        "login": "Вхід до свого облікового запису",
+        "register": "Створення свого облікового запису",
+        "name": "Ім'я",
+        "email": "Електронна пошта",
+        "password": "Пароль",
+        "signIn": "Увійти",
+        "createAccount": "Створити обліковий запис",
+        "toRegister": "Зареєструватися",
+        "toLogin": "Увійти",
+        "repeatPassword": "Повторіть пароль",
+        "passwordDoNotMatch": "Паролі не співпадають",
+        "settings": "Налаштування",
+        "logOut": "Вийти",
+        "darkMode": "Темний режим",
+        "language": "Мова",
+        "exit": "Вихід",
+        "createdAt": "Створено: {{date}}",
+        "somethingWrong": "Щось пішло не так...",
+        "noData": "На жаль, на даний момент немає жодних даних для відображення.",
+        "back": "Назад",
+        "cancel": "Відмінити",
+        "confirm": "Підтвердити",
+        "delete": "Видалити",
+        "edit": "Редагувати"
+    },
+    "modal": {
+        "createStorage": {
+            "title": "Створення нового складу",
+            "description": "Введіть назву нового складу"
+        },
+        "deleteStorage": {
+            "title": "Ви впвенені, що хочете видалити склад \"{{name}}\"?"
+        },
+        "createShelf": {
+            "title": "Створення нової полиці",
+            "description": "Введіть назву нової полиці"
+        },
+        "deleteShelf": {
+            "title": "Ви впвенені, що хочете видалити полицю \"{{name}}\"?"
+        },
+        "changeName": {
+            "title": "Введіть нове ім'я"
+        }
+    },
+    "validation": {
+        "invalidEmail": "Неправильний формат електронної пошти",
+        "invalidLength": "Некоректна довжина"
+    }
+}

@@ -18,5 +18,6 @@ export enum ApiContentType {
 export enum ProvidedTag {
     USER_DATA = "userData",
     STORAGES = "storages",
+    STORAGE_DATA = "storageData",
     SHELVES = "shelves"
 }

@@ -7,29 +7,29 @@ import { toFormikValidationSchema } from "zod-formik-adapter";
 import { storagesApi } from "@store/apis/storages.api";
 
 import { Field } from "@utils/typings/enums/common.enums";
-import { CreateStorageDtoSchema } from "@utils/typings/schemas/storage/storage.schemas";
-import { CreateStorageDto } from "@utils/typings/types/storages/storages.types";
+import { AddUserToStorageDtoSchema } from "@utils/typings/schemas/storage/storage.schemas";
 
 import CreateModal from "../CreateModal/CreateModal";
 import { ModalHookReturns } from "../modal.types";
 
-type CreateStorageModalProps = {
+type AddUserToStorageModalProps = {
     modalHook: ModalHookReturns;
+    storageId: number;
 };
 
-const CreateStorageModal: FC<CreateStorageModalProps> = ({ modalHook }) => {
-    const initialValues: CreateStorageDto = {
-        [Field.Name]: "",
-        [Field.ADDRESS]: ""
+const AddUserToStorageModal: FC<AddUserToStorageModalProps> = ({ modalHook, storageId }) => {
+    const initialValues = {
+        storageId,
+        [Field.EMAIL]: ""
     };
 
-    const [createStorage, { isLoading }] = storagesApi.useCreateStorageMutation();
+    const [addUser, { isLoading }] = storagesApi.useAddUserToStorageMutation();
 
     const formikHook = useFormik({
         initialValues,
         validationSchema,
         onSubmit: async (values, formikHelpers) => {
-            await createStorage(values).unwrap();
+            await addUser(values).unwrap();
             formikHelpers.resetForm();
             modalHook.closeModal();
         },
@@ -41,15 +41,15 @@ const CreateStorageModal: FC<CreateStorageModalProps> = ({ modalHook }) => {
     return (
         <CreateModal
             modalHook={modalHook}
-            titleTranslationKey="modal.createStorage.title"
-            descriptionTranslationKey="modal.createStorage.description"
+            fields={[Field.EMAIL]}
             formikHook={formikHook}
             isLoading={isLoading}
-            fields={[Field.Name, Field.ADDRESS]}
+            titleTranslationKey="modal.addUserToStorage.title"
+            descriptionTranslationKey="modal.addUserToStorage.description"
         />
     );
 };
 
-export default CreateStorageModal;
+export default AddUserToStorageModal;
 
-const validationSchema = toFormikValidationSchema(CreateStorageDtoSchema);
+const validationSchema = toFormikValidationSchema(AddUserToStorageDtoSchema);

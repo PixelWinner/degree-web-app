@@ -1,6 +1,8 @@
 import React, { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
+import StorageSettings from "@pages/Storages/components/StorageSettings/StorageSettings";
+
 import { selectIsAuthenticated } from "@store/slices/auth/auth.selectors";
 import { useAppSelector } from "@store/store.hooks";
 
@@ -18,6 +20,7 @@ const Auth = lazy(() => import("@components/Auth/Auth"));
 const Storages = lazy(() => import("@pages/Storages/Storages"));
 const Settings = lazy(() => import("@pages/Settings/Settings"));
 const Shelves = lazy(() => import("@pages/Shelves/Shelves"));
+const Home = lazy(() => import("@pages/Home/Home"));
 
 const AppPages = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -27,7 +30,7 @@ const AppPages = () => {
 
     const getInitialRoute = () => {
         if (isAuthenticated) {
-            return PAGE_PATH.storages;
+            return PAGE_PATH.home;
         }
 
         return PAGE_PATH.login;
@@ -35,8 +38,16 @@ const AppPages = () => {
 
     const privateRoutes = [
         {
+            path: `${PAGE_PATH.home}/*`,
+            element: <Home />
+        },
+        {
             path: PAGE_PATH.storages,
             element: <Storages />
+        },
+        {
+            path: `${PAGE_PATH.storages}/:storageId?`,
+            element: <StorageSettings />
         },
         {
             path: `${PAGE_PATH.shelves}/:storageId?`,

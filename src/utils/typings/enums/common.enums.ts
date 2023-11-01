@@ -21,5 +21,6 @@ export enum Field {
     Name = "name",
     EMAIL = "email",
     PASSWORD = "password",
-    REPEAT_PASSWORD = "repeatPassword"
+    REPEAT_PASSWORD = "repeatPassword",
+    ADDRESS = "address"
 }

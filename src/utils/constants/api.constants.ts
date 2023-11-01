@@ -6,7 +6,12 @@ export const API_URLS = {
         register: `${PAGE_ORIGIN}/api/auth/register`
     },
     getUserData: `${PAGE_ORIGIN}/api/users`,
-    storages: `${PAGE_ORIGIN}/api/storages`,
+    storages: {
+        main: `${PAGE_ORIGIN}/api/storages`,
+        getById: (id: number) => `${PAGE_ORIGIN}/api/storages/${id}`,
+        deleteUser: `${PAGE_ORIGIN}/api/storages/deleteUser`,
+        addUser: `${PAGE_ORIGIN}/api/storages/addUser`
+    },
     shelves: {
         main: `${PAGE_ORIGIN}/api/shelves`,
         getAll: (storageId: number) => `${PAGE_ORIGIN}/api/shelves/${storageId}`

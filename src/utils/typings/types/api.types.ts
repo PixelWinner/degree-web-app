@@ -6,10 +6,8 @@ import { z } from "zod";
 
 import { MessageResponseSchema } from "@utils/typings/schemas/common.schemas";
 
-export type ErrorItem = { [key in string]: string };
-
 export type ErrorData = {
-    errors: ErrorItem[];
+    message: string | string[];
 };
 
 export type ApiError = {

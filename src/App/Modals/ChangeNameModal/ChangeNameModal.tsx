@@ -5,10 +5,14 @@ import { useTranslation } from "react-i18next";
 
 import { useFormik } from "formik";
 
+import { z } from "zod";
+import { toFormikValidationSchema } from "zod-formik-adapter";
+
 import { Box } from "@mui/material";
 
 import { getTextFieldProps } from "@utils/helpers/getTextFieldProps.helper";
 import { Field } from "@utils/typings/enums/common.enums";
+import { NameSchema } from "@utils/typings/schemas/common.schemas";
 
 import Button from "@components/Button";
 import TextField from "@components/TextField";
@@ -54,6 +58,7 @@ const ChangeNameModal: FC<ChangeNameModalProps> = ({ modalHook, restRequestProps
 
     const formikHook = useFormik({
         initialValues,
+        validationSchema,
         onSubmit: async (values) => {
             setIsLoading(true);
             await onConfirm(values);
@@ -87,3 +92,5 @@ const ChangeNameModal: FC<ChangeNameModalProps> = ({ modalHook, restRequestProps
 };
 
 export default ChangeNameModal;
+
+const validationSchema = toFormikValidationSchema(z.object({ [Field.Name]: NameSchema }));

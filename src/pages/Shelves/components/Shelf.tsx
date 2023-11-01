@@ -23,7 +23,7 @@ const Shelf: FC<UserShelf> = ({ id, name, createdAt }) => {
     const deleteModalHook = useModal();
     const changeNameModalHook = useModal();
     const [deleteShelf] = shelvesApi.useDeleteShelfMutation();
-    const [changeName] = shelvesApi.useChangeNameMutation();
+    const [changeName] = shelvesApi.useChangeShelfNameMutation();
 
     const handleDelete = async () => {
         return await deleteShelf({ id, storageId: +storageId }).unwrap();
@@ -34,7 +34,6 @@ const Shelf: FC<UserShelf> = ({ id, name, createdAt }) => {
     };
 
     const handleClick = () => {
-        //TODO Change route to products
         navigate(`${PAGE_PATH.products}/${id}`);
     };
 

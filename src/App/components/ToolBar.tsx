@@ -1,9 +1,12 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 
 import styled from "styled-components/macro";
 
 import MuiAddIcon from "@mui/icons-material/Add";
+import MuiDeleteIcon from "@mui/icons-material/Delete";
 import { Box, Paper } from "@mui/material";
+
+import BackButton from "@components/BackButton";
 
 const Container = styled(Paper)`
     display: flex;
@@ -33,16 +36,24 @@ const AddIcon = styled(MuiAddIcon)`
     cursor: pointer;
 `;
 
+const DeleteIcon = styled(MuiDeleteIcon)`
+    cursor: pointer;
+`;
+
 type ToolBarProps = {
     onAdd?: () => void;
-    leftContent?: ReactNode;
+    onDelete?: () => void;
+    previousPath?: string;
 };
 
-const ToolBar: FC<ToolBarProps> = ({ onAdd, leftContent }) => {
+const ToolBar: FC<ToolBarProps> = ({ onAdd, onDelete, previousPath }) => {
     return (
         <Container variant="outlined">
-            <LeftPart>{leftContent}</LeftPart>
-            <RightPart>{onAdd && <AddIcon onClick={onAdd} />}</RightPart>
+            <LeftPart>{previousPath && <BackButton path={previousPath} />}</LeftPart>
+            <RightPart>
+                {onAdd && <AddIcon onClick={onAdd} />}
+                {onDelete && <DeleteIcon onClick={onDelete} />}
+            </RightPart>
         </Container>
     );
 };

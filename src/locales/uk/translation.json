@@ -1,53 +1,72 @@
 {
-    "general": {
-        "currentLanguage": "Українська",
-        "pageName": "InventoGuard",
-        "login": "Вхід до свого облікового запису",
-        "register": "Створення свого облікового запису",
-        "name": "Ім'я",
-        "email": "Електронна пошта",
-        "password": "Пароль",
-        "signIn": "Увійти",
-        "createAccount": "Створити обліковий запис",
-        "toRegister": "Зареєструватися",
-        "toLogin": "Увійти",
-        "repeatPassword": "Повторіть пароль",
-        "passwordDoNotMatch": "Паролі не співпадають",
-        "settings": "Налаштування",
-        "logOut": "Вийти",
-        "darkMode": "Темний режим",
-        "language": "Мова",
-        "exit": "Вихід",
-        "createdAt": "Створено: {{date}}",
-        "somethingWrong": "Щось пішло не так...",
-        "noData": "На жаль, на даний момент немає жодних даних для відображення.",
-        "back": "Назад",
-        "cancel": "Відмінити",
-        "confirm": "Підтвердити",
-        "delete": "Видалити",
-        "edit": "Редагувати"
+  "general": {
+    "currentLanguage": "Українська",
+    "pageName": "InventoGuard",
+    "login": "Вхід до свого облікового запису",
+    "register": "Створення свого облікового запису",
+    "name": "Ім'я",
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "signIn": "Увійти",
+    "createAccount": "Створити обліковий запис",
+    "toRegister": "Зареєструватися",
+    "toLogin": "Увійти",
+    "repeatPassword": "Повторіть пароль",
+    "passwordDoNotMatch": "Паролі не співпадають",
+    "settings": "Налаштування",
+    "logOut": "Вийти",
+    "darkMode": "Темний режим",
+    "language": "Мова",
+    "exit": "Вихід",
+    "createdAt": "Створено: {{date}}",
+    "somethingWrong": "Щось пішло не так...",
+    "noData": "На жаль, на даний момент немає жодних даних для відображення.",
+    "back": "Назад",
+    "cancel": "Відмінити",
+    "confirm": "Підтвердити",
+    "delete": "Видалити",
+    "edit": "Редагувати",
+    "storages": "Cховища",
+    "address": "Адреса",
+    "addUser": "Додати користувача",
+    "usersList": "Список користувачів",
+    "storageInfo": "Інформація про сховище",
+    "owner": "Власник"
+  },
+  "routes": {
+    "storages": "Сховища",
+    "shelves": "Полиці",
+    "products": "Продукти",
+    "home": "Головна"
+  },
+  "modal": {
+    "createStorage": {
+      "title": "Створення нового складу",
+      "description": "Введіть назву нового складу"
     },
-    "modal": {
-        "createStorage": {
-            "title": "Створення нового складу",
-            "description": "Введіть назву нового складу"
-        },
-        "deleteStorage": {
-            "title": "Ви впвенені, що хочете видалити склад \"{{name}}\"?"
-        },
-        "createShelf": {
-            "title": "Створення нової полиці",
-            "description": "Введіть назву нової полиці"
-        },
-        "deleteShelf": {
-            "title": "Ви впвенені, що хочете видалити полицю \"{{name}}\"?"
-        },
-        "changeName": {
-            "title": "Введіть нове ім'я"
-        }
+    "deleteStorage": {
+      "title": "Ви впeвнені, що хочете видалити склад \"{{name}}\"?"
     },
-    "validation": {
-        "invalidEmail": "Неправильний формат електронної пошти",
-        "invalidLength": "Некоректна довжина"
+    "createShelf": {
+      "title": "Створення нової полиці",
+      "description": "Введіть назву нової полиці"
+    },
+    "deleteShelf": {
+      "title": "Ви впвенені, що хочете видалити полицю \"{{name}}\"?"
+    },
+    "changeName": {
+      "title": "Введіть нове ім'я"
+    },
+    "deleteUserFromStorage": {
+      "title": "Ви впевнені, що хочете видалити користувача \"{{name}}\" зі сховища?"
+    },
+    "addUserToStorage": {
+      "title": "Введіть електронну пошту",
+      "description": "Введіть електронну пошту користувача, якому ви хочете надати доступ до сховища"
     }
+  },
+  "validation": {
+    "invalidEmail": "Неправильний формат електронної пошти",
+    "invalidLength": "Некоректна довжина"
+  }
 }

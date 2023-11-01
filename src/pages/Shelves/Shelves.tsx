@@ -11,7 +11,6 @@ import { shelvesApi } from "@store/apis/shelves.api";
 
 import { PAGE_PATH } from "@utils/constants/common.constants";
 
-import BackButton from "@components/BackButton";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
 
@@ -40,7 +39,7 @@ const Shelves = () => {
 
     return (
         <>
-            <ToolBar onAdd={modalHook.openModal} leftContent={<BackButton path={PAGE_PATH.storages} />} />
+            <ToolBar onAdd={modalHook.openModal} previousPath={PAGE_PATH.storages} />
             <Container>{shelves}</Container>
             <CreateShelfModal modalHook={modalHook} storageId={+storageId} />
         </>

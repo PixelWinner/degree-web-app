@@ -32,7 +32,7 @@ export const shelvesApi = baseApi.injectEndpoints({
             invalidatesTags: (_, __, { storageId }) => [{ type: ProvidedTag.SHELVES, id: storageId }],
             transformResponse: handleTransformMessageResponse
         }),
-        changeName: build.mutation<MessageResponse, UpdateShelfDto>({
+        changeShelfName: build.mutation<MessageResponse, UpdateShelfDto>({
             query: ({ id, name }) => ({
                 url: API_URLS.shelves.main,
                 method: HttpMethod.PATCH,

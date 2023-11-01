@@ -8,6 +8,8 @@ import Storage from "@pages/Storages/components/Storage";
 
 import { storagesApi } from "@store/apis/storages.api";
 
+import { PAGE_PATH } from "@utils/constants/common.constants";
+
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
 
@@ -35,7 +37,7 @@ const Storages = () => {
 
     return (
         <>
-            <ToolBar onAdd={modalHook.openModal} />
+            <ToolBar onAdd={modalHook.openModal} previousPath={PAGE_PATH.home} />
             <Container>{storages}</Container>
             <CreateStorageModal modalHook={modalHook} />
         </>

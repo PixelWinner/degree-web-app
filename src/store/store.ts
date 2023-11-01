@@ -32,7 +32,7 @@ const appReducer = combineReducers({
     ...apiReducers
 });
 
-export const RESET_STORE_ACTION_TYPE = "resetStore";
+export const RESET_STORE_ACTION_TYPE = "resetStore" as const;
 
 export const rootReducer = (state: ReturnType<typeof appReducer>, action: AnyAction) => {
     //Reset store on logOut

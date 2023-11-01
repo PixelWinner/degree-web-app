@@ -1,50 +1,69 @@
 {
-    "general": {
-        "currentLanguage": "English",
-        "pageName": "InventoGuard",
-        "login": "Log In to Your Account",
-        "register": "Create Your Account",
-        "name": "Name",
-        "email": "Email",
-        "password": "Password",
-        "signIn": "Sign In",
-        "createAccount": "Create account",
-        "toRegister": "Register",
-        "toLogin": "Login",
-        "repeatPassword": "Repeat password",
-        "passwordDoNotMatch": "Passwords do not match",
-        "settings": "Settings",
-        "logOut": "Log out",
-        "darkMode": "Dark mode",
-        "language": "Language",
-        "exit": "Exit",
-        "createdAt": "Created at: {{date}}",
-        "somethingWrong": "Something went wrong..",
-        "noData": "Unfortunately, there are currently no data available for display.",
-        "back": "Back",
-        "cancel": "Cancel",
-        "confirm": "Confirm",
-        "delete": "Delete",
-        "edit": "Edit"
+  "general": {
+    "currentLanguage": "English",
+    "pageName": "InventoGuard",
+    "login": "Log In to Your Account",
+    "register": "Create Your Account",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "createAccount": "Create account",
+    "toRegister": "Register",
+    "toLogin": "Login",
+    "repeatPassword": "Repeat password",
+    "passwordDoNotMatch": "Passwords do not match",
+    "settings": "Settings",
+    "logOut": "Log out",
+    "darkMode": "Dark mode",
+    "language": "Language",
+    "exit": "Exit",
+    "createdAt": "Created at: {{date}}",
+    "somethingWrong": "Something went wrong..",
+    "noData": "Unfortunately, there are currently no data available for display.",
+    "back": "Back",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "storages": "Storages",
+    "address": "Address",
+    "addUser": "Add user",
+    "usersList": "Users list",
+    "storageInfo": "Storage info",
+    "owner": "Owner"
+  },
+  "routes": {
+    "storages": "Storages",
+    "shelves": "Shelves",
+    "products": "Products",
+    "home": "Home"
+  },
+  "modal": {
+    "createStorage": {
+      "title": "Creation of a new storage unit",
+      "description": "Enter the name of the new storage unit"
     },
-    "modal": {
-        "createStorage": {
-            "title": "Creation of a new storage unit",
-            "description": "Enter the name of the new storage unit"
-        },
-        "deleteStorage": {
-            "title": "Are you sure you want to delete the storage \"{{name}}\"?"
-        },
-        "createShelf": {
-            "title": "Creation of a new shelf",
-            "description": "Enter the name of the new shelf"
-        },
-        "changeName": {
-            "title": "Enter a new name"
-        }
+    "deleteStorage": {
+      "title": "Are you sure you want to delete the storage \"{{name}}\"?"
     },
-    "validation": {
-        "email": "Incorrect email format",
-        "invalidLength": "Invalid length"
+    "createShelf": {
+      "title": "Creation of a new shelf",
+      "description": "Enter the name of the new shelf"
+    },
+    "changeName": {
+      "title": "Enter a new name"
+    },
+    "deleteUserFromStorage": {
+     "title": "Are you sure you want to delete the user \"{{name}}\" from the vault?"
+    },
+    "addUserToStorage": {
+      "title": "Enter email",
+      "description": "Enter the email of the user to which you want to grant access to the storage"
     }
+  },
+  "validation": {
+    "email": "Incorrect email format",
+    "invalidLength": "Invalid length"
+  }
 }

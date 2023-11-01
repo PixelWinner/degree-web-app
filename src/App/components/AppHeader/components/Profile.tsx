@@ -13,7 +13,6 @@ import ProfileMenu from "@components/AppHeader/components/ProfileMenu";
 
 const UserIcon = styled(Avatar)`
     cursor: pointer;
-    justify-self: flex-end;
 `;
 
 const Profile = () => {

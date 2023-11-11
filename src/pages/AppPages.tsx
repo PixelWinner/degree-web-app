@@ -1,8 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import StorageSettings from "@pages/Storages/components/StorageSettings/StorageSettings";
-
 import { selectIsAuthenticated } from "@store/slices/auth/auth.selectors";
 import { useAppSelector } from "@store/store.hooks";
 
@@ -22,6 +20,7 @@ const Settings = lazy(() => import("@pages/Settings/Settings"));
 const Shelves = lazy(() => import("@pages/Shelves/Shelves"));
 const Home = lazy(() => import("@pages/Home/Home"));
 const Products = lazy(() => import("@pages/Products/Products"));
+const StorageSettings = lazy(() => import("@pages/StorageSettings/StorageSettings"));
 
 const AppPages = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);

@@ -6,8 +6,8 @@ import styled from "styled-components/macro";
 
 import { Box } from "@mui/material";
 
-import StorageInfo from "@pages/Storages/components/StorageSettings/components/StorageInfo";
-import UsersList from "@pages/Storages/components/StorageSettings/components/UsersList";
+import StorageInfo from "@pages/StorageSettings/components/StorageInfo";
+import UsersList from "@pages/StorageSettings/components/UsersList";
 
 import { storagesApi } from "@store/apis/storages.api";
 
@@ -16,8 +16,8 @@ import Button from "@components/Button";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
 
-import AddUserToStorageModal from "../../../../App/Modals/AddUserToStorageModal/AddUserToStorageModal";
-import { useModal } from "../../../../App/Modals/Modal/useModal.hook";
+import AddUserToStorageModal from "../../App/Modals/AddUserToStorageModal/AddUserToStorageModal";
+import { useModal } from "../../App/Modals/Modal/useModal.hook";
 
 const Container = styled(Box)`
     display: flex;

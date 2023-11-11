@@ -14,8 +14,8 @@ import { useAppSelector } from "@store/store.hooks";
 
 import { H5Typography } from "@components/Typography";
 
-import ConfirmModal from "../../../../../App/Modals/ConfirmModal/ConfirmModal";
-import { useModal } from "../../../../../App/Modals/Modal/useModal.hook";
+import ConfirmModal from "../../../App/Modals/ConfirmModal/ConfirmModal";
+import { useModal } from "../../../App/Modals/Modal/useModal.hook";
 
 const List = styled(MuiList)`
     max-height: 240px;

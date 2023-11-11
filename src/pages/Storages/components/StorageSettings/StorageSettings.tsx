@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 import styled from "styled-components/macro";
@@ -10,8 +11,8 @@ import UsersList from "@pages/Storages/components/StorageSettings/components/Use
 
 import { storagesApi } from "@store/apis/storages.api";
 
-import { PAGE_PATH } from "@utils/constants/common.constants";
-
+import BackButton from "@components/BackButton";
+import Button from "@components/Button";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
 
@@ -26,6 +27,7 @@ const Container = styled(Box)`
 `;
 
 const StorageSettings = () => {
+    const { t } = useTranslation();
     const { storageId = "" } = useParams();
     const { data, isLoading, isError } = storagesApi.useGetStorageDataQuery(+storageId, { skip: !storageId });
     const modalHook = useModal();
@@ -34,9 +36,16 @@ const StorageSettings = () => {
         return <SelfCenterLoader isLoading={isLoading} isError={isError} />;
     }
 
+    const toolBarButtons = (
+        <>
+            <BackButton />
+            <Button onClick={modalHook.openModal}>{t("general.addUser")}</Button>
+        </>
+    );
+
     return (
         <>
-            <ToolBar previousPath={PAGE_PATH.storages} onAdd={modalHook.openModal} />
+            <ToolBar leftPart={toolBarButtons} />
             <Container>
                 <StorageInfo storage={data.storage} />
 

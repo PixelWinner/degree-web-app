@@ -12,11 +12,6 @@ export enum LocalStorage {
     SESSION = "session"
 }
 
-export enum AuthFormType {
-    LOGIN = "login",
-    REGISTER = "register"
-}
-
 export enum Field {
     Name = "name",
     EMAIL = "email",

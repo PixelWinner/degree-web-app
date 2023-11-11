@@ -8,7 +8,6 @@ import { useAppSelector } from "@store/store.hooks";
 
 import { PAGE_PATH } from "@utils/constants/common.constants";
 import { useAuthEffect } from "@utils/hooks/useAuthEffect.hook";
-import { AuthFormType } from "@utils/typings/enums/common.enums";
 
 import BackdropLoader from "@components/BackdropLoader";
 
@@ -16,11 +15,13 @@ import AppLayout from "../App/Layout/AppLayout";
 import PrivateLayout from "../App/Layout/PrivateLayout";
 import PublicLayout from "../App/Layout/PublicLayout";
 
-const Auth = lazy(() => import("@components/Auth/Auth"));
+const Login = lazy(() => import("@pages/Auth/Login"));
+const Register = lazy(() => import("@pages/Auth/Register"));
 const Storages = lazy(() => import("@pages/Storages/Storages"));
 const Settings = lazy(() => import("@pages/Settings/Settings"));
 const Shelves = lazy(() => import("@pages/Shelves/Shelves"));
 const Home = lazy(() => import("@pages/Home/Home"));
+const Products = lazy(() => import("@pages/Products/Products"));
 
 const AppPages = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -50,19 +51,23 @@ const AppPages = () => {
             element: <StorageSettings />
         },
         {
-            path: `${PAGE_PATH.shelves}/:storageId?`,
+            path: `${PAGE_PATH.shelves}/:storageId`,
             element: <Shelves />
+        },
+        {
+            path: `${PAGE_PATH.products}/:shelfId`,
+            element: <Products />
         }
     ].map(({ path, element }, index) => <Route key={index} path={path} element={<Suspense fallback={Loader}>{element}</Suspense>} />);
 
     const publicRoutes = [
         {
             path: PAGE_PATH.login,
-            element: <Auth formType={AuthFormType.LOGIN} />
+            element: <Login />
         },
         {
             path: PAGE_PATH.register,
-            element: <Auth formType={AuthFormType.REGISTER} />
+            element: <Register />
         },
         {
             path: PAGE_PATH.settings,

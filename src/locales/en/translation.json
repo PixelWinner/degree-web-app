@@ -31,7 +31,10 @@
     "addUser": "Add user",
     "usersList": "Users list",
     "storageInfo": "Storage info",
-    "owner": "Owner"
+    "owner": "Owner",
+    "addStorage": "Add storage",
+    "addShelf": "Add shelf",
+    "addProduct": "Add product"
   },
   "routes": {
     "storages": "Storages",
@@ -55,7 +58,7 @@
       "title": "Enter a new name"
     },
     "deleteUserFromStorage": {
-     "title": "Are you sure you want to delete the user \"{{name}}\" from the vault?"
+      "title": "Are you sure you want to delete the user \"{{name}}\" from the vault?"
     },
     "addUserToStorage": {
       "title": "Enter email",

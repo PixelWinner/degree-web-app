@@ -15,5 +15,8 @@ export const API_URLS = {
     shelves: {
         main: `${PAGE_ORIGIN}/api/shelves`,
         getAll: (storageId: number) => `${PAGE_ORIGIN}/api/shelves/${storageId}`
+    },
+    products: {
+        getAll: (shelfId: number) => `${PAGE_ORIGIN}/api/products/${shelfId}`
     }
 };

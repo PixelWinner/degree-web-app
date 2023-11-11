@@ -1,33 +1,24 @@
-import styled from "styled-components";
-
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-
-import { Box } from "@mui/material";
 
 import Shelf from "@pages/Shelves/components/Shelf";
 
 import { shelvesApi } from "@store/apis/shelves.api";
 
-import { PAGE_PATH } from "@utils/constants/common.constants";
+import { CardsContainer } from "@utils/styles/CardsContainer";
 
+import BackButton from "@components/BackButton";
+import Button from "@components/Button";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
 
 import CreateShelfModal from "../../App/Modals/CreateShelfModal/CreateShelfModal";
 import { useModal } from "../../App/Modals/Modal/useModal.hook";
 
-const Container = styled(Box)`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: auto;
-    overflow: auto;
-`;
-
 const Shelves = () => {
     const { storageId = "" } = useParams();
+    const { t } = useTranslation();
     const { data, isLoading, isError } = shelvesApi.useGetShelvesQuery(+storageId, { skip: !storageId });
     const modalHook = useModal();
 
@@ -37,10 +28,17 @@ const Shelves = () => {
 
     const shelves = data?.map((shelf) => <Shelf key={shelf.id} {...shelf} />);
 
+    const toolBarButtons = (
+        <>
+            <BackButton />
+            <Button onClick={modalHook.openModal}>{t("general.addShelf")}</Button>
+        </>
+    );
+
     return (
         <>
-            <ToolBar onAdd={modalHook.openModal} previousPath={PAGE_PATH.storages} />
-            <Container>{shelves}</Container>
+            <ToolBar leftPart={toolBarButtons} />
+            <CardsContainer>{shelves}</CardsContainer>
             <CreateShelfModal modalHook={modalHook} storageId={+storageId} />
         </>
     );

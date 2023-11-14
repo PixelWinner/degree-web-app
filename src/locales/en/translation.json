@@ -19,6 +19,7 @@
     "language": "Language",
     "exit": "Exit",
     "createdAt": "Created at: {{date}}",
+    "updatedAt": "Updated at: {{date}}",
     "somethingWrong": "Something went wrong..",
     "noData": "Unfortunately, there are currently no data available for display.",
     "back": "Back",
@@ -34,7 +35,17 @@
     "owner": "Owner",
     "addStorage": "Add storage",
     "addShelf": "Add shelf",
-    "addProduct": "Add product"
+    "addProduct": "Add product",
+    "length": "Length",
+    "width": "Width",
+    "height": "Height",
+    "maxWeight": "Max weight",
+    "availableWeight": "Available weight: {{availableWeight}}kg",
+    "availableVolume": "Available volume: {{availableVolume}}m³"
+  },
+  "units": {
+    "kg": "kg",
+    "m": "m"
   },
   "routes": {
     "storages": "Storages",
@@ -52,7 +63,7 @@
     },
     "createShelf": {
       "title": "Creation of a new shelf",
-      "description": "Enter the name of the new shelf"
+      "description": "Enter the name and parameters of the new shelf.<br></br><br></br>Units of dimensions: \"m\"<br></br> Units of weight: \"kg\""
     },
     "changeName": {
       "title": "Enter a new name"
@@ -63,10 +74,16 @@
     "addUserToStorage": {
       "title": "Enter email",
       "description": "Enter the email of the user to which you want to grant access to the storage"
+    },
+    "createProduct": {
+      "title": "Creation of a new product",
+      "description": "Enter the name of the new product"
     }
   },
   "validation": {
     "email": "Incorrect email format",
-    "invalidLength": "Invalid length"
+    "invalidLength": "Invalid length",
+    "invalidSize": "Invalid size",
+    "invalidWeight": "Invalid weight"
   }
 }

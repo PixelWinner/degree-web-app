@@ -1,7 +1,7 @@
 import React, { FC, useId } from "react";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
-import { FormikValues } from "formik";
+import { useFormik } from "formik";
 
 import { getTextFieldProps } from "@utils/helpers/getTextFieldProps.helper";
 import { ModalButtonsContainer } from "@utils/styles/ModalButtonsConatiner.styled";
@@ -15,44 +15,51 @@ import { Body2Typography, H5Typography } from "@components/Typography";
 import { Modal } from "../Modal/Modal";
 import { ModalHookReturns } from "../modal.types";
 
-type CreateModalProps = {
+type CreateProductModalProps = {
     modalHook: ModalHookReturns;
-    titleTranslationKey: string;
-    descriptionTranslationKey: string;
-    formikHook: FormikValues;
-    fields: Field[];
-    isLoading: boolean;
 };
 
-const CreateModal: FC<CreateModalProps> = ({ modalHook, titleTranslationKey, descriptionTranslationKey, formikHook, fields, isLoading }) => {
+const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook }) => {
     const { t } = useTranslation();
     const formId = useId();
 
-    const textFields = fields.map((field) => <TextField key={field} fullWidth {...getTextFieldProps({ t, formikHook, field })} />);
+    const additionalValues = {};
+
+    const initialValues = {
+        [Field.Name]: "",
+        [Field.PRICE_PER_UNIT]: "",
+        count: "",
+        storage: "",
+        shelf: "",
+        ...additionalValues
+    };
+
+    const formikHook = useFormik({
+        initialValues,
+        onSubmit: () => {},
+        onReset: () => {
+            modalHook.closeModal();
+        }
+    });
 
     return (
         <Modal {...modalHook.modalProps}>
-            <H5Typography>{t(titleTranslationKey)}</H5Typography>
+            <H5Typography>{t("modal.createProduct.title")}</H5Typography>
 
             <Body2Typography align="left" color="text.secondary">
-                <Trans
-                    t={t}
-                    i18nKey={descriptionTranslationKey}
-                    components={{
-                        br: <br />
-                    }}
-                />
+                {t("modal.createProduct.description")}
             </Body2Typography>
 
             <ModalForm id={formId} onSubmit={formikHook.handleSubmit} onReset={formikHook.handleReset}>
-                {textFields}
+                <TextField {...getTextFieldProps({ t, formikHook, field: Field.Name })} />
+                <TextField {...getTextFieldProps({ t, formikHook, field: Field.PRICE_PER_UNIT })} />
             </ModalForm>
 
             <ModalButtonsContainer>
                 <Button variant="outlined" form={formId} type="reset">
                     {t("general.cancel")}
                 </Button>
-                <Button isLoading={isLoading} form={formId} type="submit">
+                <Button isLoading={false} form={formId} type="submit">
                     {t("general.confirm")}
                 </Button>
             </ModalButtonsContainer>
@@ -60,4 +67,4 @@ const CreateModal: FC<CreateModalProps> = ({ modalHook, titleTranslationKey, des
     );
 };
 
-export default CreateModal;
+export default CreateProductModal;

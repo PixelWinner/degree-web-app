@@ -21,7 +21,11 @@ type CreateShelfModalProps = {
 const CreateShelfModal: FC<CreateShelfModalProps> = ({ modalHook, storageId }) => {
     const initialValues: CreateShelfDto = {
         storageId,
-        [Field.Name]: ""
+        [Field.Name]: "",
+        [Field.LENGTH]: 0,
+        [Field.WIDTH]: 0,
+        [Field.HEIGHT]: 0,
+        [Field.MAX_WEIGHT]: 0
     };
 
     const [createShelf, { isLoading }] = shelvesApi.useCreateShelfMutation();
@@ -46,7 +50,7 @@ const CreateShelfModal: FC<CreateShelfModalProps> = ({ modalHook, storageId }) =
             descriptionTranslationKey="modal.createShelf.description"
             formikHook={formikHook}
             isLoading={isLoading}
-            fields={[Field.Name]}
+            fields={[Field.Name, Field.LENGTH, Field.WIDTH, Field.HEIGHT, Field.MAX_WEIGHT]}
         />
     );
 };

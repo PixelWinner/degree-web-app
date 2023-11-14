@@ -7,15 +7,15 @@ import { handleTransformMessageResponse } from "@utils/helpers/handleTransformMe
 import { HttpMethod, ProvidedTag } from "@utils/typings/enums/api.enums";
 import { ShelfSchema } from "@utils/typings/schemas/shelves/shelves.schemas";
 import { MessageResponse } from "@utils/typings/types/api.types";
-import { CreateShelfDto, DeleteShelfDto, UpdateShelfDto, UserShelf } from "@utils/typings/types/shelves/shelves.types";
+import { CreateShelfDto, DeleteShelfDto, Shelf, UpdateShelfDto } from "@utils/typings/types/shelves/shelves.types";
 
-const handleTransformGetShelvesResponse = (response: UserShelf[]): UserShelf[] => {
+const handleTransformGetShelvesResponse = (response: Shelf[]): Shelf[] => {
     return z.array(ShelfSchema).parse(response, { async: false });
 };
 
 export const shelvesApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        getShelves: build.query<UserShelf[], number>({
+        getShelves: build.query<Shelf[], number>({
             query: (storageId) => ({
                 url: API_URLS.shelves.getAll(storageId),
                 method: HttpMethod.GET

@@ -2,11 +2,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
-import Shelf from "@pages/Shelves/components/Shelf";
+import ShelfCard from "@pages/Shelves/components/ShelfCard";
 
 import { shelvesApi } from "@store/apis/shelves.api";
 
-import { CardsContainer } from "@utils/styles/CardsContainer";
+import { CardsContainerStyled } from "@utils/styles/Cards.styled";
 
 import BackButton from "@components/BackButton";
 import Button from "@components/Button";
@@ -26,7 +26,7 @@ const Shelves = () => {
         return <SelfCenterLoader isLoading={isLoading} isError={isError} />;
     }
 
-    const shelves = data?.map((shelf) => <Shelf key={shelf.id} {...shelf} />);
+    const shelves = data?.map((shelf) => <ShelfCard key={shelf.id} {...shelf} />);
 
     const toolBarButtons = (
         <>
@@ -38,7 +38,7 @@ const Shelves = () => {
     return (
         <>
             <ToolBar leftPart={toolBarButtons} />
-            <CardsContainer>{shelves}</CardsContainer>
+            <CardsContainerStyled>{shelves}</CardsContainerStyled>
             <CreateShelfModal modalHook={modalHook} storageId={+storageId} />
         </>
     );

@@ -17,5 +17,10 @@ export enum Field {
     EMAIL = "email",
     PASSWORD = "password",
     REPEAT_PASSWORD = "repeatPassword",
-    ADDRESS = "address"
+    ADDRESS = "address",
+    PRICE_PER_UNIT = "pricePerUnit",
+    LENGTH = "length",
+    WIDTH = "width",
+    HEIGHT = "height",
+    MAX_WEIGHT = "maxWeight"
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import Storage from "@pages/Storages/components/Storage";
+import StorageCard from "@pages/Storages/components/StorageCard";
 
 import { storagesApi } from "@store/apis/storages.api";
 
-import { CardsContainer } from "@utils/styles/CardsContainer";
+import { CardsContainerStyled } from "@utils/styles/Cards.styled";
 
 import BackButton from "@components/BackButton";
 import Button from "@components/Button";
@@ -24,7 +24,7 @@ const Storages = () => {
         return <SelfCenterLoader isLoading={isLoading} isError={isError} />;
     }
 
-    const storages = data?.map((storage) => <Storage key={storage.id} {...storage} />);
+    const storages = data?.map((storage) => <StorageCard key={storage.id} {...storage} />);
 
     const toolBarButtons = (
         <>
@@ -36,7 +36,7 @@ const Storages = () => {
     return (
         <>
             <ToolBar leftPart={toolBarButtons} />
-            <CardsContainer>{storages}</CardsContainer>
+            <CardsContainerStyled>{storages}</CardsContainerStyled>
             <CreateStorageModal modalHook={modalHook} />
         </>
     );

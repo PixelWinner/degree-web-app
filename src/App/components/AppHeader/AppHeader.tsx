@@ -5,8 +5,11 @@ import styled from "styled-components/macro";
 
 import { AppBar, Box } from "@mui/material";
 
+import { PAGE_PATH } from "@utils/constants/common.constants";
+
 import CurrentTab from "@components/AppHeader/components/CurrentTab";
 import Profile from "@components/AppHeader/components/Profile";
+import { Link } from "@components/Link";
 import { H5Typography } from "@components/Typography";
 
 const StyledHeader = styled(AppBar)`
@@ -33,13 +36,24 @@ const RightPart = styled(ItemsContainer)`
     justify-content: flex-end;
 `;
 
+const TitleTypography = styled(H5Typography)`
+    cursor: pointer;
+`;
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+`;
+
 const AppHeader = () => {
     const { t } = useTranslation();
 
     return (
         <StyledHeader position="static">
             <LeftPart>
-                <H5Typography>{t("general.pageName")}</H5Typography>
+                <StyledLink to={PAGE_PATH.home}>
+                    <TitleTypography>{t("general.pageName")}</TitleTypography>
+                </StyledLink>
+
                 <CurrentTab />
             </LeftPart>
 

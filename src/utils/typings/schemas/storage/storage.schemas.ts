@@ -8,6 +8,7 @@ export const StorageSchema = z.object({
     name: z.string(),
     address: z.string(),
     createdAt: z.string(),
+    updatedAt: z.string(),
     ownerId: z.number()
 });
 

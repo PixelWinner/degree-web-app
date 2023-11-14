@@ -19,12 +19,12 @@ const Container = styled(Box)`
 
 const ThemeSwitch = () => {
     const { t } = useTranslation();
-    const { themeMode, toggleThemeMode } = useThemeContext();
+    const { mode, toggleThemeMode } = useThemeContext();
 
     return (
         <Container>
             <Body1Typography>{t("general.darkMode")}</Body1Typography>
-            <Switch onClick={toggleThemeMode} checked={themeMode === ThemeMode.DARK} />
+            <Switch onClick={toggleThemeMode} checked={mode === ThemeMode.DARK} />
         </Container>
     );
 };

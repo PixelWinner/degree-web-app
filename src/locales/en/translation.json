@@ -27,6 +27,7 @@
     "confirm": "Confirm",
     "delete": "Delete",
     "edit": "Edit",
+    "otherInfo": "Other info",
     "storages": "Storages",
     "address": "Address",
     "addUser": "Add user",
@@ -41,11 +42,13 @@
     "height": "Height",
     "maxWeight": "Max weight",
     "availableWeight": "Available weight: {{availableWeight}}kg",
+    "maxVolume": "Max volume",
     "availableVolume": "Available volume: {{availableVolume}}m³"
   },
   "units": {
-    "kg": "kg",
-    "m": "m"
+    "weight": "kg",
+    "size": "m",
+    "volume": "m³"
   },
   "routes": {
     "storages": "Storages",
@@ -78,6 +81,9 @@
     "createProduct": {
       "title": "Creation of a new product",
       "description": "Enter the name of the new product"
+    },
+    "shelfInfo": {
+      "title": "Additional information about the shelf"
     }
   },
   "validation": {

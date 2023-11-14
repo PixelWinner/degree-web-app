@@ -27,6 +27,7 @@
     "confirm": "Підтвердити",
     "delete": "Видалити",
     "edit": "Редагувати",
+    "otherInfo": "Інша інформація",
     "storages": "Cховища",
     "address": "Адреса",
     "addUser": "Додати користувача",
@@ -41,11 +42,13 @@
     "height": "Висота",
     "maxWeight": "Максимальна вага",
     "availableWeight": "Доступна вага: {{availableWeight}}кг",
+    "maxVolume": "Максимальний об'єм",
     "availableVolume": "Доступний об'єм: {{availableVolume}}м³"
   },
   "units": {
-    "kg": "кг",
-    "m": "м"
+    "weight": "кг",
+    "size": "м",
+    "volume": "м³"
   },
   "routes": {
     "storages": "Сховища",
@@ -81,6 +84,9 @@
     "createProduct": {
       "title": "Створення нового продукту",
       "description": "Введіть назву нового продукту"
+    },
+    "shelfInfo": {
+      "title": "Додаткова інформація про полицю"
     }
   },
   "validation": {

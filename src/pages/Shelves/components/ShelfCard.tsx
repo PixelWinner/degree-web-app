@@ -6,6 +6,7 @@ import { format } from "date-fns";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import InfoIcon from "@mui/icons-material/Info";
 import ShelfIcon from "@mui/icons-material/Inventory";
 
 import { shelvesApi } from "@store/apis/shelves.api";
@@ -20,15 +21,19 @@ import { Body1Typography, Body2Typography } from "@components/Typography";
 import ChangeNameModal, { OnChangeName } from "../../../App/Modals/ChangeNameModal/ChangeNameModal";
 import ConfirmModal from "../../../App/Modals/ConfirmModal/ConfirmModal";
 import { useModal } from "../../../App/Modals/Modal/useModal.hook";
+import ShelfInfoModal from "../../../App/Modals/ShelfInfoModal/ShelfInfoModal";
 
-const ShelfCard: FC<Shelf> = ({ id, name, createdAt, updatedAt, availableVolume, availableWeight }) => {
+const ShelfCard: FC<Shelf> = (shelf) => {
     const { t } = useTranslation();
     const { storageId = "" } = useParams();
     const navigate = useNavigate();
     const deleteModalHook = useModal();
     const changeNameModalHook = useModal();
+    const infoModalHook = useModal();
     const [deleteShelf] = shelvesApi.useDeleteShelfMutation();
     const [changeName] = shelvesApi.useChangeShelfNameMutation();
+
+    const { id, name, updatedAt, availableVolume, availableWeight } = shelf;
 
     const handleDelete = async () => {
         return await deleteShelf({ id, storageId: +storageId }).unwrap();
@@ -43,6 +48,11 @@ const ShelfCard: FC<Shelf> = ({ id, name, createdAt, updatedAt, availableVolume,
     };
 
     const menuItems: DropdownMenuItem[] = [
+        {
+            icon: <InfoIcon color="primary" />,
+            titleTranslationKey: "general.otherInfo",
+            onClick: infoModalHook.openModal
+        },
         {
             icon: <EditIcon color="primary" />,
             titleTranslationKey: "general.edit",
@@ -70,10 +80,6 @@ const ShelfCard: FC<Shelf> = ({ id, name, createdAt, updatedAt, availableVolume,
             <Body2Typography color="text.secondary">{t("general.availableVolume", { availableVolume })}</Body2Typography>
 
             <Body2Typography color="text.secondary">
-                {t("general.createdAt", { date: format(new Date(createdAt), DATE_TIME_FORMAT.shortDate) })}
-            </Body2Typography>
-
-            <Body2Typography color="text.secondary">
                 {t("general.updatedAt", { date: format(new Date(updatedAt), DATE_TIME_FORMAT.shortDate) })}
             </Body2Typography>
 
@@ -90,6 +96,8 @@ const ShelfCard: FC<Shelf> = ({ id, name, createdAt, updatedAt, availableVolume,
                 restRequestProps={{ id, storageId: +storageId }}
                 onConfirm={handleChangeName as OnChangeName}
             />
+
+            <ShelfInfoModal modalHook={infoModalHook} shelf={shelf} />
         </CardContainer>
     );
 };

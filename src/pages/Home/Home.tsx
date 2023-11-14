@@ -15,6 +15,10 @@ const Container = styled(Box)`
     flex: 1;
     padding: 16px;
     gap: 8px;
+
+    @media (max-width: 480px) {
+        align-items: center;
+    }
 `;
 
 const Home = () => {

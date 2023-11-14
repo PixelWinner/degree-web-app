@@ -9,7 +9,7 @@ import LanguageSelect from "@pages/Settings/components/LanguageSelect";
 import ThemeSwitch from "@pages/Settings/components/ThemeSwitch";
 
 import BackButton from "@components/BackButton";
-import { H4Typography } from "@components/Typography";
+import { H5Typography } from "@components/Typography";
 
 const Container = styled(Paper)`
     display: flex;
@@ -39,7 +39,7 @@ const Settings = () => {
     return (
         <Container variant="elevation">
             <Header>
-                <H4Typography>{t("general.settings")}</H4Typography>
+                <H5Typography>{t("general.settings")}</H5Typography>
                 <BackButton />
             </Header>
 

@@ -7,7 +7,7 @@ import styled from "styled-components/macro";
 import AppHeader from "@components/AppHeader/AppHeader";
 import { ToastContainer } from "@components/ToastContainer";
 
-const Container = styled.div`
+const Container = styled.section`
     display: flex;
     flex-direction: column;
     flex: 1;

@@ -18,7 +18,7 @@ export default defineConfig({
                 dev: {
                     logLevel: ["warning", "error"]
                 },
-                lintCommand: "eslint \"./src/**/*.{js,jsx,ts,tsx,css,md,json}\""
+                lintCommand: 'eslint "./src/**/*.{js,jsx,ts,tsx,css,md,json}"'
             },
             overlay: true
         }),

@@ -6,17 +6,25 @@ import styled from "styled-components/macro";
 
 import { Paper } from "@mui/material";
 
-import { Body1Typography } from "@components/Typography";
+import { H4Typography } from "@components/Typography";
 
 const Container = styled(Paper)`
     display: flex;
+    align-items: center;
+    justify-content: start;
     flex-direction: row;
-    gap: 4px;
+    gap: 6px;
     padding: 8px;
     width: fit-content;
     cursor: pointer;
 
+    @media (max-width: 480px) {
+        width: 100%;
+    }
+
     svg {
+        height: 48px;
+        width: 48px;
         color: ${({ theme }) => theme.palette.primary.main};
     }
 `;
@@ -38,7 +46,7 @@ const PageLink: FC<PageLinkProps> = ({ icon, titleTranslationKey, href }) => {
     return (
         <Container variant="elevation" onClick={handleClick}>
             {icon}
-            <Body1Typography>{t(titleTranslationKey)}</Body1Typography>
+            <H4Typography>{t(titleTranslationKey)}</H4Typography>
         </Container>
     );
 };

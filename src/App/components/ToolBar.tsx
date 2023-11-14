@@ -11,6 +11,8 @@ const Container = styled(Paper)`
     padding: 8px 16px;
     gap: 8px;
     width: 100%;
+    border-left: none;
+    border-right: none;
     border-radius: 0;
 `;
 

@@ -5,21 +5,19 @@ import React, { FC, PropsWithChildren, createContext, useContext, useMemo, useSt
 import { ThemeProvider as MuiThemeProvider, Theme, createTheme } from "@mui/material";
 import { enUS } from "@mui/material/locale";
 
-import { ThemeMode } from "@utils/typings/enums/common.enums";
+import { LocalStorage, ThemeMode } from "@utils/typings/enums/common.enums";
 
 type ThemeModeContextType = {
-    themeMode: ThemeMode;
+    mode: ThemeMode;
     setThemeMode: (theme: ThemeMode) => void;
     toggleThemeMode: () => void;
     theme: Theme;
 };
 
-const LOCAL_STORAGE_THEME_MODE_VARIABLE = "themeMode";
-
-const INITIAL_THEME_MODE = (localStorage.getItem(LOCAL_STORAGE_THEME_MODE_VARIABLE) as ThemeMode) ?? ThemeMode.DARK;
+const INITIAL_THEME_MODE = (localStorage.getItem(LocalStorage.THEME) as ThemeMode) ?? ThemeMode.DARK;
 
 const ThemeContext = createContext<ThemeModeContextType>({
-    themeMode: INITIAL_THEME_MODE,
+    mode: INITIAL_THEME_MODE,
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setThemeMode: () => {},
     toggleThemeMode: () => {},
@@ -33,7 +31,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
 
     const setThemeMode = (themeMode: ThemeMode) => {
         setMode(themeMode);
-        localStorage.setItem(LOCAL_STORAGE_THEME_MODE_VARIABLE, themeMode);
+        localStorage.setItem(LocalStorage.THEME, themeMode);
     };
 
     const toggleThemeMode = () => {
@@ -42,10 +40,10 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
 
     const contextValue: ThemeModeContextType = useMemo(
         () => ({
-            themeMode: mode,
+            mode,
+            theme,
             setThemeMode,
-            toggleThemeMode,
-            theme
+            toggleThemeMode
         }),
         [mode, setMode]
     );

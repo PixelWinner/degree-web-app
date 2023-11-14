@@ -12,6 +12,8 @@ import Profile from "@components/AppHeader/components/Profile";
 import { Link } from "@components/Link";
 import { H5Typography } from "@components/Typography";
 
+import Logo from "../../../../public/favicon.ico";
+
 const StyledHeader = styled(AppBar)`
     display: flex;
     flex-direction: row;
@@ -41,7 +43,14 @@ const TitleTypography = styled(H5Typography)`
 `;
 
 const StyledLink = styled(Link)`
+    display: flex;
+    align-items: center;
     text-decoration: none;
+`;
+
+const Img = styled.img`
+    height: 32px;
+    width: 32px;
 `;
 
 const AppHeader = () => {
@@ -51,6 +60,7 @@ const AppHeader = () => {
         <StyledHeader position="static">
             <LeftPart>
                 <StyledLink to={PAGE_PATH.home}>
+                    <Img src={Logo} />
                     <TitleTypography>{t("general.pageName")}</TitleTypography>
                 </StyledLink>
 

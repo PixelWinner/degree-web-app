@@ -46,8 +46,8 @@ const Register = () => {
             <H3Typography>{t("general.register")}</H3Typography>
             <TextField {...getTextFieldProps({ field: Field.Name, formikHook, t })} />
             <TextField {...getTextFieldProps({ field: Field.EMAIL, formikHook, t })} />
-            <TextField type="password" {...getTextFieldProps({ field: Field.PASSWORD, formikHook, t })} />
-            <TextField type="password" {...getTextFieldProps({ field: Field.REPEAT_PASSWORD, formikHook, t })} />
+            <TextField {...getTextFieldProps({ field: Field.PASSWORD, formikHook, t })} />
+            <TextField {...getTextFieldProps({ field: Field.REPEAT_PASSWORD, formikHook, t })} />
             <Button type="submit" isLoading={isLoading}>
                 {t("general.createAccount")}
             </Button>

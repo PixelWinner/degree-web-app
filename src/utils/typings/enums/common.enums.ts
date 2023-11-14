@@ -9,7 +9,8 @@ export enum Locale {
 }
 
 export enum LocalStorage {
-    SESSION = "session"
+    SESSION = "session",
+    THEME = "theme"
 }
 
 export enum Field {

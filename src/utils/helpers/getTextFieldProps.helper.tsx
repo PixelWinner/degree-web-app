@@ -27,38 +27,45 @@ type GetTextFieldPropsReturns = {
 };
 
 export type GetTextFieldPropsHelper = (props: GetTextFieldProps) => GetTextFieldPropsReturns;
-export const getTextFieldProps: GetTextFieldPropsHelper = ({ field, formikHook, t, label, ...rest }) => ({
+export const getTextFieldProps: GetTextFieldPropsHelper = ({ field, formikHook, t, label }) => ({
     id: field,
     name: field,
     label: label ?? t(`general.${field}`),
     autoComplete: field,
-    type: getTextFieldType(formikHook.values[field]),
+    type: getTextFieldType(formikHook, field),
     value: formikHook.values[field],
     onChange: formikHook.handleChange,
     error: getIsFieldError({ form: formikHook, key: field }),
     helperText: getFieldError({ form: formikHook, key: field }),
     InputProps: {
         endAdornment: getTextFieldUnits(field, t)
-    },
-    ...rest
+    }
 });
 
-const getTextFieldType = (value: unknown): string | undefined => {
-    if (typeof value === "string") {
+const getTextFieldType = (formikHook: FormikValues, field: string | Field): string | undefined => {
+    if (field === Field.EMAIL) {
+        return "email";
+    }
+
+    if (field === Field.PASSWORD || field === Field.REPEAT_PASSWORD) {
+        return "password";
+    }
+
+    if (typeof formikHook.values[field] === "string") {
         return "text";
     }
 
-    if (typeof value === "number") {
+    if (typeof formikHook.values[field] === "number") {
         return "number";
     }
 };
 
 export const getTextFieldUnits = (field: string | Field, t: TFunction) => {
     if (field === Field.HEIGHT || field === Field.WIDTH || field === Field.LENGTH) {
-        return <InputAdornment position="end">{t("units.m")}</InputAdornment>;
+        return <InputAdornment position="end">{t("units.size")}</InputAdornment>;
     }
 
     if (field === Field.MAX_WEIGHT) {
-        return <InputAdornment position="end">{t("units.kg")}</InputAdornment>;
+        return <InputAdornment position="end">{t("units.weight")}</InputAdornment>;
     }
 };

@@ -23,4 +23,21 @@ export const GlobalStyle = createGlobalStyle`
     transition: background-color 5000s ease-in-out 0s !important;
     box-shadow: none !important;
   }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 2.5px;
+    background: ${({ theme }) => theme.palette.grey.A700};
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 2.5px;
+    background: ${({ theme }) => theme.palette.primary.main};
+  }
 `;

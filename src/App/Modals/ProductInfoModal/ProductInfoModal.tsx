@@ -1,16 +1,16 @@
+import styled from "styled-components";
+
 import React, { FC } from "react";
 import { useTranslation } from "react-i18next";
 
 import { format } from "date-fns";
 
-import styled from "styled-components/macro";
-
 import MuiCloseIcon from "@mui/icons-material/Close";
 import { Divider as MuiDivider } from "@mui/material";
 
 import { DATE_TIME_FORMAT } from "@utils/constants/common.constants";
-import { getValueWithSizeUnit, getValueWithVolumeUnit, getValueWithWeightUnit } from "@utils/helpers/getValueWithUnits.helpers";
-import { Shelf } from "@utils/typings/types/shelves/shelves.types";
+import { getValueWithCurrency, getValueWithSizeUnit, getValueWithVolumeUnit, getValueWithWeightUnit } from "@utils/helpers/getValueWithUnits.helpers";
+import { Product } from "@utils/typings/types/products/products.types";
 
 import { Body1Typography, H5Typography } from "@components/Typography";
 
@@ -26,20 +26,24 @@ const Divider = styled(MuiDivider)`
     width: 100%;
 `;
 
-type ShelfInfoModalProps = {
+type ProductInfoModalProps = {
     modalHook: ModalHookReturns;
-    shelf: Shelf;
+    product: Product;
 };
 
-const ShelfInfoModal: FC<ShelfInfoModalProps> = ({ modalHook, shelf }) => {
+const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => {
     const { t } = useTranslation();
-    const { name, length, width, height, maxWeight, availableWeight, maxVolume, availableVolume, createdAt, updatedAt } = shelf;
+    const { name, length, width, height, amount, pricePerUnit, weightPerUnit, createdAt, updatedAt } = product;
+
+    const volume = length * width * height;
+    const totalVolume = volume * amount;
+    const totalWeight = weightPerUnit * amount;
 
     return (
         <Modal {...modalHook.modalProps}>
             <CloseIcon onClick={modalHook.closeModal} />
 
-            <H5Typography>{t("modal.shelfInfo.title")}</H5Typography>
+            <H5Typography>{t("modal.productInfo.title")}</H5Typography>
 
             <Divider />
 
@@ -56,20 +60,32 @@ const ShelfInfoModal: FC<ShelfInfoModalProps> = ({ modalHook, shelf }) => {
             </Body1Typography>
 
             <Body1Typography>
-                {t("general.width")}: {getValueWithSizeUnit(height, t)}
+                {t("general.height")}: {getValueWithSizeUnit(height, t)}
             </Body1Typography>
 
             <Body1Typography>
-                {t("general.maxWeight")}: {getValueWithWeightUnit(maxWeight, t)}
+                {t("general.pricePerUnit")}: {getValueWithCurrency(pricePerUnit, t)}
             </Body1Typography>
-
-            <Body1Typography>{t("general.availableWeight", { availableWeight })}</Body1Typography>
 
             <Body1Typography>
-                {t("general.maxVolume")}: {getValueWithVolumeUnit(maxVolume, t)}
+                {t("general.volumePerUnit")}: {getValueWithVolumeUnit(volume, t)}
             </Body1Typography>
 
-            <Body1Typography>{t("general.availableVolume", { availableVolume })}</Body1Typography>
+            <Body1Typography>
+                {t("general.weightPerUnit")}: {getValueWithWeightUnit(weightPerUnit, t)}
+            </Body1Typography>
+
+            <Body1Typography>
+                {t("general.amount")}: {amount}
+            </Body1Typography>
+
+            <Body1Typography>
+                {t("general.totalVolume")}: {getValueWithVolumeUnit(totalVolume, t)}
+            </Body1Typography>
+
+            <Body1Typography>
+                {t("general.totalWeight")}: {getValueWithWeightUnit(totalWeight, t)}
+            </Body1Typography>
 
             <Body1Typography>{t("general.createdAt", { date: format(new Date(createdAt), DATE_TIME_FORMAT.shortDate) })}</Body1Typography>
 
@@ -78,4 +94,4 @@ const ShelfInfoModal: FC<ShelfInfoModalProps> = ({ modalHook, shelf }) => {
     );
 };
 
-export default ShelfInfoModal;
+export default ProductInfoModal;

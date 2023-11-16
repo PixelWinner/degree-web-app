@@ -43,12 +43,25 @@
     "maxWeight": "Max weight",
     "availableWeight": "Available weight: {{availableWeight}}kg",
     "maxVolume": "Max volume",
-    "availableVolume": "Available volume: {{availableVolume}}m³"
+    "availableVolume": "Available volume: {{availableVolume}}m³",
+    "pricePerUnit": "Price per unit",
+    "label": "Label",
+    "value": "Value",
+    "addField": "Add field",
+    "amount": "Amount",
+    "weightPerUnit": "Weight per unit",
+    "volumePerUnit": "Volume per unit",
+    "totalVolume": "Total volume",
+    "totalWeight": "Total weight",
+    "additionalParameters": "Additional parameters"
   },
   "units": {
     "weight": "kg",
     "size": "m",
     "volume": "m³"
+  },
+  "currencies": {
+    "uah": "UAH"
   },
   "routes": {
     "storages": "Storages",
@@ -59,7 +72,7 @@
   "modal": {
     "createStorage": {
       "title": "Creation of a new storage unit",
-      "description": "Enter the name of the new storage unit"
+      "description": "Enter the name and address of the new storage unit."
     },
     "deleteStorage": {
       "title": "Are you sure you want to delete the storage \"{{name}}\"?"
@@ -76,20 +89,31 @@
     },
     "addUserToStorage": {
       "title": "Enter email",
-      "description": "Enter the email of the user to which you want to grant access to the storage"
+      "description": "Enter the email of the user to which you want to grant access to the storage."
     },
     "createProduct": {
       "title": "Creation of a new product",
-      "description": "Enter the name of the new product"
+      "description": "Enter the name and parameters of the new product."
     },
     "shelfInfo": {
       "title": "Additional information about the shelf"
+    },
+    "productInfo": {
+      "title": "Additional information about the product"
+    },
+    "deleteProduct": {
+      "title": "Are you sure you want to delete the product \"{{name}}\"?"
+    },
+    "editProduct": {
+      "title": "Enter a new name or parameters of the product"
     }
   },
   "validation": {
     "email": "Incorrect email format",
     "invalidLength": "Invalid length",
     "invalidSize": "Invalid size",
-    "invalidWeight": "Invalid weight"
+    "invalidWeight": "Invalid weight",
+    "invalidAmount": "Invalid amount",
+    "invalidPrice": "Invalid price"
   }
 }

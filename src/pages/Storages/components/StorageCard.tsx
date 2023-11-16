@@ -22,7 +22,7 @@ import ChangeNameModal, { OnChangeName } from "../../../App/Modals/ChangeNameMod
 import ConfirmModal from "../../../App/Modals/ConfirmModal/ConfirmModal";
 import { useModal } from "../../../App/Modals/Modal/useModal.hook";
 
-const StorageCard: FC<TStorage> = ({ id, name, address, createdAt, updatedAt }) => {
+const StorageCard: FC<TStorage> = ({ id, name, address, updatedAt }) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const deleteModalHook = useModal();
@@ -76,10 +76,6 @@ const StorageCard: FC<TStorage> = ({ id, name, address, createdAt, updatedAt }) 
 
             <Body2Typography color="text.secondary">
                 {t("general.address")}: {address}
-            </Body2Typography>
-
-            <Body2Typography color="text.secondary">
-                {t("general.createdAt", { date: format(new Date(createdAt), DATE_TIME_FORMAT.shortDate) })}
             </Body2Typography>
 
             <Body2Typography color="text.secondary">

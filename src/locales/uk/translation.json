@@ -43,12 +43,25 @@
     "maxWeight": "Максимальна вага",
     "availableWeight": "Доступна вага: {{availableWeight}}кг",
     "maxVolume": "Максимальний об'єм",
-    "availableVolume": "Доступний об'єм: {{availableVolume}}м³"
+    "availableVolume": "Доступний об'єм: {{availableVolume}}м³",
+    "pricePerUnit": "Ціна одиниці",
+    "label": "Назва",
+    "value": "Значення",
+    "addField": "Додати поле",
+    "amount": "Кількість",
+    "weightPerUnit": "Вага одиниці",
+    "volumePerUnit": "Об'єм одиниці",
+    "totalVolume": "Загальний об'єм",
+    "totalWeight": "Загальна вага",
+    "additionalParameters": "Додаткові параметри"
   },
   "units": {
     "weight": "кг",
     "size": "м",
     "volume": "м³"
+  },
+  "currencies": {
+    "uah": "грн"
   },
   "routes": {
     "storages": "Сховища",
@@ -59,7 +72,7 @@
   "modal": {
     "createStorage": {
       "title": "Створення нового складу",
-      "description": "Введіть назву нового складу"
+      "description": "Введіть назву та адресу нового складу."
     },
     "deleteStorage": {
       "title": "Ви впeвнені, що хочете видалити склад \"{{name}}\"?"
@@ -79,20 +92,31 @@
     },
     "addUserToStorage": {
       "title": "Введіть електронну пошту",
-      "description": "Введіть електронну пошту користувача, якому ви хочете надати доступ до сховища"
+      "description": "Введіть електронну пошту користувача, якому ви хочете надати доступ до сховища."
     },
     "createProduct": {
       "title": "Створення нового продукту",
-      "description": "Введіть назву нового продукту"
+      "description": "Введіть назву та параметри нового продукту."
     },
     "shelfInfo": {
       "title": "Додаткова інформація про полицю"
+    },
+    "productInfo": {
+      "title": "Додаткова інформація про продукт"
+    },
+    "deleteProduct": {
+      "title": "Ви впвенені, що хочете видалити продукт \"{{name}}\"?"
+    },
+    "editProduct": {
+      "title": "Введіть нове ім'я або параметри продутку"
     }
   },
   "validation": {
     "invalidEmail": "Неправильний формат електронної пошти",
     "invalidLength": "Некоректна довжина",
     "invalidSize": "Некоректний розмір",
-    "invalidWeight": "Некоректна вага"
+    "invalidWeight": "Некоректна вага",
+    "invalidAmount": "Некоректна кілкість",
+    "invalidPrice": "Некоректна ціна"
   }
 }

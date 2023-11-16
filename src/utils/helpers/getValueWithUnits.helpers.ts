@@ -11,3 +11,7 @@ export const getValueWithWeightUnit = (value: number, t: TFunction): string => {
 export const getValueWithVolumeUnit = (value: number, t: TFunction): string => {
     return `${value}${t("units.volume")}`;
 };
+
+export const getValueWithCurrency = (value: number, t: TFunction): string => {
+    return `${value}${t("currencies.uah")}`;
+};

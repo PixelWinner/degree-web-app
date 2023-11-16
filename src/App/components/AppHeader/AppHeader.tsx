@@ -38,14 +38,15 @@ const RightPart = styled(ItemsContainer)`
     justify-content: flex-end;
 `;
 
-const TitleTypography = styled(H5Typography)`
-    cursor: pointer;
-`;
-
 const StyledLink = styled(Link)`
     display: flex;
+    gap: 4px;
     align-items: center;
     text-decoration: none;
+    backdrop-filter: brightness(85%);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
 `;
 
 const Img = styled.img`
@@ -61,7 +62,7 @@ const AppHeader = () => {
             <LeftPart>
                 <StyledLink to={PAGE_PATH.home}>
                     <Img src={Logo} />
-                    <TitleTypography>{t("general.pageName")}</TitleTypography>
+                    <H5Typography color="white">{t("general.pageName")}</H5Typography>
                 </StyledLink>
 
                 <CurrentTab />

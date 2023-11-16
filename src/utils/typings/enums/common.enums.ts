@@ -23,5 +23,7 @@ export enum Field {
     LENGTH = "length",
     WIDTH = "width",
     HEIGHT = "height",
-    MAX_WEIGHT = "maxWeight"
+    MAX_WEIGHT = "maxWeight",
+    AMOUNT = "amount",
+    WEIGHT_PER_UNIT = "weightPerUnit"
 }

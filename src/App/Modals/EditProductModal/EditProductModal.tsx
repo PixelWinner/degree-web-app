@@ -1,4 +1,5 @@
 import { omit } from "lodash";
+import styled from "styled-components";
 
 import React, { FC, useId } from "react";
 import { useTranslation } from "react-i18next";
@@ -7,21 +8,18 @@ import { useFormik } from "formik";
 
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
-import styled from "styled-components/macro";
-
 import { productsApi } from "@store/apis/products.api";
 
 import { getTextFieldProps } from "@utils/helpers/getTextFieldProps.helper";
 import { useDynamicFields } from "@utils/hooks/useDynamicFields.hook";
 import { ModalButtonsContainer } from "@utils/styles/ModalButtonsConatiner.styled";
 import { ModalForm } from "@utils/styles/ModalForm.styled";
-import { Field } from "@utils/typings/enums/common.enums";
 import { CreateProductDtoSchema } from "@utils/typings/schemas/products/products.schemas";
-import { CreateProductDto } from "@utils/typings/types/products/products.types";
+import { Product, UpdateProductDto } from "@utils/typings/types/products/products.types";
 
 import Button from "@components/Button";
 import TextField from "@components/TextField";
-import { Body2Typography, H5Typography, H6Typography } from "@components/Typography";
+import { H5Typography, H6Typography } from "@components/Typography";
 
 import { Modal } from "../Modal/Modal";
 import { ModalHookReturns } from "../modal.types";
@@ -30,34 +28,36 @@ const StyledModalForm = styled(ModalForm)`
     padding-bottom: 8px;
 `;
 
-type CreateProductModalProps = {
+type EditProductModalProps = {
     modalHook: ModalHookReturns;
-    shelfId: number;
+    product: Product;
 };
 
-const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId }) => {
+const EditProductModal: FC<EditProductModalProps> = ({ modalHook, product }) => {
     const { t } = useTranslation();
     const formId = useId();
-    const [createProduct, { isLoading }] = productsApi.useCreateProductMutation();
+    const [updateProduct, { isLoading }] = productsApi.useUpdateProductMutation();
 
-    const initialValues: CreateProductDto = {
-        [Field.Name]: "",
-        [Field.AMOUNT]: 0,
-        [Field.PRICE_PER_UNIT]: 0,
-        [Field.WEIGHT_PER_UNIT]: 0,
-        [Field.LENGTH]: 0,
-        [Field.WIDTH]: 0,
-        [Field.HEIGHT]: 0,
+    const { id, name, amount, pricePerUnit, weightPerUnit, length, width, height, shelfId, properties } = product;
+
+    const initialValues: UpdateProductDto = {
+        id,
+        name,
+        amount,
+        pricePerUnit,
+        weightPerUnit,
+        length,
+        width,
+        height,
         shelfId,
-        properties: {}
+        properties
     };
 
     const formikHook = useFormik({
         initialValues,
         validationSchema,
-        onSubmit: async (values, formikHelpers) => {
-            await createProduct(values).unwrap();
-            formikHelpers.resetForm();
+        onSubmit: async (values) => {
+            await updateProduct(values).unwrap();
             modalHook.closeModal();
         },
         onReset: () => {
@@ -67,7 +67,7 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
 
     const { dynamicFields, renderTextFields, renderAddButton } = useDynamicFields(formikHook, "properties");
 
-    const textFields = Object.keys(omit(initialValues, ["shelfId", "properties"])).map((field) => (
+    const textFields = Object.keys(omit(initialValues, ["id", "shelfId", "properties"])).map((field) => (
         <TextField
             key={field}
             fullWidth
@@ -81,11 +81,7 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
 
     return (
         <Modal {...modalHook.modalProps}>
-            <H5Typography>{t("modal.createProduct.title")}</H5Typography>
-
-            <Body2Typography align="left" color="text.secondary">
-                {t("modal.createProduct.description")}
-            </Body2Typography>
+            <H5Typography>{t("modal.editProduct.title")}</H5Typography>
 
             <StyledModalForm id={formId} onSubmit={formikHook.handleSubmit} onReset={formikHook.handleReset}>
                 {textFields}
@@ -108,6 +104,6 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
     );
 };
 
-export default CreateProductModal;
+export default EditProductModal;
 
 const validationSchema = toFormikValidationSchema(CreateProductDtoSchema);

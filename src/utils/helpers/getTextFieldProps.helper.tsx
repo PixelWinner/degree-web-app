@@ -43,6 +43,19 @@ export const getTextFieldProps: GetTextFieldPropsHelper = ({ field, formikHook, 
 });
 
 const getTextFieldType = (formikHook: FormikValues, field: string | Field): string | undefined => {
+    const isNumberField =
+        field === Field.HEIGHT ||
+        field === Field.WIDTH ||
+        field === Field.LENGTH ||
+        field === Field.MAX_WEIGHT ||
+        field === Field.WEIGHT_PER_UNIT ||
+        field === Field.PRICE_PER_UNIT ||
+        field === Field.AMOUNT;
+
+    if (isNumberField) {
+        return "number";
+    }
+
     if (field === Field.EMAIL) {
         return "email";
     }
@@ -65,7 +78,11 @@ export const getTextFieldUnits = (field: string | Field, t: TFunction) => {
         return <InputAdornment position="end">{t("units.size")}</InputAdornment>;
     }
 
-    if (field === Field.MAX_WEIGHT) {
+    if (field === Field.MAX_WEIGHT || field === Field.WEIGHT_PER_UNIT) {
         return <InputAdornment position="end">{t("units.weight")}</InputAdornment>;
+    }
+
+    if (field === Field.PRICE_PER_UNIT) {
+        return <InputAdornment position="end">{t("currencies.uah")}</InputAdornment>;
     }
 };

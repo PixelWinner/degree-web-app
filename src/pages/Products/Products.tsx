@@ -2,6 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
+import ProductCard from "@pages/Products/components/ProductCard";
+
 import { productsApi } from "@store/apis/products.api";
 
 import { CardsContainerStyled } from "@utils/styles/Cards.styled";
@@ -10,7 +12,6 @@ import BackButton from "@components/BackButton";
 import Button from "@components/Button";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
-import { Body1Typography } from "@components/Typography";
 
 import CreateProductModal from "../../App/Modals/CreateProductModal/CreateProductModal";
 import { useModal } from "../../App/Modals/Modal/useModal.hook";
@@ -32,13 +33,13 @@ const Products = () => {
         </>
     );
 
+    const products = data.map((product) => <ProductCard key={product.id} {...product} />);
+
     return (
         <>
             <ToolBar leftPart={toolBarButtons} />
-            <CardsContainerStyled>
-                <Body1Typography>{JSON.stringify(data)}</Body1Typography>
-            </CardsContainerStyled>
-            <CreateProductModal modalHook={modalHook} />
+            <CardsContainerStyled>{products}</CardsContainerStyled>
+            <CreateProductModal modalHook={modalHook} shelfId={+shelfId} />
         </>
     );
 };

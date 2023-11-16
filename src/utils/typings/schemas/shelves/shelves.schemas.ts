@@ -20,10 +20,10 @@ export const ShelfSchema = z.object({
 export const CreateShelfDtoSchema = z.object({
     storageId: z.number(),
     name: z.string(),
-    length: z.number().min(1, getTranslatedValidationMessage("invalidSize")),
-    width: z.number().min(1, getTranslatedValidationMessage("invalidSize")),
-    height: z.number().min(1, getTranslatedValidationMessage("invalidSize")),
-    maxWeight: z.number().min(1, getTranslatedValidationMessage("invalidWeight"))
+    length: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
+    width: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
+    height: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
+    maxWeight: z.number().min(0.001, getTranslatedValidationMessage("invalidWeight"))
 });
 
 export const UpdateShelfDtoSchema = z.object({ id: z.number(), name: z.string(), storageId: z.number() });

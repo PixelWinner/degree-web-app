@@ -11,6 +11,7 @@ export const CardsContainerStyled = styled(Box)`
     flex-wrap: wrap;
     margin: auto;
     overflow: auto;
+    padding: 8px;
 `;
 
 export const CardContainer = styled(Paper)`
@@ -25,6 +26,11 @@ export const CardContainer = styled(Paper)`
     gap: 8px;
     margin: 8px;
     padding: 16px;
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
 `;
 
 export const CardMenu = styled(DropdownMenu)`

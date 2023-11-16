@@ -10,6 +10,7 @@ const StyledModal = styled(MuiModal)`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 16px 8px;
 
     & .MuiBackdrop-root {
         backdrop-filter: blur(20px);
@@ -18,13 +19,25 @@ const StyledModal = styled(MuiModal)`
 
 const Wrapper = styled(Paper)`
     display: flex;
-    align-items: start;
-    justify-content: center;
     flex-direction: column;
-    text-align: center;
     gap: 8px;
     padding: 16px;
     margin: 16px;
+    max-height: 100%;
+    overflow: auto;
+
+    & p {
+        text-align: start;
+    }
+
+    & h1,
+    & h1,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {
+        text-align: center;
+    }
 `;
 
 export const Modal: FC<ModalComponentProps & PropsWithChildren> = ({ isOpened, children, fadeProps, ...rest }) => {

@@ -9,14 +9,19 @@ import { Tab as MuiTab, Tabs as MuiTabs } from "@mui/material";
 import { Body1Typography } from "@components/Typography";
 
 const Tabs = styled(MuiTabs)`
-    min-height: 40px;
-    height: 40px;
+    min-height: 48px;
+    height: 48px;
 `;
 
 const Tab = styled(MuiTab)`
     padding: 0 4px;
-    min-height: 40px;
-    height: 40px;
+    min-height: 48px;
+    height: 48px;
+    width: fit-content;
+
+    & p {
+        overflow-wrap: break-word;
+    }
 `;
 
 const CurrentTab = () => {

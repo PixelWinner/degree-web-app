@@ -2,6 +2,7 @@ import React from "react";
 
 import styled from "styled-components/macro";
 
+import ProductsTableIcon from "@mui/icons-material/Article";
 import StorageIcon from "@mui/icons-material/WarehouseOutlined";
 import { Box } from "@mui/material";
 
@@ -24,7 +25,8 @@ const Container = styled(Box)`
 const Home = () => {
     return (
         <Container>
-            <PageLink titleTranslationKey="general.storages" href={PAGE_PATH.storages} icon={<StorageIcon />} />
+            <PageLink titleTranslationKey="routes.storages" href={PAGE_PATH.storages} icon={<StorageIcon />} />
+            <PageLink titleTranslationKey="routes.productsTable" href={PAGE_PATH.productsTable} icon={<ProductsTableIcon />} />
         </Container>
     );
 };

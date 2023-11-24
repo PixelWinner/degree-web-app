@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
     AddUserToStorageDtoSchema,
     CreateStorageDtoSchema,
+    GetStorageShelfListResponseSchema,
     StorageDataSchema,
     StorageSchema,
     UpdateStorageDtoSchema
@@ -24,3 +25,5 @@ export type DeleteUserFormStorageDto = {
 };
 
 export type AddUserToStorageDto = z.infer<typeof AddUserToStorageDtoSchema>;
+
+export type GetStorageShelfListResponse = z.infer<typeof GetStorageShelfListResponseSchema>;

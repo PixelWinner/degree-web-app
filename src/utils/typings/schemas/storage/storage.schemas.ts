@@ -19,3 +19,16 @@ export const UpdateStorageDtoSchema = z.object({ id: z.number(), name: NameSchem
 export const StorageDataSchema = z.object({ storage: StorageSchema, users: z.array(UserDataResponseSchema) });
 
 export const AddUserToStorageDtoSchema = z.object({ storageId: z.number(), email: EmailSchema });
+
+export const GetStorageShelfListResponseSchema = z.array(
+    z.object({
+        id: z.number(),
+        name: z.string(),
+        shelves: z.array(
+            z.object({
+                id: z.number(),
+                name: z.string()
+            })
+        )
+    })
+);

@@ -37,6 +37,7 @@ const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => 
 
     const volume = length * width * height;
     const totalVolume = volume * amount;
+    const totalPrice = pricePerUnit * amount;
     const totalWeight = weightPerUnit * amount;
 
     return (
@@ -80,6 +81,10 @@ const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => 
             </Body1Typography>
 
             <Body1Typography>
+                {t("general.totalPrice")}: {getValueWithCurrency(totalPrice, t)}
+            </Body1Typography>
+
+            <Body1Typography>
                 {t("general.totalVolume")}: {getValueWithVolumeUnit(totalVolume, t)}
             </Body1Typography>
 
@@ -87,9 +92,9 @@ const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => 
                 {t("general.totalWeight")}: {getValueWithWeightUnit(totalWeight, t)}
             </Body1Typography>
 
-            <Body1Typography>{t("general.createdAt", { date: format(new Date(createdAt), DATE_TIME_FORMAT.shortDate) })}</Body1Typography>
+            <Body1Typography>{t("general.createdAt", { date: format(new Date(createdAt), DATE_TIME_FORMAT.fullDate) })}</Body1Typography>
 
-            <Body1Typography>{t("general.updatedAt", { date: format(new Date(updatedAt), DATE_TIME_FORMAT.shortDate) })}</Body1Typography>
+            <Body1Typography>{t("general.updatedAt", { date: format(new Date(updatedAt), DATE_TIME_FORMAT.fullDate) })}</Body1Typography>
         </Modal>
     );
 };

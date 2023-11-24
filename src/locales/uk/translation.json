@@ -12,7 +12,6 @@
     "toRegister": "Зареєструватися",
     "toLogin": "Увійти",
     "repeatPassword": "Повторіть пароль",
-    "passwordDoNotMatch": "Паролі не співпадають",
     "settings": "Налаштування",
     "logOut": "Вийти",
     "darkMode": "Темний режим",
@@ -28,7 +27,6 @@
     "delete": "Видалити",
     "edit": "Редагувати",
     "otherInfo": "Інша інформація",
-    "storages": "Cховища",
     "address": "Адреса",
     "addUser": "Додати користувача",
     "usersList": "Список користувачів",
@@ -53,7 +51,11 @@
     "volumePerUnit": "Об'єм одиниці",
     "totalVolume": "Загальний об'єм",
     "totalWeight": "Загальна вага",
-    "additionalParameters": "Додаткові параметри"
+    "totalPrice": "Загальна ціна",
+    "additionalParameters": "Додаткові параметри",
+    "storage": "Сховище",
+    "shelf": "Полиця",
+    "selectStorageAndShelf": "Оберіть сховище та полицю"
   },
   "units": {
     "weight": "кг",
@@ -67,6 +69,7 @@
     "storages": "Сховища",
     "shelves": "Полиці",
     "products": "Продукти",
+    "productsTable": "Таблиця продуктів",
     "home": "Головна"
   },
   "modal": {
@@ -117,6 +120,7 @@
     "invalidSize": "Некоректний розмір",
     "invalidWeight": "Некоректна вага",
     "invalidAmount": "Некоректна кілкість",
-    "invalidPrice": "Некоректна ціна"
+    "invalidPrice": "Некоректна ціна",
+    "passwordDoNotMatch": "Паролі не співпадають"
   }
 }

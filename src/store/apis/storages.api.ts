@@ -12,6 +12,7 @@ import {
     CreateStorageDto,
     DeleteStorageDto,
     DeleteUserFormStorageDto,
+    GetStorageShelfListResponse,
     StorageData,
     TStorage,
     UpdateStorageDto
@@ -87,6 +88,14 @@ export const storagesApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: (_, __, { storageId }) => [{ type: ProvidedTag.STORAGE_DATA, id: storageId }],
             transformResponse: handleTransformMessageResponse
+        }),
+        getStorageShelfList: build.query<GetStorageShelfListResponse, void>({
+            query: () => ({
+                url: API_URLS.storages.list,
+                method: HttpMethod.GET
+            }),
+            providesTags: [ProvidedTag.STORAGE_SHELF_LIST]
+            // transformResponse: handleTransformGetStoragesResponse
         })
     })
 });

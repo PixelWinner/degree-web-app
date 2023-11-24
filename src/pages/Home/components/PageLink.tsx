@@ -6,7 +6,7 @@ import styled from "styled-components/macro";
 
 import { Paper } from "@mui/material";
 
-import { H4Typography } from "@components/Typography";
+import { H5Typography } from "@components/Typography";
 
 const Container = styled(Paper)`
     display: flex;
@@ -23,8 +23,8 @@ const Container = styled(Paper)`
     }
 
     svg {
-        height: 48px;
-        width: 48px;
+        height: 40px;
+        width: 40px;
         color: ${({ theme }) => theme.palette.primary.main};
     }
 `;
@@ -46,7 +46,7 @@ const PageLink: FC<PageLinkProps> = ({ icon, titleTranslationKey, href }) => {
     return (
         <Container variant="elevation" onClick={handleClick}>
             {icon}
-            <H4Typography>{t(titleTranslationKey)}</H4Typography>
+            <H5Typography>{t(titleTranslationKey)}</H5Typography>
         </Container>
     );
 };

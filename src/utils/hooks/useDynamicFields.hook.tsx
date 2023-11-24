@@ -58,8 +58,6 @@ export const useDynamicFields: useDynamicFieldsHook = (formikHook, formikFieldKe
             return;
         }
 
-        setDynamicFields([]);
-
         for (const key in initialValues) {
             setDynamicFields([...dynamicFields, { id: Math.random(), label: key, value: initialValues[key] }]);
         }

@@ -6,7 +6,8 @@ export const PAGE_PATH = {
     storages: "/storages",
     shelves: "/shelves",
     settings: "/settings",
-    products: "/products"
+    products: "/products",
+    productsTable: "/productsTable"
 };
 
 export const DATE_TIME_FORMAT = {

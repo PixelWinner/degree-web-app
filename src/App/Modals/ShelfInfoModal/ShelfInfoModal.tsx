@@ -71,9 +71,9 @@ const ShelfInfoModal: FC<ShelfInfoModalProps> = ({ modalHook, shelf }) => {
 
             <Body1Typography>{t("general.availableVolume", { availableVolume })}</Body1Typography>
 
-            <Body1Typography>{t("general.createdAt", { date: format(new Date(createdAt), DATE_TIME_FORMAT.shortDate) })}</Body1Typography>
+            <Body1Typography>{t("general.createdAt", { date: format(new Date(createdAt), DATE_TIME_FORMAT.fullDate) })}</Body1Typography>
 
-            <Body1Typography>{t("general.updatedAt", { date: format(new Date(updatedAt), DATE_TIME_FORMAT.shortDate) })}</Body1Typography>
+            <Body1Typography>{t("general.updatedAt", { date: format(new Date(updatedAt), DATE_TIME_FORMAT.fullDate) })}</Body1Typography>
         </Modal>
     );
 };

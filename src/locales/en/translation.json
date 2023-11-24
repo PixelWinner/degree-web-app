@@ -12,7 +12,6 @@
     "toRegister": "Register",
     "toLogin": "Login",
     "repeatPassword": "Repeat password",
-    "passwordDoNotMatch": "Passwords do not match",
     "settings": "Settings",
     "logOut": "Log out",
     "darkMode": "Dark mode",
@@ -28,7 +27,6 @@
     "delete": "Delete",
     "edit": "Edit",
     "otherInfo": "Other info",
-    "storages": "Storages",
     "address": "Address",
     "addUser": "Add user",
     "usersList": "Users list",
@@ -53,7 +51,11 @@
     "volumePerUnit": "Volume per unit",
     "totalVolume": "Total volume",
     "totalWeight": "Total weight",
-    "additionalParameters": "Additional parameters"
+    "totalPrice": "Total price",
+    "additionalParameters": "Additional parameters",
+    "storage": "Storage",
+    "shelf": "Shelf",
+    "selectStorageAndShelf": "Select a storage and shelf"
   },
   "units": {
     "weight": "kg",
@@ -67,6 +69,7 @@
     "storages": "Storages",
     "shelves": "Shelves",
     "products": "Products",
+    "productsTable": "Products table",
     "home": "Home"
   },
   "modal": {
@@ -114,6 +117,7 @@
     "invalidSize": "Invalid size",
     "invalidWeight": "Invalid weight",
     "invalidAmount": "Invalid amount",
-    "invalidPrice": "Invalid price"
+    "invalidPrice": "Invalid price",
+    "passwordDoNotMatch": "Passwords do not match"
   }
 }

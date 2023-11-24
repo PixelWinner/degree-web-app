@@ -10,7 +10,8 @@ export const API_URLS = {
         main: `${PAGE_ORIGIN}/api/storages`,
         getById: (id: number) => `${PAGE_ORIGIN}/api/storages/${id}`,
         deleteUser: `${PAGE_ORIGIN}/api/storages/deleteUser`,
-        addUser: `${PAGE_ORIGIN}/api/storages/addUser`
+        addUser: `${PAGE_ORIGIN}/api/storages/addUser`,
+        list: `${PAGE_ORIGIN}/api/storages/list`
     },
     shelves: {
         main: `${PAGE_ORIGIN}/api/shelves`,

@@ -31,13 +31,15 @@ const Shelves = () => {
     const toolBarButtons = (
         <>
             <BackButton />
-            <Button onClick={modalHook.openModal}>{t("general.addShelf")}</Button>
+            <Button size="small" onClick={modalHook.openModal}>
+                {t("general.addShelf")}
+            </Button>
         </>
     );
 
     return (
         <>
-            <ToolBar leftPart={toolBarButtons} />
+            <ToolBar rightPart={toolBarButtons} />
             <CardsContainerStyled>{shelves}</CardsContainerStyled>
             <CreateShelfModal modalHook={modalHook} storageId={+storageId} />
         </>

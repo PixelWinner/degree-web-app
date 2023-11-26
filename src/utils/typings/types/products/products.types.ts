@@ -1,8 +1,22 @@
 import { z } from "zod";
 
-import { CreateProductDtoSchema, DeleteProductDtoSchema, ProductSchema, UpdateProductDtoSchema } from "@utils/typings/schemas/products/products.schemas";
+import {
+    CreateProductDtoSchema,
+    DeleteProductDtoSchema,
+    GetProductsResponseSchema,
+    ProductSchema,
+    UpdateProductDtoSchema
+} from "@utils/typings/schemas/products/products.schemas";
 
 export type Product = z.infer<typeof ProductSchema>;
+
+export type GetProductsResponse = z.infer<typeof GetProductsResponseSchema>;
+
+export type GetProductsParams = {
+    shelfId: number;
+    page: number;
+    limit: number;
+};
 
 export type CreateProductDto = z.infer<typeof CreateProductDtoSchema>;
 

@@ -19,6 +19,7 @@ const Container = styled(Box)`
     gap: 8px;
     padding: 16px;
     flex: 1;
+    overflow: auto;
 `;
 
 const Header = styled(Box)`

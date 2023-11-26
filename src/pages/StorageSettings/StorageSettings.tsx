@@ -39,13 +39,15 @@ const StorageSettings = () => {
     const toolBarButtons = (
         <>
             <BackButton />
-            <Button onClick={modalHook.openModal}>{t("general.addUser")}</Button>
+            <Button size="small" onClick={modalHook.openModal}>
+                {t("general.addUser")}
+            </Button>
         </>
     );
 
     return (
         <>
-            <ToolBar leftPart={toolBarButtons} />
+            <ToolBar rightPart={toolBarButtons} />
             <Container>
                 <StorageInfo storage={data.storage} />
 

@@ -55,7 +55,8 @@
     "additionalParameters": "Додаткові параметри",
     "storage": "Сховище",
     "shelf": "Полиця",
-    "selectStorageAndShelf": "Оберіть сховище та полицю"
+    "selectStorageAndShelf": "Оберіть сховище та полицю",
+    "productsPerPage": "Продуктів на сторінці"
   },
   "units": {
     "weight": "кг",

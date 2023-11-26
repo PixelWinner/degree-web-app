@@ -38,8 +38,8 @@ type ToolBarProps = {
 const ToolBar: FC<ToolBarProps> = ({ rightPart, leftPart }) => {
     return (
         <Container variant="outlined">
-            <LeftPart>{rightPart}</LeftPart>
-            <RightPart>{leftPart}</RightPart>
+            <LeftPart>{leftPart}</LeftPart>
+            <RightPart>{rightPart}</RightPart>
         </Container>
     );
 };

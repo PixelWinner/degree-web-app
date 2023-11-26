@@ -42,7 +42,7 @@ export const useSortedTableData = <T,>(tableData: T[]): useSortedTableReturns<T>
                 }
                 return 0;
             }),
-        [tableData]
+        [tableData, sortConfig]
     );
 
     return {

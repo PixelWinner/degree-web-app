@@ -17,6 +17,12 @@ export const ProductSchema = z.object({
     updatedAt: z.string()
 });
 
+export const GetProductsResponseSchema = z.object({
+    totalProducts: z.number(),
+    totalPages: z.number(),
+    products: z.array(ProductSchema)
+});
+
 export const CreateProductDtoSchema = z.object({
     name: z.string(),
     amount: z.number().min(1, getTranslatedValidationMessage("invalidAmount")),

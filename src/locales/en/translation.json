@@ -55,7 +55,8 @@
     "additionalParameters": "Additional parameters",
     "storage": "Storage",
     "shelf": "Shelf",
-    "selectStorageAndShelf": "Select a storage and shelf"
+    "selectStorageAndShelf": "Select a storage and shelf",
+    "productsPerPage": "Products per page"
   },
   "units": {
     "weight": "kg",

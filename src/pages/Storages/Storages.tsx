@@ -29,13 +29,15 @@ const Storages = () => {
     const toolBarButtons = (
         <>
             <BackButton />
-            <Button onClick={modalHook.openModal}>{t("general.addStorage")}</Button>
+            <Button size="small" onClick={modalHook.openModal}>
+                {t("general.addStorage")}
+            </Button>
         </>
     );
 
     return (
         <>
-            <ToolBar leftPart={toolBarButtons} />
+            <ToolBar rightPart={toolBarButtons} />
             <CardsContainerStyled>{storages}</CardsContainerStyled>
             <CreateStorageModal modalHook={modalHook} />
         </>

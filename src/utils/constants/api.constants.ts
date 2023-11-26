@@ -1,3 +1,5 @@
+import { GetProductsParams } from "@utils/typings/types/products/products.types";
+
 const PAGE_ORIGIN = import.meta.env.VITE_API_URL;
 
 export const API_URLS = {
@@ -19,6 +21,6 @@ export const API_URLS = {
     },
     products: {
         main: `${PAGE_ORIGIN}/api/products/`,
-        getAll: (shelfId: number) => `${PAGE_ORIGIN}/api/products/${shelfId}`
+        getAll: ({ shelfId, page, limit }: GetProductsParams) => `${PAGE_ORIGIN}/api/products/?shelfId=${shelfId}&page=${page}&limit=${limit}`
     }
 };

@@ -5,6 +5,7 @@ import React, { FC, PropsWithChildren, createContext, useContext, useMemo, useSt
 import { ThemeProvider as MuiThemeProvider, Theme, createTheme } from "@mui/material";
 import { enUS } from "@mui/material/locale";
 
+import { useMuiLocale } from "@utils/hooks/useMuiLocale.hook";
 import { LocalStorage, ThemeMode } from "@utils/typings/enums/common.enums";
 
 type ThemeModeContextType = {
@@ -26,8 +27,8 @@ const ThemeContext = createContext<ThemeModeContextType>({
 
 export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
     const [mode, setMode] = useState<ThemeMode>(INITIAL_THEME_MODE);
-
-    const theme = createTheme(getThemeOptions(mode), enUS);
+    const locale = useMuiLocale();
+    const theme = createTheme(getThemeOptions(mode), locale);
 
     const setThemeMode = (themeMode: ThemeMode) => {
         setMode(themeMode);

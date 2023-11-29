@@ -9,6 +9,7 @@ import { CardsContainerStyled } from "@utils/styles/Cards.styled";
 
 import BackButton from "@components/BackButton";
 import Button from "@components/Button";
+import NoDataMessage from "@components/NoDataMessage";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
 
@@ -34,6 +35,16 @@ const Storages = () => {
             </Button>
         </>
     );
+
+    if (!data?.length) {
+        return (
+            <>
+                <ToolBar rightPart={toolBarButtons} />
+                <NoDataMessage />;
+                <CreateStorageModal modalHook={modalHook} />
+            </>
+        );
+    }
 
     return (
         <>

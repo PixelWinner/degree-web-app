@@ -27,7 +27,7 @@ const ItemsContainer = styled(Box)`
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
 `;
 
 const LeftPart = styled(ItemsContainer)`

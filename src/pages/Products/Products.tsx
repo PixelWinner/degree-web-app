@@ -16,6 +16,7 @@ import { CardsContainerStyled } from "@utils/styles/Cards.styled";
 
 import BackButton from "@components/BackButton";
 import Button from "@components/Button";
+import NoDataMessage from "@components/NoDataMessage";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
 
@@ -34,11 +35,7 @@ const Products = () => {
     const { shelfId = "" } = useParams();
     const { t } = useTranslation();
     const { rowsPerPage, page, handleChangePage, handleChangeRowsPerPage } = usePagination({ rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS });
-    const { data, isLoading, isFetching, isError } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page, limit: rowsPerPage }, { skip: !shelfId });
-
-    if (isLoading || isError || !data) {
-        return <SelfCenterLoader isLoading={isLoading} isError={isError} />;
-    }
+    const { data, isFetching, isError } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page, limit: rowsPerPage }, { skip: !shelfId });
 
     const leftPartToolBar = (
         <ProductsPerPageSelect rowsPerPageOptions={ROWS_PER_PAGE_OPTIONS} rowsPerPage={rowsPerPage} handleChangeRowsPerPage={handleChangeRowsPerPage} />
@@ -53,12 +50,22 @@ const Products = () => {
         </>
     );
 
+    if (!data?.products?.length) {
+        return (
+            <>
+                <ToolBar leftPart={leftPartToolBar} rightPart={rightPartToolBar} />
+                <NoDataMessage />;
+                <CreateProductModal modalHook={modalHook} shelfId={+shelfId} />
+            </>
+        );
+    }
+
     const products = data.products.map((product) => <ProductCard key={product.id} {...product} />);
 
     return (
         <>
             <ToolBar leftPart={leftPartToolBar} rightPart={rightPartToolBar} />
-            {isFetching ? <SelfCenterLoader isLoading={isFetching} /> : <CardsContainerStyled>{products}</CardsContainerStyled>}
+            {isFetching ? <SelfCenterLoader isLoading={isFetching} isError={isError} /> : <CardsContainerStyled>{products}</CardsContainerStyled>}
             <Pagination count={data.totalPages} onChange={handleChangePage} />
             <CreateProductModal modalHook={modalHook} shelfId={+shelfId} />
         </>

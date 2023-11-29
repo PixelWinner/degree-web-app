@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 import { productsApi } from "@store/apis/products.api";
@@ -8,8 +7,8 @@ import { usePagination } from "@utils/hooks/usePagination.hook";
 import { Product } from "@utils/typings/types/products/products.types";
 
 import ExtendedTable, { TableColumn } from "@components/ExtendedTable";
+import NoDataMessage from "@components/NoDataMessage";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
-import { H6Typography } from "@components/Typography";
 
 const COLUMNS: TableColumn<ExtendedProduct>[] = [
     { key: "name", titleTranslationKey: "general.name" },
@@ -26,7 +25,6 @@ const PTable = () => {
     const { shelfId = "" } = useParams();
     const { page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = usePagination({ rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS });
     const { data, isFetching, isError } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page, limit: rowsPerPage }, { skip: !shelfId });
-    const { t } = useTranslation();
 
     const extendedRows: ExtendedProduct[] = useMemo(
         () =>
@@ -46,7 +44,7 @@ const PTable = () => {
     }
 
     if (!data?.products?.length || !data.totalProducts) {
-        return <H6Typography>{t("general.noData")}</H6Typography>;
+        return <NoDataMessage />;
     }
 
     return (

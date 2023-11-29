@@ -1,11 +1,10 @@
 import React, { FC, useMemo } from "react";
-import { useTranslation } from "react-i18next";
 
 import { ExtendedSearchProduct } from "@utils/typings/types/products/products.types";
 
 import ExtendedTable, { TableColumn } from "@components/ExtendedTable";
+import NoDataMessage from "@components/NoDataMessage";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
-import { H6Typography } from "@components/Typography";
 
 const COLUMNS: TableColumn<ExtendedProduct>[] = [
     {
@@ -44,8 +43,6 @@ type PsTableProps = {
 };
 
 const PsTable: FC<PsTableProps> = ({ isFetching, products }) => {
-    const { t } = useTranslation();
-
     const extendedRows: ExtendedProduct[] = useMemo(
         () =>
             (products ?? [])?.map((product) => ({
@@ -55,16 +52,16 @@ const PsTable: FC<PsTableProps> = ({ isFetching, products }) => {
         [products]
     );
 
-    if (!products) {
-        return null;
-    }
-
     if (isFetching) {
         return <SelfCenterLoader isLoading={isFetching} />;
     }
 
     if (!products?.length) {
-        return <H6Typography>{t("general.noData")}</H6Typography>;
+        return <NoDataMessage />;
+    }
+
+    if (!products) {
+        return null;
     }
 
     return <ExtendedTable columns={COLUMNS} rows={extendedRows} />;

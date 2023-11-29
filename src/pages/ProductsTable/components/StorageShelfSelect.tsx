@@ -10,8 +10,8 @@ import { storagesApi } from "@store/apis/storages.api";
 
 import { PAGE_PATH } from "@utils/constants/common.constants";
 
+import NoDataMessage from "@components/NoDataMessage";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
-import { H6Typography } from "@components/Typography";
 
 const Container = styled(Box)`
     display: flex;
@@ -50,7 +50,7 @@ const StorageShelfSelect = () => {
     }
 
     if (!data?.length) {
-        return <H6Typography>{t("general.noData")}</H6Typography>;
+        return <NoDataMessage />;
     }
 
     const handleChangeStorage = (event: SelectChangeEvent<number>) => {

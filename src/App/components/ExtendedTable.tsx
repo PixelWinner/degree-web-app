@@ -39,6 +39,10 @@ const TableFooter = styled(MuiTableFooter)`
     position: sticky;
     bottom: 0;
     background-color: ${({ theme }) => (theme.palette.mode === ThemeMode.DARK ? theme.palette.grey[900] : theme.palette.grey[200])};
+
+    & .MuiTableCell-root {
+        border-bottom: none;
+    }
 `;
 
 export type TableColumn<T> = { key: keyof T; titleTranslationKey: string; unitsTranslationKey?: string };

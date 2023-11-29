@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components/macro";
 
 import ProductsTableIcon from "@mui/icons-material/Article";
+import SearchIcon from "@mui/icons-material/Search";
 import StorageIcon from "@mui/icons-material/WarehouseOutlined";
 import { Box } from "@mui/material";
 
@@ -27,6 +28,7 @@ const Home = () => {
         <Container>
             <PageLink titleTranslationKey="routes.storages" href={PAGE_PATH.storages} icon={<StorageIcon />} />
             <PageLink titleTranslationKey="routes.productsTable" href={PAGE_PATH.productsTable} icon={<ProductsTableIcon />} />
+            <PageLink titleTranslationKey="routes.searchProducts" href={PAGE_PATH.productsSearch} icon={<SearchIcon />} />
         </Container>
     );
 };

@@ -41,3 +41,11 @@ export const DeleteProductDtoSchema = z.object({
     id: z.number(),
     shelfId: z.number()
 });
+
+export const ExtendedSearchProductSchema = z
+    .object({
+        shelfName: z.string(),
+        storageId: z.number(),
+        storageName: z.string()
+    })
+    .merge(ProductSchema);

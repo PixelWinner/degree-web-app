@@ -21,6 +21,7 @@ export const API_URLS = {
     },
     products: {
         main: `${PAGE_ORIGIN}/api/products/`,
-        getAll: ({ shelfId, page, limit }: GetProductsParams) => `${PAGE_ORIGIN}/api/products/?shelfId=${shelfId}&page=${page}&limit=${limit}`
+        getAll: ({ shelfId, page, limit }: GetProductsParams) => `${PAGE_ORIGIN}/api/products/?shelfId=${shelfId}&page=${page}&limit=${limit}`,
+        search: (name: string) => `${PAGE_ORIGIN}/api/products/search/?name=${name}`
     }
 };

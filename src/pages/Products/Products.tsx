@@ -34,7 +34,7 @@ const Products = () => {
     const { shelfId = "" } = useParams();
     const { t } = useTranslation();
     const { rowsPerPage, page, handleChangePage, handleChangeRowsPerPage } = usePagination({ rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS });
-    const { data, isLoading, isError } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page: page, limit: rowsPerPage }, { skip: !shelfId });
+    const { data, isLoading, isFetching, isError } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page, limit: rowsPerPage }, { skip: !shelfId });
 
     if (isLoading || isError || !data) {
         return <SelfCenterLoader isLoading={isLoading} isError={isError} />;
@@ -58,7 +58,7 @@ const Products = () => {
     return (
         <>
             <ToolBar leftPart={leftPartToolBar} rightPart={rightPartToolBar} />
-            <CardsContainerStyled>{products}</CardsContainerStyled>
+            {isFetching ? <SelfCenterLoader isLoading={isFetching} /> : <CardsContainerStyled>{products}</CardsContainerStyled>}
             <Pagination count={data.totalPages} onChange={handleChangePage} />
             <CreateProductModal modalHook={modalHook} shelfId={+shelfId} />
         </>

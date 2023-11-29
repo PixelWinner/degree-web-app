@@ -12,7 +12,7 @@ import { DATE_TIME_FORMAT } from "@utils/constants/common.constants";
 import { getValueWithCurrency, getValueWithSizeUnit, getValueWithVolumeUnit, getValueWithWeightUnit } from "@utils/helpers/getValueWithUnits.helpers";
 import { Product } from "@utils/typings/types/products/products.types";
 
-import { Body1Typography, H5Typography } from "@components/Typography";
+import { Body1Typography, H5Typography, H6Typography } from "@components/Typography";
 
 import { Modal } from "../Modal/Modal";
 import { ModalHookReturns } from "../modal.types";
@@ -33,12 +33,13 @@ type ProductInfoModalProps = {
 
 const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => {
     const { t } = useTranslation();
-    const { name, length, width, height, amount, pricePerUnit, weightPerUnit, createdAt, updatedAt } = product;
+    const { name, length, width, height, amount, pricePerUnit, weightPerUnit, createdAt, updatedAt, properties } = product;
 
     const volume = length * width * height;
     const totalVolume = volume * amount;
     const totalPrice = pricePerUnit * amount;
     const totalWeight = weightPerUnit * amount;
+    const propertyValues = Object.entries(properties).map(([key, value], index) => <Body1Typography key={key + index}>{`${key}: ${value}`}</Body1Typography>);
 
     return (
         <Modal {...modalHook.modalProps}>
@@ -95,6 +96,12 @@ const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => 
             <Body1Typography>{t("general.createdAt", { date: format(new Date(createdAt), DATE_TIME_FORMAT.fullDate) })}</Body1Typography>
 
             <Body1Typography>{t("general.updatedAt", { date: format(new Date(updatedAt), DATE_TIME_FORMAT.fullDate) })}</Body1Typography>
+
+            {!!propertyValues.length && <Divider />}
+
+            {!!propertyValues.length && <H6Typography>{t("general.additionalParameters")}</H6Typography>}
+
+            {propertyValues}
         </Modal>
     );
 };

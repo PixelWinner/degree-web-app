@@ -12,7 +12,7 @@ export type ErrorData = {
 
 export type ApiError = {
     status: number;
-    data?: ErrorData;
+    data: ErrorData;
 };
 
 export type FetchApiError = FetchBaseQueryError & ApiError;

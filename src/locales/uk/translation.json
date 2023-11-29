@@ -5,6 +5,8 @@
     "login": "Вхід до свого облікового запису",
     "register": "Створення свого облікового запису",
     "name": "Ім'я",
+    "storageName": "Назва сховища",
+    "shelfName": "Назва полиці",
     "email": "Електронна пошта",
     "password": "Пароль",
     "signIn": "Увійти",
@@ -56,7 +58,10 @@
     "storage": "Сховище",
     "shelf": "Полиця",
     "selectStorageAndShelf": "Оберіть сховище та полицю",
-    "productsPerPage": "Продуктів на сторінці"
+    "productsPerPage": "Продуктів на сторінці",
+    "enterNameForSearch": "Введіть ім'я для пошуку",
+    "searchResults": "Результати пошуку",
+    "nothingFound": "Нічого не знайдено"
   },
   "units": {
     "weight": "кг",
@@ -71,7 +76,8 @@
     "shelves": "Полиці",
     "products": "Продукти",
     "productsTable": "Таблиця продуктів",
-    "home": "Головна"
+    "home": "Головна",
+    "searchProducts": "Пошук продуктів"
   },
   "modal": {
     "createStorage": {

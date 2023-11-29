@@ -22,6 +22,7 @@ const Home = lazy(() => import("@pages/Home/Home"));
 const Products = lazy(() => import("@pages/Products/Products"));
 const StorageSettings = lazy(() => import("@pages/StorageSettings/StorageSettings"));
 const ProductsTable = lazy(() => import("@pages/ProductsTable/ProductsTable"));
+const ProductsSearch = lazy(() => import("@pages/ProductsSearch/ProductsSearch"));
 
 const AppPages = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -61,6 +62,10 @@ const AppPages = () => {
         {
             path: `${PAGE_PATH.productsTable}/:storageId?/:shelfId?`,
             element: <ProductsTable />
+        },
+        {
+            path: `${PAGE_PATH.productsSearch}/:name?`,
+            element: <ProductsSearch />
         }
     ].map(({ path, element }, index) => <Route key={index} path={path} element={<Suspense fallback={Loader}>{element}</Suspense>} />);
 

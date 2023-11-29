@@ -5,6 +5,8 @@
     "login": "Log In to Your Account",
     "register": "Create Your Account",
     "name": "Name",
+    "storageName": "Storage title",
+    "shelfName": "Shelf title",
     "email": "Email",
     "password": "Password",
     "signIn": "Sign In",
@@ -56,7 +58,10 @@
     "storage": "Storage",
     "shelf": "Shelf",
     "selectStorageAndShelf": "Select a storage and shelf",
-    "productsPerPage": "Products per page"
+    "productsPerPage": "Products per page",
+    "enterNameForSearch": "Enter a name for search",
+    "searchResults": "Search results",
+    "nothingFound": "Nothing found"
   },
   "units": {
     "weight": "kg",
@@ -71,7 +76,8 @@
     "shelves": "Shelves",
     "products": "Products",
     "productsTable": "Products table",
-    "home": "Home"
+    "home": "Home",
+    "searchProducts": "Search products"
   },
   "modal": {
     "createStorage": {

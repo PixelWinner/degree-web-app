@@ -61,7 +61,14 @@
     "productsPerPage": "Продуктів на сторінці",
     "enterNameForSearch": "Введіть ім'я для пошуку",
     "searchResults": "Результати пошуку",
-    "nothingFound": "Нічого не знайдено"
+    "nothingFound": "Нічого не знайдено",
+    "supplierInfo": "Інформація про постачальника",
+    "fullCompanyName": "Повна назва компанії",
+    "legalAddress": "Юридична адреса",
+    "TIN": "ІНН",
+    "USREOU": "ЄДРПОУ",
+    "phoneNumber": "Номер телефону",
+    "product": "Продукт"
   },
   "units": {
     "weight": "кг",
@@ -77,7 +84,8 @@
     "products": "Продукти",
     "productsTable": "Таблиця продуктів",
     "home": "Головна",
-    "searchProducts": "Пошук продуктів"
+    "productsSearch": "Пошук продуктів",
+    "productsSupply": "Поставка продуктів"
   },
   "modal": {
     "createStorage": {

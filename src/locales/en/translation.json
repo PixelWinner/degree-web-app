@@ -61,7 +61,14 @@
     "productsPerPage": "Products per page",
     "enterNameForSearch": "Enter a name for search",
     "searchResults": "Search results",
-    "nothingFound": "Nothing found"
+    "nothingFound": "Nothing found",
+    "supplierInfo": "Information about the supplier",
+    "fullCompanyName": "Full Company Name",
+    "legalAddress": "Legal Address",
+    "TIN": "Taxpayer Identification Number",
+    "USREOU": "Unified State Register of Enterprises and Organizations of Ukraine",
+    "phoneNumber": "Phone Number",
+    "product": "Product"
   },
   "units": {
     "weight": "kg",
@@ -77,7 +84,8 @@
     "products": "Products",
     "productsTable": "Products table",
     "home": "Home",
-    "searchProducts": "Search products"
+    "productsSearch": "Search products",
+    "productsSupply": "Products supply"
   },
   "modal": {
     "createStorage": {

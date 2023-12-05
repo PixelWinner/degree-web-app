@@ -127,7 +127,8 @@
     }
   },
   "validation": {
-    "email": "Incorrect email format",
+    "invalidString": "The string must not be empty",
+    "invalidEmail": "Incorrect email format",
     "invalidLength": "Invalid length",
     "invalidSize": "Invalid size",
     "invalidWeight": "Invalid weight",

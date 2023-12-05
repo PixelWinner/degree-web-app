@@ -39,7 +39,7 @@ const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => 
     const totalVolume = volume * amount;
     const totalPrice = pricePerUnit * amount;
     const totalWeight = weightPerUnit * amount;
-    const propertyValues = Object.entries(properties).map(([key, value], index) => <Body1Typography key={key + index}>{`${key}: ${value}`}</Body1Typography>);
+    const propertyValues = properties.map(({ label, value }, index) => <Body1Typography key={index}>{`${label}: ${value}`}</Body1Typography>);
 
     return (
         <Modal {...modalHook.modalProps}>

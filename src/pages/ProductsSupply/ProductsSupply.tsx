@@ -9,14 +9,11 @@ import { useProductsForms } from "@pages/ProductsSupply/ProductForms/useProducts
 import SupplierInfo from "@pages/ProductsSupply/SupplierInfo/SupplierInfo";
 import { useSupplierInfo } from "@pages/ProductsSupply/SupplierInfo/useSupplierInfo.hook";
 
-import { storagesApi } from "@store/apis/storages.api";
-
 import { PAGE_PATH } from "@utils/constants/common.constants";
 import { CreateSupplyDto } from "@utils/typings/types/products/products.types";
 
 import BackButton from "@components/BackButton";
 import Button from "@components/Button";
-import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
 
 const Container = styled(Box)`
@@ -30,9 +27,8 @@ const Container = styled(Box)`
 `;
 
 const ProductsSupply = () => {
-    const { data, isLoading, isError } = storagesApi.useGetStorageShelfListQuery();
     const { textFields, validate: validateInfo, supplierInfo } = useSupplierInfo();
-    const { accordions, handleAddProduct, validate: validateProducts, products } = useProductsForms({ storageShelfList: data });
+    const { accordions, handleAddProduct, validate: validateProducts, products } = useProductsForms();
 
     const handleSubmit = async () => {
         if (!validateInfo && !validateProducts) {
@@ -54,16 +50,6 @@ const ProductsSupply = () => {
 
         console.log(supply);
     };
-
-    if (isLoading || isError) {
-        return (
-            <>
-                <ToolBar rightPart={<BackButton path={PAGE_PATH.home} />} />
-                <SelfCenterLoader isLoading={isLoading} isError={isError} />
-            </>
-        );
-    }
-    //TODO if no shelves message
 
     return (
         <>

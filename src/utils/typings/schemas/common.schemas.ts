@@ -2,14 +2,18 @@ import { z } from "zod";
 
 import { getTranslatedValidationMessage } from "@utils/helpers/getTranslatedMessage.helper";
 
-export const NameSchema = z.string().min(1, getTranslatedValidationMessage("invalidLength")).max(32, getTranslatedValidationMessage("invalidLength"));
+export const StringSchema = z.string({ required_error: getTranslatedValidationMessage("invalidString") });
 
-export const EmailSchema = z.string().email(getTranslatedValidationMessage("invalidEmail"));
+export const DateStringSchema = StringSchema.datetime();
 
-export const PasswordSchema = z.string().min(8, getTranslatedValidationMessage("invalidLength")).max(32, getTranslatedValidationMessage("invalidLength"));
+export const NameSchema = StringSchema.min(1, getTranslatedValidationMessage("invalidLength")).max(32, getTranslatedValidationMessage("invalidLength"));
 
-export const MessageResponseSchema = z.object({ message: z.string().min(1) });
+export const EmailSchema = StringSchema.email(getTranslatedValidationMessage("invalidEmail"));
 
-export const PhoneNumber = z.string().regex(/^\+\d{1,3}\s?\d{4,14}(?:x.+)?$/);
+export const PasswordSchema = StringSchema.min(8, getTranslatedValidationMessage("invalidLength")).max(32, getTranslatedValidationMessage("invalidLength"));
 
-export const DynamicFieldSchema = z.object({ label: z.string(), value: z.string() });
+export const MessageResponseSchema = z.object({ message: StringSchema });
+
+export const PhoneNumber = StringSchema.regex(/^\+\d{1,3}\s?\d{4,14}(?:x.+)?$/);
+
+export const DynamicFieldSchema = z.object({ label: StringSchema, value: StringSchema });

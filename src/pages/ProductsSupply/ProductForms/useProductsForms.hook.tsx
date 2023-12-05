@@ -10,26 +10,21 @@ import { TFunction } from "i18next";
 
 import ProductAccordionForm from "@pages/ProductsSupply/ProductForms/components/ProductAccordionForm";
 
-import { CreateProductDtoSchema } from "@utils/typings/schemas/products/products.schemas";
-import { CreateProductDto } from "@utils/typings/types/products/products.types";
-import { GetStorageShelfListResponse } from "@utils/typings/types/storages/storages.types";
-
-type UseProductsFormsProps = {
-    storageShelfList: GetStorageShelfListResponse | undefined;
-};
+import { SupplyProductSchema } from "@utils/typings/schemas/products/products.schemas";
+import { SupplyProduct } from "@utils/typings/types/products/products.types";
 
 type UseProductsFormsReturns = {
     validate: () => Promise<FormikErrors<InitialValues>>;
-    products: CreateProductDto[];
+    products: SupplyProduct[];
     accordions: JSX.Element[];
     handleAddProduct: () => void;
 };
 
-type UseProductsFormsHook = (props: UseProductsFormsProps) => UseProductsFormsReturns;
+type UseProductsFormsHook = () => UseProductsFormsReturns;
 
-type InitialValues = { products: CreateProductDto[] };
+type InitialValues = { products: SupplyProduct[] };
 
-export const useProductsForms: UseProductsFormsHook = ({ storageShelfList }) => {
+export const useProductsForms: UseProductsFormsHook = () => {
     const { t } = useTranslation();
     const initialValues: InitialValues = { products: [] };
 
@@ -39,18 +34,11 @@ export const useProductsForms: UseProductsFormsHook = ({ storageShelfList }) => 
         onSubmit: () => {}
     });
 
-    const availableStorage = useMemo(() => storageShelfList?.find((storage) => !!storage?.shelves[0]?.id), [storageShelfList]);
-
     const handleAddProduct = useCallback(() => {
-        if (!availableStorage) {
-            return;
-        }
-
-        const shelfId = availableStorage.shelves[0].id;
         const order = formikHook.values.products.length + 1;
 
-        formikHook.setFieldValue(`products`, [...formikHook.values.products, getNewProduct({ shelfId, order, t })]);
-    }, [availableStorage, formikHook]);
+        formikHook.setFieldValue(`products`, [...formikHook.values.products, getNewProduct(order, t)]);
+    }, [formikHook]);
 
     const accordions = useMemo(
         () => formikHook.values.products.map((product, index) => <ProductAccordionForm key={index} values={product} formikHook={formikHook} index={index} />),
@@ -71,9 +59,7 @@ export const useProductsForms: UseProductsFormsHook = ({ storageShelfList }) => 
     };
 };
 
-type GetNewProductHelper = (props: { shelfId: number; order: number; t: TFunction }) => CreateProductDto;
-
-const getNewProduct: GetNewProductHelper = ({ shelfId, order, t }) => ({
+const getNewProduct = (order: number, t: TFunction): SupplyProduct => ({
     name: `${t("general.product")} - ${order}`,
     amount: 0,
     pricePerUnit: 0,
@@ -81,8 +67,7 @@ const getNewProduct: GetNewProductHelper = ({ shelfId, order, t }) => ({
     length: 0,
     width: 0,
     height: 0,
-    shelfId,
     properties: []
 });
 
-const validationSchema = toFormikValidationSchema(z.object({ products: z.array(CreateProductDtoSchema) }));
+const validationSchema = toFormikValidationSchema(z.object({ products: z.array(SupplyProductSchema) }));

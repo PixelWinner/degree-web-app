@@ -8,6 +8,7 @@ import {
     GetProductsResponseSchema,
     ProductSchema,
     SupplierInfoSchema,
+    SupplyProductSchema,
     UpdateProductDtoSchema
 } from "@utils/typings/schemas/products/products.schemas";
 
@@ -32,3 +33,5 @@ export type ExtendedSearchProduct = z.infer<typeof ExtendedSearchProductSchema>;
 export type SupplierInfo = z.infer<typeof SupplierInfoSchema>;
 
 export type CreateSupplyDto = z.infer<typeof CreateSupplyDtoSchema>;
+
+export type SupplyProduct = z.infer<typeof SupplyProductSchema>;

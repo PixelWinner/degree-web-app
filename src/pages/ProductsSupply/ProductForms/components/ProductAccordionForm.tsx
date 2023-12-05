@@ -12,13 +12,15 @@ import { AccordionSummary, Box, Accordion as MuiAccordion, AccordionDetails as M
 
 import { getTextFieldProps } from "@utils/helpers/getTextFieldProps.helper";
 import { useDynamicFields } from "@utils/hooks/useDynamicFields.hook";
-import { CreateProductDto } from "@utils/typings/types/products/products.types";
+import { SupplyProduct } from "@utils/typings/types/products/products.types";
 
 import Button from "@components/Button";
 import TextField from "@components/TextField";
 import { Body1Typography, H6Typography } from "@components/Typography";
 
-const Accordion = styled(MuiAccordion)`
+const Accordion = styled(MuiAccordion)<{ $isError: boolean }>`
+    border: ${({ theme, $isError }) => $isError && `${theme.palette.error.main} 1px solid`};
+
     &.Mui-expanded {
         margin: 0;
     }
@@ -60,7 +62,7 @@ const DynamicFieldsContainer = styled(Box)`
 `;
 
 type ProductAccordionFormProps = {
-    values: CreateProductDto;
+    values: SupplyProduct;
     formikHook: FormikValues;
     index: number;
 };
@@ -68,11 +70,12 @@ type ProductAccordionFormProps = {
 const ProductAccordionForm: FC<ProductAccordionFormProps> = ({ values, index, formikHook }) => {
     const { t } = useTranslation();
     const { dynamicTextFields, addButton } = useDynamicFields(formikHook, `products.${index}.properties`);
+
     const handleDelete = () => {
         formikHook.setFieldValue("products", formikHook.values.products.toSpliced(index, 1));
     };
 
-    const textFields = Object.keys(omit(values, ["shelfId", "properties"])).map((field) => (
+    const textFields = Object.keys(omit(values, "properties")).map((field) => (
         <StyledTextField
             key={field}
             {...getTextFieldProps({
@@ -84,8 +87,10 @@ const ProductAccordionForm: FC<ProductAccordionFormProps> = ({ values, index, fo
         />
     ));
 
+    const isError = !!formikHook.errors?.products?.[index] && !!formikHook.touched?.products?.[index];
+
     return (
-        <Accordion defaultExpanded>
+        <Accordion $isError={isError} defaultExpanded>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Body1Typography>{values.name}</Body1Typography>
             </AccordionSummary>

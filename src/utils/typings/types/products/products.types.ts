@@ -2,10 +2,12 @@ import { z } from "zod";
 
 import {
     CreateProductDtoSchema,
+    CreateSupplyDtoSchema,
     DeleteProductDtoSchema,
     ExtendedSearchProductSchema,
     GetProductsResponseSchema,
     ProductSchema,
+    SupplierInfoSchema,
     UpdateProductDtoSchema
 } from "@utils/typings/schemas/products/products.schemas";
 
@@ -26,3 +28,7 @@ export type UpdateProductDto = z.infer<typeof UpdateProductDtoSchema>;
 export type DeleteProductDto = z.infer<typeof DeleteProductDtoSchema>;
 
 export type ExtendedSearchProduct = z.infer<typeof ExtendedSearchProductSchema>;
+
+export type SupplierInfo = z.infer<typeof SupplierInfoSchema>;
+
+export type CreateSupplyDto = z.infer<typeof CreateSupplyDtoSchema>;

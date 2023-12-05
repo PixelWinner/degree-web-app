@@ -6,9 +6,12 @@ export const PAGE_PATH = {
     storages: "/storages",
     shelves: "/shelves",
     settings: "/settings",
-    products: "/products",
-    productsTable: "/productsTable",
-    productsSearch: "/productsSearch"
+    products: {
+        main: "/products",
+        table: "/productsTable",
+        search: "/productsSearch",
+        supply: "/productsSupply"
+    }
 };
 
 export const DATE_TIME_FORMAT = {

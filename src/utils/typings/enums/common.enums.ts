@@ -25,5 +25,10 @@ export enum Field {
     HEIGHT = "height",
     MAX_WEIGHT = "maxWeight",
     AMOUNT = "amount",
-    WEIGHT_PER_UNIT = "weightPerUnit"
+    WEIGHT_PER_UNIT = "weightPerUnit",
+    FULL_COMPANY_NAME = "fullCompanyName",
+    LEGAL_ADDRESS = "legalAddress",
+    TIN = "TIN", //ENG: Taxpayer Identification Number
+    USREOU = "USREOU", //ENG: Unified State Register of Enterprises and Organizations of Ukraine"
+    PHONE_NUMBER = "phoneNumber"
 }

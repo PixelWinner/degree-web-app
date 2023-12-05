@@ -30,7 +30,7 @@ const ProductsSearch = () => {
 
     const handleChange = useCallback(
         (newName: string) => {
-            navigate(`${PAGE_PATH.productsSearch}/${newName}`);
+            navigate(`${PAGE_PATH.products.search}/${newName}`);
         },
         [navigate]
     );
@@ -38,9 +38,10 @@ const ProductsSearch = () => {
     return (
         <>
             <ToolBar
-                leftPart={<SearchField labelTranslationKey="routes.searchProducts" onChange={handleChange} initialValue={name} queryTrigger={queryTrigger} />}
+                leftPart={<SearchField labelTranslationKey="routes.productsSearch" onChange={handleChange} initialValue={name} queryTrigger={queryTrigger} />}
                 rightPart={<BackButton path={PAGE_PATH.home} />}
             />
+
             <Container>
                 <PSTable isFetching={isFetching} products={data} />
             </Container>

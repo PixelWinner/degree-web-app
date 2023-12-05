@@ -1,10 +1,12 @@
-import { TFunction, TReturnOptionalNull } from "i18next";
-
 import React from "react";
+
+import get from "lodash/get";
 
 import { FormikHandlers, FormikValues } from "formik";
 
 import InputAdornment from "@mui/material/InputAdornment";
+
+import { TFunction } from "i18next";
 
 import { getFieldError, getIsFieldError } from "@utils/helpers/getFieldError.helper";
 import { Field } from "@utils/typings/enums/common.enums";
@@ -13,7 +15,8 @@ type GetTextFieldProps = {
     field: Field | string;
     formikHook: FormikValues;
     t: TFunction;
-    label?: TReturnOptionalNull;
+    pathToValue?: string;
+    label?: string;
 };
 
 type GetTextFieldPropsReturns = {
@@ -27,22 +30,22 @@ type GetTextFieldPropsReturns = {
 };
 
 export type GetTextFieldPropsHelper = (props: GetTextFieldProps) => GetTextFieldPropsReturns;
-export const getTextFieldProps: GetTextFieldPropsHelper = ({ field, formikHook, t, label }) => ({
-    id: field,
-    name: field,
+export const getTextFieldProps: GetTextFieldPropsHelper = ({ field, pathToValue, formikHook, t, label }) => ({
+    id: pathToValue ?? field,
+    name: pathToValue ?? field,
     label: label ?? t(`general.${field}`),
     autoComplete: field,
     type: getTextFieldType(formikHook, field),
-    value: formikHook.values[field],
+    value: pathToValue ? get(formikHook.values, pathToValue) : formikHook.values[field],
     onChange: formikHook.handleChange,
-    error: getIsFieldError({ form: formikHook, key: field }),
-    helperText: getFieldError({ form: formikHook, key: field }),
+    error: getIsFieldError({ form: formikHook, key: pathToValue ?? field }),
+    helperText: getFieldError({ form: formikHook, key: pathToValue ?? field }),
     InputProps: {
         endAdornment: getTextFieldUnits(field, t)
     }
 });
 
-const getTextFieldType = (formikHook: FormikValues, field: string | Field): string | undefined => {
+const getTextFieldType = (formikHook: FormikValues, field: string | Field): string => {
     const isNumberField =
         field === Field.HEIGHT ||
         field === Field.WIDTH ||
@@ -71,6 +74,8 @@ const getTextFieldType = (formikHook: FormikValues, field: string | Field): stri
     if (typeof formikHook.values[field] === "number") {
         return "number";
     }
+
+    return "text";
 };
 
 export const getTextFieldUnits = (field: string | Field, t: TFunction) => {

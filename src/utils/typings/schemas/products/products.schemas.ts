@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 import { getTranslatedValidationMessage } from "@utils/helpers/getTranslatedMessage.helper";
+import { Field } from "@utils/typings/enums/common.enums";
+import { DynamicFieldSchema, EmailSchema, PhoneNumber } from "@utils/typings/schemas/common.schemas";
 
 export const ProductSchema = z.object({
     id: z.number(),
@@ -12,7 +14,7 @@ export const ProductSchema = z.object({
     length: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
     width: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
     height: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
-    properties: z.record(z.string(), z.string()),
+    properties: z.array(DynamicFieldSchema),
     createdAt: z.string(),
     updatedAt: z.string()
 });
@@ -32,7 +34,7 @@ export const CreateProductDtoSchema = z.object({
     width: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
     height: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
     shelfId: z.number(),
-    properties: z.record(z.string(), z.string())
+    properties: z.array(DynamicFieldSchema)
 });
 
 export const UpdateProductDtoSchema = z.object({ id: z.number() }).merge(CreateProductDtoSchema);
@@ -49,3 +51,14 @@ export const ExtendedSearchProductSchema = z
         storageName: z.string()
     })
     .merge(ProductSchema);
+
+export const SupplierInfoSchema = z.object({
+    [Field.FULL_COMPANY_NAME]: z.string(),
+    [Field.LEGAL_ADDRESS]: z.string(),
+    [Field.TIN]: z.string(),
+    [Field.USREOU]: z.string(),
+    [Field.EMAIL]: EmailSchema,
+    [Field.PHONE_NUMBER]: PhoneNumber
+});
+
+export const CreateSupplyDtoSchema = z.object({ products: z.array(CreateProductDtoSchema) }).merge(SupplierInfoSchema);

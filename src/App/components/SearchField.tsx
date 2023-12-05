@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
 
 import SearchIcon from "@mui/icons-material/Search";
+import { TextFieldProps } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 
 import { MS_IN_SECOND } from "@utils/constants/common.constants";
@@ -43,9 +44,9 @@ type SearchFieldProps = {
     onChange?: (newValue: string) => void;
     initialValue?: string;
     queryTrigger: LazyQueryTrigger<TQueryDefinition>;
-};
+} & Omit<TextFieldProps, "onChange">;
 
-const SearchField: FC<SearchFieldProps> = ({ labelTranslationKey, initialValue, onChange, queryTrigger }) => {
+const SearchField: FC<SearchFieldProps> = ({ labelTranslationKey, initialValue, onChange, queryTrigger, ...rest }) => {
     const [value, setValue] = useState<string>(initialValue ?? "");
     const { t } = useTranslation();
 
@@ -98,6 +99,8 @@ const SearchField: FC<SearchFieldProps> = ({ labelTranslationKey, initialValue, 
                     </InputAdornment>
                 )
             }}
+            margin="none"
+            {...rest}
         />
     );
 };

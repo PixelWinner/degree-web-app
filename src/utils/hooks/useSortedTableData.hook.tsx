@@ -6,9 +6,9 @@ type SortDirection = TableSortLabelOwnProps["direction"];
 
 type SortConfig<T> = { key: keyof T | null; direction: SortDirection };
 
-export type useSortedTableReturns<T> = { sortConfig: SortConfig<T>; sortedData: T[]; handleSort: (key: keyof T) => void };
+export type UseSortedTableReturns<T> = { sortConfig: SortConfig<T>; sortedData: T[]; handleSort: (key: keyof T) => void };
 
-export const useSortedTableData = <T,>(tableData: T[]): useSortedTableReturns<T> => {
+export const useSortedTableData = <T,>(tableData: T[]): UseSortedTableReturns<T> => {
     const [sortConfig, setSortConfig] = useState<SortConfig<T>>({ key: null, direction: "asc" });
 
     const handleSort = useCallback(

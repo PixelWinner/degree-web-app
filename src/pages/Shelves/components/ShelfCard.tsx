@@ -44,7 +44,7 @@ const ShelfCard: FC<Shelf> = (shelf) => {
     };
 
     const handleClick = () => {
-        navigate(`${PAGE_PATH.products}/${id}`);
+        navigate(`${PAGE_PATH.products.main}/${id}`);
     };
 
     const menuItems: DropdownMenuItem[] = [

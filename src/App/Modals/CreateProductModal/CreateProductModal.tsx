@@ -49,7 +49,7 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
         [Field.WIDTH]: 0,
         [Field.HEIGHT]: 0,
         shelfId,
-        properties: {}
+        properties: []
     };
 
     const formikHook = useFormik({
@@ -65,7 +65,7 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
         }
     });
 
-    const { dynamicFields, renderTextFields, renderAddButton } = useDynamicFields(formikHook, "properties");
+    const { dynamicTextFields, addButton } = useDynamicFields(formikHook, "properties");
 
     const textFields = Object.keys(omit(initialValues, ["shelfId", "properties"])).map((field) => (
         <TextField
@@ -90,10 +90,10 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
             <StyledModalForm id={formId} onSubmit={formikHook.handleSubmit} onReset={formikHook.handleReset}>
                 {textFields}
 
-                {!!dynamicFields.length && <H6Typography>{t("general.additionalParameters")}</H6Typography>}
+                {!!dynamicTextFields.length && <H6Typography>{t("general.additionalParameters")}</H6Typography>}
 
-                {renderTextFields()}
-                {renderAddButton()}
+                {dynamicTextFields}
+                {addButton}
             </StyledModalForm>
 
             <ModalButtonsContainer>

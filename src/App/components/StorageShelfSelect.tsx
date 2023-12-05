@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -7,8 +7,6 @@ import styled from "styled-components/macro";
 import { Box, FormControl, InputLabel, MenuItem, Select as MuiSelect, SelectChangeEvent } from "@mui/material";
 
 import { storagesApi } from "@store/apis/storages.api";
-
-import { PAGE_PATH } from "@utils/constants/common.constants";
 
 import NoDataMessage from "@components/NoDataMessage";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
@@ -24,7 +22,11 @@ const Select = styled(MuiSelect)`
     min-width: 100px;
 `;
 
-const StorageShelfSelect = () => {
+type StorageShelfSelectProps = {
+    rootPath: string;
+};
+
+const StorageShelfSelect: FC<StorageShelfSelectProps> = ({ rootPath }) => {
     const { t } = useTranslation();
     const { storageId = "", shelfId = "" } = useParams();
     const navigate = useNavigate();
@@ -37,11 +39,11 @@ const StorageShelfSelect = () => {
     useEffect(() => {
         if (initialStorage) {
             if (!initialShelf) {
-                navigate(`${PAGE_PATH.productsTable}/${initialStorage}`);
+                navigate(`${rootPath}/${initialStorage}`);
                 return;
             }
 
-            navigate(`${PAGE_PATH.productsTable}/${initialStorage}/${initialShelf}`);
+            navigate(`${rootPath}/${initialStorage}/${initialShelf}`);
         }
     }, [initialStorage, initialShelf]);
 
@@ -54,11 +56,11 @@ const StorageShelfSelect = () => {
     }
 
     const handleChangeStorage = (event: SelectChangeEvent<number>) => {
-        navigate(`${PAGE_PATH.productsTable}/${event.target.value}`);
+        navigate(`${rootPath}/${event.target.value}`);
     };
 
     const handleChangeShelf = (event: SelectChangeEvent<number>) => {
-        navigate(`${PAGE_PATH.productsTable}/${+storageId}/${event.target.value}`);
+        navigate(`${rootPath}/${+storageId}/${event.target.value}`);
     };
 
     const storageItems = data?.map((storage) => (

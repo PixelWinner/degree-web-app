@@ -10,5 +10,5 @@ export const ToastContainer: FC<ToastContainerProps> = (props) => {
 
     const toastStyles: CSSProperties = { backgroundColor: theme.palette.background.paper };
 
-    return <ReactToastContainer position={toast.POSITION.TOP_RIGHT} toastStyle={toastStyles} theme={theme.palette.mode} {...props} />;
+    return <ReactToastContainer position={toast.POSITION.BOTTOM_RIGHT} toastStyle={toastStyles} theme={theme.palette.mode} {...props} />;
 };

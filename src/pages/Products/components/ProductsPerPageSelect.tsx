@@ -8,7 +8,7 @@ import { FormControl, InputLabel, MenuItem, Select as MuiSelect } from "@mui/mat
 import { UsePaginationReturns } from "@utils/hooks/usePagination.hook";
 
 const Select = styled(MuiSelect)`
-    min-width: 140px;
+    min-width: 150px;
 `;
 
 type ProductsPerPageSelectProps = {

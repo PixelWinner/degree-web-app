@@ -38,20 +38,7 @@ const EditProductModal: FC<EditProductModalProps> = ({ modalHook, product }) => 
     const formId = useId();
     const [updateProduct, { isLoading }] = productsApi.useUpdateProductMutation();
 
-    const { id, name, amount, pricePerUnit, weightPerUnit, length, width, height, shelfId, properties } = product;
-
-    const initialValues: UpdateProductDto = {
-        id,
-        name,
-        amount,
-        pricePerUnit,
-        weightPerUnit,
-        length,
-        width,
-        height,
-        shelfId,
-        properties
-    };
+    const initialValues: UpdateProductDto = omit(product, ["createdAt", "updatedAt"]);
 
     const formikHook = useFormik({
         initialValues,
@@ -67,7 +54,7 @@ const EditProductModal: FC<EditProductModalProps> = ({ modalHook, product }) => 
 
     const { dynamicTextFields, addButton } = useDynamicFields(formikHook, "properties");
 
-    const textFields = Object.keys(omit(initialValues, ["id", "shelfId", "properties"])).map((field) => (
+    const textFields = Object.keys(omit(initialValues, ["id", "shelfId", "properties", "supplier", "supplierId"])).map((field) => (
         <TextField
             key={field}
             fullWidth

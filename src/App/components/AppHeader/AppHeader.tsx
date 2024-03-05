@@ -5,14 +5,14 @@ import styled from "styled-components/macro";
 
 import { AppBar, Box } from "@mui/material";
 
+import Logo from "@assets/favicon.ico";
+
 import { PAGE_PATH } from "@utils/constants/common.constants";
 
 import CurrentTab from "@components/AppHeader/components/CurrentTab";
 import Profile from "@components/AppHeader/components/Profile";
 import { Link } from "@components/Link";
 import { H5Typography } from "@components/Typography";
-
-import Logo from "../../../../public/favicon.ico";
 
 const StyledHeader = styled(AppBar)`
     display: flex;

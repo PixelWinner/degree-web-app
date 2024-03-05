@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { productsApi } from "@store/apis/products.api";
@@ -6,9 +6,12 @@ import { productsApi } from "@store/apis/products.api";
 import { usePagination } from "@utils/hooks/usePagination.hook";
 import { Product } from "@utils/typings/types/products/products.types";
 
-import ExtendedTable, { TableColumn } from "@components/ExtendedTable";
+import ExtendedTable, { RowsProps, TableColumn } from "@components/ExtendedTable/ExtendedTable";
 import NoDataMessage from "@components/NoDataMessage";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
+
+import { useModal } from "../../../App/Modals/Modal/useModal.hook";
+import ProductInfoModal from "../../../App/Modals/ProductInfoModal/ProductInfoModal";
 
 const COLUMNS: TableColumn<ExtendedProduct>[] = [
     { key: "name", titleTranslationKey: "general.name" },
@@ -25,6 +28,19 @@ const PTable = () => {
     const { shelfId = "" } = useParams();
     const { page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = usePagination({ rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS });
     const { data, isFetching, isError } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page, limit: rowsPerPage }, { skip: !shelfId });
+    const [modalProduct, setModalProduct] = useState<ExtendedProduct | null>(null);
+
+    const handleClick: RowsProps<ExtendedProduct>["onClick"] = useCallback((item: ExtendedProduct) => {
+        setModalProduct(item);
+
+        modalHook.openModal();
+    }, []);
+
+    const onClose = useCallback(() => {
+        setModalProduct(null);
+    }, []);
+
+    const modalHook = useModal({ onClose });
 
     const extendedRows: ExtendedProduct[] = useMemo(
         () =>
@@ -33,6 +49,14 @@ const PTable = () => {
                 totalPrice: product.pricePerUnit * product.amount
             })),
         [data]
+    );
+
+    const rowsProps: RowsProps<ExtendedProduct> = useMemo(
+        () => ({
+            sx: { cursor: "pointer" },
+            onClick: handleClick
+        }),
+        [handleClick]
     );
 
     if (!shelfId) {
@@ -48,18 +72,22 @@ const PTable = () => {
     }
 
     return (
-        <ExtendedTable
-            columns={COLUMNS}
-            rows={extendedRows}
-            paginationProps={{
-                rowsCount: data.totalProducts,
-                rowsPerPage,
-                rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS,
-                page,
-                handleChangePage,
-                handleChangeRowsPerPage
-            }}
-        />
+        <>
+            <ExtendedTable
+                columns={COLUMNS}
+                rows={extendedRows}
+                rowsProps={rowsProps}
+                paginationProps={{
+                    rowsCount: data.totalProducts,
+                    rowsPerPage,
+                    rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS,
+                    page,
+                    handleChangePage,
+                    handleChangeRowsPerPage
+                }}
+            />
+            {modalProduct && <ProductInfoModal modalHook={modalHook} product={modalProduct} />}
+        </>
     );
 };
 

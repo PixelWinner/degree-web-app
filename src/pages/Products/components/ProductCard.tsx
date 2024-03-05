@@ -66,7 +66,7 @@ const ProductCard: FC<Product> = (product) => {
             </Body2Typography>
 
             <Body2Typography color="text.secondary">
-                {t("general.updatedAt", { date: format(new Date(product.updatedAt), DATE_TIME_FORMAT.shortDate) })}
+                {t("general.updatedAt")}: {format(new Date(product.updatedAt), DATE_TIME_FORMAT.shortDate)}
             </Body2Typography>
 
             <ConfirmModal

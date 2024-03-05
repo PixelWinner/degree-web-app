@@ -11,12 +11,14 @@ export const PAGE_PATH = {
         table: "/productsTable",
         search: "/productsSearch",
         supply: "/productsSupply"
-    }
+    },
+    supplyStatistics: "/supplyStatistics"
 };
 
 export const DATE_TIME_FORMAT = {
     shortDate: "dd.MM.yy",
-    fullDate: "dd.MM.yy HH:mm:ss"
+    fullDate: "dd.MM.yy HH:mm:ss",
+    monthYear: "MMM yy"
 };
 
 export const MS_IN_SECOND = 1000;

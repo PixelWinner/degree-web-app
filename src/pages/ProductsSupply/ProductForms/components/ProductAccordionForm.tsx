@@ -12,7 +12,7 @@ import { AccordionSummary, Box, Accordion as MuiAccordion, AccordionDetails as M
 
 import { getTextFieldProps } from "@utils/helpers/getTextFieldProps.helper";
 import { useDynamicFields } from "@utils/hooks/useDynamicFields.hook";
-import { SupplyProduct } from "@utils/typings/types/products/products.types";
+import { SupplyProduct } from "@utils/typings/types/supplier/supplier.types";
 
 import Button from "@components/Button";
 import TextField from "@components/TextField";

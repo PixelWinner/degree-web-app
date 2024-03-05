@@ -12,7 +12,8 @@ import { DATE_TIME_FORMAT } from "@utils/constants/common.constants";
 import { getValueWithSizeUnit, getValueWithVolumeUnit, getValueWithWeightUnit } from "@utils/helpers/getValueWithUnits.helpers";
 import { Shelf } from "@utils/typings/types/shelves/shelves.types";
 
-import { Body1Typography, H5Typography } from "@components/Typography";
+import InfoTypography from "@components/InfoTypography";
+import { H5Typography } from "@components/Typography";
 
 import { Modal } from "../Modal/Modal";
 import { ModalHookReturns } from "../modal.types";
@@ -43,37 +44,25 @@ const ShelfInfoModal: FC<ShelfInfoModalProps> = ({ modalHook, shelf }) => {
 
             <Divider />
 
-            <Body1Typography>
-                {t("general.name")}: {name}
-            </Body1Typography>
+            <InfoTypography label={t("general.name")} value={name} />
 
-            <Body1Typography>
-                {t("general.length")}: {getValueWithSizeUnit(length, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.length")} value={getValueWithSizeUnit(length, t)} />
 
-            <Body1Typography>
-                {t("general.width")}: {getValueWithSizeUnit(width, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.width")} value={getValueWithSizeUnit(width, t)} />
 
-            <Body1Typography>
-                {t("general.width")}: {getValueWithSizeUnit(height, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.height")} value={getValueWithSizeUnit(height, t)} />
 
-            <Body1Typography>
-                {t("general.maxWeight")}: {getValueWithWeightUnit(maxWeight, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.maxWeight")} value={getValueWithWeightUnit(maxWeight, t)} />
 
-            <Body1Typography>{t("general.availableWeight", { availableWeight })}</Body1Typography>
+            <InfoTypography label={t("general.availableWeight")} value={getValueWithWeightUnit(availableWeight, t)} />
 
-            <Body1Typography>
-                {t("general.maxVolume")}: {getValueWithVolumeUnit(maxVolume, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.maxVolume")} value={getValueWithVolumeUnit(maxVolume, t)} />
 
-            <Body1Typography>{t("general.availableVolume", { availableVolume })}</Body1Typography>
+            <InfoTypography label={t("general.availableVolume")} value={getValueWithVolumeUnit(availableVolume, t)} />
 
-            <Body1Typography>{t("general.createdAt", { date: format(new Date(createdAt), DATE_TIME_FORMAT.fullDate) })}</Body1Typography>
+            <InfoTypography label={t("general.createdAt")} value={format(new Date(createdAt), DATE_TIME_FORMAT.fullDate)} />
 
-            <Body1Typography>{t("general.updatedAt", { date: format(new Date(updatedAt), DATE_TIME_FORMAT.fullDate) })}</Body1Typography>
+            <InfoTypography label={t("general.updatedAt")} value={format(new Date(updatedAt), DATE_TIME_FORMAT.fullDate)} />
         </Modal>
     );
 };

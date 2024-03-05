@@ -9,6 +9,8 @@ import { toFormikValidationSchema } from "zod-formik-adapter";
 
 import styled from "styled-components/macro";
 
+import { Box } from "@mui/material";
+
 import { productsApi } from "@store/apis/products.api";
 
 import { getTextFieldProps } from "@utils/helpers/getTextFieldProps.helper";
@@ -26,8 +28,23 @@ import { Body2Typography, H5Typography, H6Typography } from "@components/Typogra
 import { Modal } from "../Modal/Modal";
 import { ModalHookReturns } from "../modal.types";
 
+const StyledModal = styled(Modal)`
+    & p {
+        text-align: center;
+    }
+`;
+
 const StyledModalForm = styled(ModalForm)`
+    flex-direction: row;
+    flex-wrap: wrap;
     padding-bottom: 8px;
+`;
+
+const Wrapper = styled(Box)`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
 `;
 
 type CreateProductModalProps = {
@@ -48,6 +65,14 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
         [Field.LENGTH]: 0,
         [Field.WIDTH]: 0,
         [Field.HEIGHT]: 0,
+        supplier: {
+            [Field.FULL_COMPANY_NAME]: "",
+            [Field.LEGAL_ADDRESS]: "",
+            [Field.TIN]: "",
+            [Field.USREOU]: "",
+            [Field.EMAIL]: "",
+            [Field.PHONE_NUMBER]: ""
+        },
         shelfId,
         properties: []
     };
@@ -67,7 +92,7 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
 
     const { dynamicTextFields, addButton } = useDynamicFields(formikHook, "properties");
 
-    const textFields = Object.keys(omit(initialValues, ["shelfId", "properties"])).map((field) => (
+    const textFields = Object.keys(omit(initialValues, ["shelfId", "properties", "supplier"])).map((field) => (
         <TextField
             key={field}
             fullWidth
@@ -79,8 +104,21 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
         />
     ));
 
+    const supplierTextFields = Object.keys(initialValues.supplier).map((field) => (
+        <TextField
+            key={field}
+            fullWidth
+            {...getTextFieldProps({
+                t,
+                formikHook,
+                field,
+                pathToValue: `supplier.${field}`
+            })}
+        />
+    ));
+
     return (
-        <Modal {...modalHook.modalProps}>
+        <StyledModal {...modalHook.modalProps}>
             <H5Typography>{t("modal.createProduct.title")}</H5Typography>
 
             <Body2Typography align="left" color="text.secondary">
@@ -88,12 +126,22 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
             </Body2Typography>
 
             <StyledModalForm id={formId} onSubmit={formikHook.handleSubmit} onReset={formikHook.handleReset}>
-                {textFields}
+                <Wrapper>
+                    <H6Typography>{t("general.supplierInfo")}</H6Typography>
 
-                {!!dynamicTextFields.length && <H6Typography>{t("general.additionalParameters")}</H6Typography>}
+                    {supplierTextFields}
+                </Wrapper>
 
-                {dynamicTextFields}
-                {addButton}
+                <Wrapper>
+                    <H6Typography>{t("general.productParams")}</H6Typography>
+
+                    {textFields}
+
+                    {!!dynamicTextFields.length && <H6Typography>{t("general.additionalParameters")}</H6Typography>}
+
+                    {dynamicTextFields}
+                    {addButton}
+                </Wrapper>
             </StyledModalForm>
 
             <ModalButtonsContainer>
@@ -104,7 +152,7 @@ const CreateProductModal: FC<CreateProductModalProps> = ({ modalHook, shelfId })
                     {t("general.confirm")}
                 </Button>
             </ModalButtonsContainer>
-        </Modal>
+        </StyledModal>
     );
 };
 

@@ -10,8 +10,8 @@ import { TFunction } from "i18next";
 
 import ProductAccordionForm from "@pages/ProductsSupply/ProductForms/components/ProductAccordionForm";
 
-import { SupplyProductSchema } from "@utils/typings/schemas/products/products.schemas";
-import { SupplyProduct } from "@utils/typings/types/products/products.types";
+import { SupplyProductSchema } from "@utils/typings/schemas/supplier/supplier.schema";
+import { SupplyProduct } from "@utils/typings/types/supplier/supplier.types";
 
 type UseProductsFormsReturns = {
     validate: () => Promise<FormikErrors<InitialValues>>;

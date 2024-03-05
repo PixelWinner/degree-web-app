@@ -9,8 +9,8 @@ import styled from "styled-components/macro";
 
 import { getTextFieldProps } from "@utils/helpers/getTextFieldProps.helper";
 import { Field } from "@utils/typings/enums/common.enums";
-import { SupplierInfoSchema } from "@utils/typings/schemas/products/products.schemas";
-import { SupplierInfo } from "@utils/typings/types/products/products.types";
+import { CreateSupplierDtoSchema } from "@utils/typings/schemas/supplier/supplier.schema";
+import { CreateSupplierDto } from "@utils/typings/types/supplier/supplier.types";
 
 import TextField from "@components/TextField";
 
@@ -21,9 +21,9 @@ const StyledTextField = styled(TextField)`
 `;
 
 export type UseSupplierInfoReturns = {
-    supplierInfo: SupplierInfo;
+    supplierInfo: CreateSupplierDto;
     textFields: JSX.Element[];
-    validate: () => Promise<FormikErrors<SupplierInfo>>;
+    validate: () => Promise<FormikErrors<CreateSupplierDto>>;
 };
 
 type UseSupplierInfoHook = () => UseSupplierInfoReturns;
@@ -31,7 +31,7 @@ type UseSupplierInfoHook = () => UseSupplierInfoReturns;
 export const useSupplierInfo: UseSupplierInfoHook = () => {
     const { t } = useTranslation();
 
-    const initialValues: SupplierInfo = {
+    const initialValues: CreateSupplierDto = {
         [Field.FULL_COMPANY_NAME]: "",
         [Field.LEGAL_ADDRESS]: "",
         [Field.TIN]: "",
@@ -70,4 +70,4 @@ export const useSupplierInfo: UseSupplierInfoHook = () => {
     };
 };
 
-const validationSchema = toFormikValidationSchema(SupplierInfoSchema);
+const validationSchema = toFormikValidationSchema(CreateSupplierDtoSchema);

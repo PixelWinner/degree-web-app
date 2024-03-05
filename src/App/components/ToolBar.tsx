@@ -8,7 +8,7 @@ const Container = styled(Paper)`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 16px;
+    padding: 8px;
     gap: 8px;
     width: 100%;
     border-left: none;

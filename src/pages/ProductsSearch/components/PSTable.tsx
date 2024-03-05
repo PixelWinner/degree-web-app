@@ -1,10 +1,13 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useCallback, useMemo, useState } from "react";
 
 import { ExtendedSearchProduct } from "@utils/typings/types/products/products.types";
 
-import ExtendedTable, { TableColumn } from "@components/ExtendedTable";
+import ExtendedTable, { RowsProps, TableColumn } from "@components/ExtendedTable/ExtendedTable";
 import NoDataMessage from "@components/NoDataMessage";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
+
+import { useModal } from "../../../App/Modals/Modal/useModal.hook";
+import ProductInfoModal from "../../../App/Modals/ProductInfoModal/ProductInfoModal";
 
 const COLUMNS: TableColumn<ExtendedProduct>[] = [
     {
@@ -43,6 +46,20 @@ type PsTableProps = {
 };
 
 const PsTable: FC<PsTableProps> = ({ isFetching, products }) => {
+    const [modalProduct, setModalProduct] = useState<ExtendedSearchProduct | null>(null);
+
+    const handleClick: RowsProps<ExtendedSearchProduct>["onClick"] = useCallback((item: ExtendedSearchProduct) => {
+        setModalProduct(item);
+
+        modalHook.openModal();
+    }, []);
+
+    const onClose = useCallback(() => {
+        setModalProduct(null);
+    }, []);
+
+    const modalHook = useModal({ onClose });
+
     const extendedRows: ExtendedProduct[] = useMemo(
         () =>
             (products ?? [])?.map((product) => ({
@@ -50,6 +67,14 @@ const PsTable: FC<PsTableProps> = ({ isFetching, products }) => {
                 totalPrice: product.pricePerUnit * product.amount
             })),
         [products]
+    );
+
+    const rowsProps: RowsProps<ExtendedSearchProduct> = useMemo(
+        () => ({
+            sx: { cursor: "pointer" },
+            onClick: handleClick
+        }),
+        [handleClick]
     );
 
     if (isFetching) {
@@ -64,7 +89,12 @@ const PsTable: FC<PsTableProps> = ({ isFetching, products }) => {
         return null;
     }
 
-    return <ExtendedTable columns={COLUMNS} rows={extendedRows} />;
+    return (
+        <>
+            <ExtendedTable columns={COLUMNS} rows={extendedRows} rowsProps={rowsProps} />
+            {modalProduct && <ProductInfoModal modalHook={modalHook} product={modalProduct} />}
+        </>
+    );
 };
 
 export default PsTable;

@@ -12,6 +12,7 @@ import ShelfIcon from "@mui/icons-material/Inventory";
 import { shelvesApi } from "@store/apis/shelves.api";
 
 import { DATE_TIME_FORMAT, PAGE_PATH } from "@utils/constants/common.constants";
+import { getValueWithVolumeUnit, getValueWithWeightUnit } from "@utils/helpers/getValueWithUnits.helpers";
 import { CardContainer, CardIconWrapper, CardMenu } from "@utils/styles/Cards.styled";
 import { Shelf, UpdateShelfDto } from "@utils/typings/types/shelves/shelves.types";
 
@@ -75,12 +76,16 @@ const ShelfCard: FC<Shelf> = (shelf) => {
 
             <Body1Typography>{name}</Body1Typography>
 
-            <Body2Typography color="text.secondary"> {t("general.availableWeight", { availableWeight })}</Body2Typography>
-
-            <Body2Typography color="text.secondary">{t("general.availableVolume", { availableVolume })}</Body2Typography>
+            <Body2Typography color="text.secondary">
+                {t("general.availableWeight")}: {getValueWithWeightUnit(availableWeight, t)}
+            </Body2Typography>
 
             <Body2Typography color="text.secondary">
-                {t("general.updatedAt", { date: format(new Date(updatedAt), DATE_TIME_FORMAT.shortDate) })}
+                {t("general.availableVolume")}: {getValueWithVolumeUnit(availableVolume, t)}
+            </Body2Typography>
+
+            <Body2Typography color="text.secondary">
+                {t("general.updatedAt")}: {format(new Date(updatedAt), DATE_TIME_FORMAT.shortDate)}
             </Body2Typography>
 
             <ConfirmModal

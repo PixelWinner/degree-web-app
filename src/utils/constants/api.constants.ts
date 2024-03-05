@@ -1,4 +1,5 @@
-import { GetProductsParams } from "@utils/typings/types/products/products.types";
+import { GetProductsQuery } from "@utils/typings/types/products/products.types";
+import { GetStatisticsDto } from "@utils/typings/types/supplier/supplier.types";
 
 const PAGE_ORIGIN = import.meta.env.VITE_API_URL;
 
@@ -21,7 +22,15 @@ export const API_URLS = {
     },
     products: {
         main: `${PAGE_ORIGIN}/api/products/`,
-        getAll: ({ shelfId, page, limit }: GetProductsParams) => `${PAGE_ORIGIN}/api/products/?shelfId=${shelfId}&page=${page}&limit=${limit}`,
+        getAll: (query: GetProductsQuery) => {
+            const baseUrl = `${PAGE_ORIGIN}/api/products/?shelfId=${query.shelfId}&page=${query.page}&limit=${query.limit}`;
+
+            return query.name ? `${baseUrl}&name=${query.name}` : baseUrl;
+        },
         search: (name: string) => `${PAGE_ORIGIN}/api/products/search/?name=${name}`
+    },
+    suppliers: {
+        main: `${PAGE_ORIGIN}/api/suppliers/`,
+        getStatistics: ({ startDate, endDate }: GetStatisticsDto) => `${PAGE_ORIGIN}/api/suppliers/statistics?startDate=${startDate}&endDate=${endDate}`
     }
 };

@@ -19,8 +19,8 @@
     "darkMode": "Dark mode",
     "language": "Language",
     "exit": "Exit",
-    "createdAt": "Created at: {{date}}",
-    "updatedAt": "Updated at: {{date}}",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at",
     "somethingWrong": "Something went wrong..",
     "noData": "Unfortunately, there are currently no data available for display.",
     "back": "Back",
@@ -41,9 +41,9 @@
     "width": "Width",
     "height": "Height",
     "maxWeight": "Max weight",
-    "availableWeight": "Available weight: {{availableWeight}}kg",
+    "availableWeight": "Available weight",
     "maxVolume": "Max volume",
-    "availableVolume": "Available volume: {{availableVolume}}m³",
+    "availableVolume": "Available volume",
     "pricePerUnit": "Price per unit",
     "label": "Label",
     "value": "Value",
@@ -68,7 +68,18 @@
     "TIN": "Taxpayer Identification Number",
     "USREOU": "Unified State Register of Enterprises and Organizations of Ukraine",
     "phoneNumber": "Phone Number",
-    "product": "Product"
+    "product": "Product",
+    "confirmSupply": "Confirm supply",
+    "productParams": "Product parameters",
+    "start": "Start",
+    "end": "End",
+    "dateRange": "Date range",
+    "supplyInfo": "Supply information",
+    "suppliersList": "Suppliers list",
+    "amountProducts":"Amount of products supplied",
+    "amountUnitsProducts":"Amount of supplied units",
+    "suppliersCount":"Suppliers count",
+    "productsList":"Products list"
   },
   "units": {
     "weight": "kg",
@@ -85,7 +96,8 @@
     "productsTable": "Products table",
     "home": "Home",
     "productsSearch": "Search products",
-    "productsSupply": "Products supply"
+    "productsSupply": "Products supply",
+    "supplyStatistics": "Supply statistics"
   },
   "modal": {
     "createStorage": {
@@ -111,7 +123,7 @@
     },
     "createProduct": {
       "title": "Creation of a new product",
-      "description": "Enter the name and parameters of the new product."
+      "description": "Enter the supplier information, name, and parameters of the new product."
     },
     "shelfInfo": {
       "title": "Additional information about the shelf"
@@ -134,6 +146,7 @@
     "invalidWeight": "Invalid weight",
     "invalidAmount": "Invalid amount",
     "invalidPrice": "Invalid price",
+    "invalidPhoneNumber": "Invalid phone number",
     "passwordDoNotMatch": "Passwords do not match"
   }
 }

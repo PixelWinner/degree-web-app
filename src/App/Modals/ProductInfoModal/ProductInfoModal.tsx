@@ -6,13 +6,16 @@ import { useTranslation } from "react-i18next";
 import { format } from "date-fns";
 
 import MuiCloseIcon from "@mui/icons-material/Close";
-import { Divider as MuiDivider } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Divider as MuiDivider } from "@mui/material";
 
 import { DATE_TIME_FORMAT } from "@utils/constants/common.constants";
+import { calculateVolume } from "@utils/helpers/calculateVolume.helper";
 import { getValueWithCurrency, getValueWithSizeUnit, getValueWithVolumeUnit, getValueWithWeightUnit } from "@utils/helpers/getValueWithUnits.helpers";
 import { Product } from "@utils/typings/types/products/products.types";
 
-import { Body1Typography, H5Typography, H6Typography } from "@components/Typography";
+import InfoTypography from "@components/InfoTypography";
+import { H5Typography, H6Typography } from "@components/Typography";
 
 import { Modal } from "../Modal/Modal";
 import { ModalHookReturns } from "../modal.types";
@@ -26,6 +29,15 @@ const Divider = styled(MuiDivider)`
     width: 100%;
 `;
 
+const AccordionsContainer = styled(Box)`
+    display: flex;
+    flex-direction: column;
+
+    & h6 {
+        text-align: start;
+    }
+`;
+
 type ProductInfoModalProps = {
     modalHook: ModalHookReturns;
     product: Product;
@@ -33,13 +45,13 @@ type ProductInfoModalProps = {
 
 const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => {
     const { t } = useTranslation();
-    const { name, length, width, height, amount, pricePerUnit, weightPerUnit, createdAt, updatedAt, properties } = product;
+    const { name, length, width, height, amount, pricePerUnit, weightPerUnit, createdAt, updatedAt, properties, supplier } = product;
 
-    const volume = length * width * height;
-    const totalVolume = volume * amount;
+    const volume = calculateVolume({ length, width, height });
+    const totalVolume = calculateVolume({ length, width, height, amount });
     const totalPrice = pricePerUnit * amount;
     const totalWeight = weightPerUnit * amount;
-    const propertyValues = properties.map(({ label, value }, index) => <Body1Typography key={index}>{`${label}: ${value}`}</Body1Typography>);
+    const propertyValues = properties.map(({ label, value }, index) => <InfoTypography key={index} label={label} value={value} />);
 
     return (
         <Modal {...modalHook.modalProps}>
@@ -49,59 +61,65 @@ const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => 
 
             <Divider />
 
-            <Body1Typography>
-                {t("general.name")}: {name}
-            </Body1Typography>
+            <InfoTypography label={t("general.name")} value={name} />
 
-            <Body1Typography>
-                {t("general.length")}: {getValueWithSizeUnit(length, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.length")} value={getValueWithSizeUnit(length, t)} />
 
-            <Body1Typography>
-                {t("general.width")}: {getValueWithSizeUnit(width, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.width")} value={getValueWithSizeUnit(width, t)} />
 
-            <Body1Typography>
-                {t("general.height")}: {getValueWithSizeUnit(height, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.height")} value={getValueWithSizeUnit(height, t)} />
 
-            <Body1Typography>
-                {t("general.pricePerUnit")}: {getValueWithCurrency(pricePerUnit, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.name")} value={name} />
 
-            <Body1Typography>
-                {t("general.volumePerUnit")}: {getValueWithVolumeUnit(volume, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.pricePerUnit")} value={getValueWithCurrency(pricePerUnit, t)} />
 
-            <Body1Typography>
-                {t("general.weightPerUnit")}: {getValueWithWeightUnit(weightPerUnit, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.volumePerUnit")} value={getValueWithVolumeUnit(volume, t)} />
 
-            <Body1Typography>
-                {t("general.amount")}: {amount}
-            </Body1Typography>
+            <InfoTypography label={t("general.weightPerUnit")} value={getValueWithWeightUnit(weightPerUnit, t)} />
 
-            <Body1Typography>
-                {t("general.totalPrice")}: {getValueWithCurrency(totalPrice, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.amount")} value={amount} />
 
-            <Body1Typography>
-                {t("general.totalVolume")}: {getValueWithVolumeUnit(totalVolume, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.totalPrice")} value={getValueWithCurrency(totalPrice, t)} />
 
-            <Body1Typography>
-                {t("general.totalWeight")}: {getValueWithWeightUnit(totalWeight, t)}
-            </Body1Typography>
+            <InfoTypography label={t("general.totalVolume")} value={getValueWithVolumeUnit(totalVolume, t)} />
 
-            <Body1Typography>{t("general.createdAt", { date: format(new Date(createdAt), DATE_TIME_FORMAT.fullDate) })}</Body1Typography>
+            <InfoTypography label={t("general.totalWeight")} value={getValueWithWeightUnit(totalWeight, t)} />
 
-            <Body1Typography>{t("general.updatedAt", { date: format(new Date(updatedAt), DATE_TIME_FORMAT.fullDate) })}</Body1Typography>
+            <InfoTypography label={t("general.createdAt")} value={format(new Date(createdAt), DATE_TIME_FORMAT.fullDate)} />
 
-            {!!propertyValues.length && <Divider />}
+            <InfoTypography label={t("general.updatedAt")} value={format(new Date(updatedAt), DATE_TIME_FORMAT.fullDate)} />
 
-            {!!propertyValues.length && <H6Typography>{t("general.additionalParameters")}</H6Typography>}
+            <AccordionsContainer>
+                {!!propertyValues.length && (
+                    <Accordion elevation={3}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                            <H6Typography>{t("general.additionalParameters")}</H6Typography>
+                        </AccordionSummary>
 
-            {propertyValues}
+                        <AccordionDetails>{propertyValues}</AccordionDetails>
+                    </Accordion>
+                )}
+
+                <Accordion elevation={3}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <H6Typography>{t("general.supplierInfo")}</H6Typography>
+                    </AccordionSummary>
+
+                    <AccordionDetails>
+                        <InfoTypography label={t("general.fullCompanyName")} value={supplier.fullCompanyName} />
+
+                        <InfoTypography label={t("general.legalAddress")} value={supplier.legalAddress} />
+
+                        <InfoTypography label={t("general.TIN")} value={supplier.TIN} />
+
+                        <InfoTypography label={t("general.USREOU")} value={supplier.USREOU} />
+
+                        <InfoTypography label={t("general.email")} value={supplier.email} />
+
+                        <InfoTypography label={t("general.phoneNumber")} value={supplier.phoneNumber} />
+                    </AccordionDetails>
+                </Accordion>
+            </AccordionsContainer>
         </Modal>
     );
 };

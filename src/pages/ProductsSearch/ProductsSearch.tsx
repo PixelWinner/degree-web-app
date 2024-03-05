@@ -10,6 +10,7 @@ import PSTable from "@pages/ProductsSearch/components/PSTable";
 import { productsApi } from "@store/apis/products.api";
 
 import { PAGE_PATH } from "@utils/constants/common.constants";
+import { Request } from "@utils/typings/enums/common.enums";
 
 import BackButton from "@components/BackButton";
 import SearchField from "@components/SearchField";
@@ -38,7 +39,15 @@ const ProductsSearch = () => {
     return (
         <>
             <ToolBar
-                leftPart={<SearchField labelTranslationKey="routes.productsSearch" onChange={handleChange} initialValue={name} queryTrigger={queryTrigger} />}
+                leftPart={
+                    <SearchField
+                        labelTranslationKey="routes.productsSearch"
+                        onChange={handleChange}
+                        initialValue={name}
+                        requestType={Request.MUTATION}
+                        queryTrigger={queryTrigger}
+                    />
+                }
                 rightPart={<BackButton path={PAGE_PATH.home} />}
             />
 

@@ -11,7 +11,7 @@ import {
     CreateProductDto,
     DeleteProductDto,
     ExtendedSearchProduct,
-    GetProductsParams,
+    GetProductsQuery,
     GetProductsResponse,
     UpdateProductDto
 } from "@utils/typings/types/products/products.types";
@@ -26,9 +26,9 @@ const handleTransformSearchProductResponse = (response: ExtendedSearchProduct[])
 
 export const productsApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        getProducts: build.query<GetProductsResponse, GetProductsParams>({
-            query: (params) => ({
-                url: API_URLS.products.getAll(params),
+        getProducts: build.query<GetProductsResponse, GetProductsQuery>({
+            query: (query) => ({
+                url: API_URLS.products.getAll(query),
                 method: HttpMethod.GET
             }),
             providesTags: (_, __, { shelfId }) => [{ type: ProvidedTag.PRODUCTS, id: shelfId }],

@@ -7,6 +7,7 @@ import { H6Typography } from "@components/Typography";
 
 const Typography = styled(H6Typography)`
     margin: auto;
+    text-align: center;
 `;
 
 const NoDataMessage = () => {

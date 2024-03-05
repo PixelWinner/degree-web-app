@@ -5,6 +5,10 @@ import storage from "redux-persist/lib/storage";
 
 import { authApi } from "@store/apis/auth.api";
 import { baseApi } from "@store/apis/base.api";
+import { productsApi } from "@store/apis/products.api";
+import { shelvesApi } from "@store/apis/shelves.api";
+import { storagesApi } from "@store/apis/storages.api";
+import { suppliersApi } from "@store/apis/suppliers.api";
 import { userDataApi } from "@store/apis/userData.api";
 import { authSlice } from "@store/slices/auth/auth.slice";
 import { userDataSlice } from "@store/slices/userData/userData.slice";
@@ -16,7 +20,11 @@ const sliceReducers = {
 
 const apiReducers = {
     [authApi.reducerPath]: authApi.reducer,
-    [userDataApi.reducerPath]: userDataApi.reducer
+    [userDataApi.reducerPath]: userDataApi.reducer,
+    [storagesApi.reducerPath]: storagesApi.reducer,
+    [productsApi.reducerPath]: productsApi.reducer,
+    [shelvesApi.reducerPath]: shelvesApi.reducer,
+    [suppliersApi.reducerPath]: suppliersApi.reducer
 };
 
 const blacklist = [...Object.keys(apiReducers)];
@@ -37,7 +45,7 @@ export const RESET_STORE_ACTION_TYPE = "resetStore" as const;
 export const rootReducer = (state: ReturnType<typeof appReducer>, action: AnyAction) => {
     //Reset store on logOut
     if (action.type === RESET_STORE_ACTION_TYPE) {
-        return appReducer(undefined, { type: undefined });
+        return appReducer(undefined, { type: RESET_STORE_ACTION_TYPE });
     }
 
     return appReducer(state, action);

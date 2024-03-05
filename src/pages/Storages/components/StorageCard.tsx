@@ -79,7 +79,7 @@ const StorageCard: FC<TStorage> = ({ id, name, address, updatedAt }) => {
             </Body2Typography>
 
             <Body2Typography color="text.secondary">
-                {t("general.updatedAt", { date: format(new Date(updatedAt), DATE_TIME_FORMAT.shortDate) })}
+                {t("general.updatedAt")}: {format(new Date(updatedAt), DATE_TIME_FORMAT.shortDate)}
             </Body2Typography>
 
             <ConfirmModal

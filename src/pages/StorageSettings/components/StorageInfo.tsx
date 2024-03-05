@@ -37,9 +37,13 @@ const StorageInfo: FC<StorageInfoProps> = ({ storage }) => {
                 {t("general.address")}: {storage.address}
             </Body1Typography>
 
-            <Body1Typography>{t("general.createdAt", { date: format(new Date(storage.createdAt), DATE_TIME_FORMAT.shortDate) })}</Body1Typography>
+            <Body1Typography>
+                {t("general.createdAt")}: {format(new Date(storage.createdAt), DATE_TIME_FORMAT.shortDate)}
+            </Body1Typography>
 
-            <Body1Typography>{t("general.updatedAt", { date: format(new Date(storage.updatedAt), DATE_TIME_FORMAT.shortDate) })}</Body1Typography>
+            <Body1Typography>
+                {t("general.updatedAt")}: {format(new Date(storage.updatedAt), DATE_TIME_FORMAT.shortDate)}
+            </Body1Typography>
         </Container>
     );
 };

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 
 import { TableSortLabelOwnProps } from "@mui/material/TableSortLabel/TableSortLabel";
 
@@ -22,28 +22,24 @@ export const useSortedTableData = <T,>(tableData: T[]): UseSortedTableReturns<T>
         [sortConfig]
     );
 
-    const sortedData = useMemo(
-        () =>
-            tableData?.toSorted((a, b) => {
-                if (!sortConfig.key) return 0;
+    const sortedData = tableData?.toSorted((a, b) => {
+        if (!sortConfig.key) return 0;
 
-                const aValue = a[sortConfig.key];
-                const bValue = b[sortConfig.key];
+        const aValue = a[sortConfig.key];
+        const bValue = b[sortConfig.key];
 
-                if (!aValue || !bValue) {
-                    return 0;
-                }
+        if (!aValue || !bValue) {
+            return 0;
+        }
 
-                if (aValue < bValue) {
-                    return sortConfig.direction === "asc" ? -1 : 1;
-                }
-                if (aValue > bValue) {
-                    return sortConfig.direction === "asc" ? 1 : -1;
-                }
-                return 0;
-            }),
-        [tableData, sortConfig]
-    );
+        if (aValue < bValue) {
+            return sortConfig.direction === "asc" ? -1 : 1;
+        }
+        if (aValue > bValue) {
+            return sortConfig.direction === "asc" ? 1 : -1;
+        }
+        return 0;
+    });
 
     return {
         sortConfig,

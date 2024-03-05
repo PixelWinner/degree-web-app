@@ -5,7 +5,7 @@ import { baseApi } from "@store/apis/base.api";
 import { API_URLS } from "@utils/constants/api.constants";
 import { handleTransformMessageResponse } from "@utils/helpers/handleTransformMessageResponse.helper";
 import { HttpMethod, ProvidedTag } from "@utils/typings/enums/api.enums";
-import { StorageDataSchema, StorageSchema } from "@utils/typings/schemas/storage/storage.schemas";
+import { GetStorageShelfListResponseSchema, StorageDataSchema, StorageSchema } from "@utils/typings/schemas/storage/storage.schemas";
 import { MessageResponse } from "@utils/typings/types/api.types";
 import {
     AddUserToStorageDto,
@@ -24,6 +24,10 @@ const handleTransformGetStoragesResponse = (response: TStorage[]): TStorage[] =>
 
 const handleTransformGetStorageDataResponse = (response: StorageData): StorageData => {
     return StorageDataSchema.parse(response, { async: false });
+};
+
+const handleTransformGetStorageShelfList = (response: GetStorageShelfListResponse): GetStorageShelfListResponse => {
+    return GetStorageShelfListResponseSchema.parse(response, { async: false });
 };
 
 export const storagesApi = baseApi.injectEndpoints({
@@ -94,8 +98,8 @@ export const storagesApi = baseApi.injectEndpoints({
                 url: API_URLS.storages.list,
                 method: HttpMethod.GET
             }),
-            providesTags: [ProvidedTag.STORAGE_SHELF_LIST]
-            // transformResponse: handleTransformGetStoragesResponse
+            providesTags: [ProvidedTag.STORAGE_SHELF_LIST],
+            transformResponse: handleTransformGetStorageShelfList
         })
     })
 });

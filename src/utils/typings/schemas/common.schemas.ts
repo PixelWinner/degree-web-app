@@ -14,6 +14,6 @@ export const PasswordSchema = StringSchema.min(8, getTranslatedValidationMessage
 
 export const MessageResponseSchema = z.object({ message: StringSchema });
 
-export const PhoneNumber = StringSchema.regex(/^\+\d{1,3}\s?\d{4,14}(?:x.+)?$/);
+export const PhoneNumber = StringSchema.regex(/^\+\d{1,3}\s?\d{4,14}(?:x.+)?$/, getTranslatedValidationMessage("invalidPhoneNumber"));
 
 export const DynamicFieldSchema = z.object({ label: StringSchema, value: StringSchema });

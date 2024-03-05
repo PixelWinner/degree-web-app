@@ -6,6 +6,7 @@ import React, { ChangeEvent, FC, useCallback, useEffect, useRef, useState } from
 import { useTranslation } from "react-i18next";
 
 import debounce from "lodash/debounce";
+import omit from "lodash/omit";
 
 import SearchIcon from "@mui/icons-material/Search";
 import { TextFieldProps } from "@mui/material";
@@ -13,6 +14,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 
 import { MS_IN_SECOND } from "@utils/constants/common.constants";
 import { ProvidedTag } from "@utils/typings/enums/api.enums";
+import { Request } from "@utils/typings/enums/common.enums";
 import { ApiError } from "@utils/typings/types/api.types";
 
 import TextField from "@components/TextField";
@@ -20,7 +22,8 @@ import TextField from "@components/TextField";
 const DEBOUNCE_TIME = 0.5 * MS_IN_SECOND;
 
 type TQueryDefinition = QueryDefinition<
-    string,
+    // eslint-disable-next-line
+    any,
     BaseQueryFn<
         FetchArgs,
         unknown,
@@ -39,49 +42,82 @@ type TQueryDefinition = QueryDefinition<
 
 type RefRequestType = QueryActionCreatorResult<TQueryDefinition> | null;
 
+type QueryProps = {
+    requestType: Request.QUERY;
+    refetch: () => QueryActionCreatorResult<TQueryDefinition>;
+};
+
+type MutationProps = {
+    requestType: Request.MUTATION;
+    queryTrigger: LazyQueryTrigger<TQueryDefinition>;
+};
+
+type RestProps = Omit<TextFieldProps, "onChange"> & (MutationProps | QueryProps);
+
 type SearchFieldProps = {
     labelTranslationKey: string;
     onChange?: (newValue: string) => void;
     initialValue?: string;
-    queryTrigger: LazyQueryTrigger<TQueryDefinition>;
-} & Omit<TextFieldProps, "onChange">;
+    requestType: Request;
+} & RestProps;
 
-const SearchField: FC<SearchFieldProps> = ({ labelTranslationKey, initialValue, onChange, queryTrigger, ...rest }) => {
+const SearchField: FC<SearchFieldProps> = ({ labelTranslationKey, initialValue, onChange, ...rest }) => {
     const [value, setValue] = useState<string>(initialValue ?? "");
     const { t } = useTranslation();
-
     const refRequest = useRef<RefRequestType>(null);
+
+    const isMutation = rest.requestType === Request.MUTATION;
+    const request = isMutation ? rest.queryTrigger : rest.refetch;
 
     const abortCurrentRequest = () => refRequest.current?.abort();
 
-    const handleRequest = (argValue: string) => {
-        abortCurrentRequest();
-
-        if (argValue) {
-            refRequest.current = queryTrigger(argValue);
-        }
-    };
-
     useEffect(() => {
+        if (!isMutation) {
+            return;
+        }
+
         handleRequest(value);
     }, []);
 
-    const debouncedRequest = useCallback(debounce(handleRequest, DEBOUNCE_TIME), []);
+    //Using only for a mutations
+    const handleRequest = useCallback(
+        (argValue: string) => {
+            if (!isMutation) {
+                return;
+            }
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const newValue = event.target.value;
+            abortCurrentRequest();
 
-        setValue((prevValue) => {
-            queryTrigger(prevValue).abort();
-            return newValue;
-        });
+            if (argValue && request) {
+                refRequest.current = request(argValue);
+            }
+        },
+        [request]
+    );
 
-        onChange?.(newValue);
+    //Using only for a mutations
+    const debouncedRequest = useCallback(debounce(handleRequest, DEBOUNCE_TIME), [handleRequest]);
 
-        if (newValue.trim()) {
-            debouncedRequest(newValue);
-        }
-    };
+    const handleChange = useCallback(
+        (event: ChangeEvent<HTMLInputElement>) => {
+            const newValue = event.target.value;
+
+            setValue((prevValue) => {
+                if (isMutation) {
+                    request(prevValue).abort();
+                }
+
+                return newValue;
+            });
+
+            onChange?.(newValue);
+
+            if (newValue.trim() && isMutation) {
+                debouncedRequest(newValue);
+            }
+        },
+        [request, debouncedRequest]
+    );
 
     return (
         <TextField
@@ -100,7 +136,7 @@ const SearchField: FC<SearchFieldProps> = ({ labelTranslationKey, initialValue, 
                 )
             }}
             margin="none"
-            {...rest}
+            {...omit(rest, ["requestType", "queryTrigger", "refetch"])}
         />
     );
 };

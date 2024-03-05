@@ -32,3 +32,8 @@ export enum Field {
     USREOU = "USREOU", //ENG: Unified State Register of Enterprises and Organizations of Ukraine"
     PHONE_NUMBER = "phoneNumber"
 }
+
+export enum Request {
+    QUERY = "query",
+    MUTATION = "mutation"
+}

@@ -2,7 +2,7 @@
   "general": {
     "currentLanguage": "Українська",
     "pageName": "InventoGuard",
-    "login": "Вхід до свого облікового запису",
+    "login": "Вхід до облікового запису",
     "register": "Створення свого облікового запису",
     "name": "Ім'я",
     "storageName": "Назва сховища",
@@ -19,8 +19,8 @@
     "darkMode": "Темний режим",
     "language": "Мова",
     "exit": "Вихід",
-    "createdAt": "Створено: {{date}}",
-    "updatedAt": "Оновлено: {{date}}",
+    "createdAt": "Створено",
+    "updatedAt": "Оновлено",
     "somethingWrong": "Щось пішло не так...",
     "noData": "На жаль, на даний момент немає жодних даних для відображення.",
     "back": "Назад",
@@ -41,9 +41,9 @@
     "width": "Ширина",
     "height": "Висота",
     "maxWeight": "Максимальна вага",
-    "availableWeight": "Доступна вага: {{availableWeight}}кг",
+    "availableWeight": "Доступна вага",
     "maxVolume": "Максимальний об'єм",
-    "availableVolume": "Доступний об'єм: {{availableVolume}}м³",
+    "availableVolume": "Доступний об'єм",
     "pricePerUnit": "Ціна одиниці",
     "label": "Назва",
     "value": "Значення",
@@ -68,7 +68,18 @@
     "TIN": "ІНН",
     "USREOU": "ЄДРПОУ",
     "phoneNumber": "Номер телефону",
-    "product": "Продукт"
+    "product": "Продукт",
+    "confirmSupply": "Підтвердити поставку",
+    "productParams": "Параметри продукту",
+    "start": "Початок",
+    "end": "Кінець",
+    "dateRange": "Діапазон дат",
+    "supplyInfo": "Інформація про поставки",
+    "suppliersList": "Список постачальників",
+    "numberOfProducts": "Кількість поставлених продуктів",
+    "amountUnitsProducts": "Кількість поставлених одиниць",
+    "suppliersCount": "Кількість постачальників",
+    "productsList":"Список продуктів"
   },
   "units": {
     "weight": "кг",
@@ -85,7 +96,8 @@
     "productsTable": "Таблиця продуктів",
     "home": "Головна",
     "productsSearch": "Пошук продуктів",
-    "productsSupply": "Поставка продуктів"
+    "productsSupply": "Поставка продуктів",
+    "supplyStatistics": "Статистика поставок"
   },
   "modal": {
     "createStorage": {
@@ -114,7 +126,7 @@
     },
     "createProduct": {
       "title": "Створення нового продукту",
-      "description": "Введіть назву та параметри нового продукту."
+      "description": "Введіть інформацію про постачальника, назву та параметри нового продукту."
     },
     "shelfInfo": {
       "title": "Додаткова інформація про полицю"
@@ -137,6 +149,7 @@
     "invalidWeight": "Некоректна вага",
     "invalidAmount": "Некоректна кілкість",
     "invalidPrice": "Некоректна ціна",
+    "invalidPhoneNumber": "Некоректний номер телефону",
     "passwordDoNotMatch": "Паролі не співпадають"
   }
 }

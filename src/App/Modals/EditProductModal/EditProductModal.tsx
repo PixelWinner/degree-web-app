@@ -54,7 +54,9 @@ const EditProductModal: FC<EditProductModalProps> = ({ modalHook, product }) => 
 
     const { dynamicTextFields, addButton } = useDynamicFields(formikHook, "properties");
 
-    const textFields = Object.keys(omit(initialValues, ["id", "shelfId", "properties", "supplier", "supplierId"])).map((field) => (
+    const omitList = ["id", "shelfId", "properties", "supplier", "supplierId", "archiveRecords"];
+
+    const textFields = Object.keys(omit(initialValues, omitList)).map((field) => (
         <TextField
             key={field}
             fullWidth

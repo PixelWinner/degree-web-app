@@ -1,30 +1,24 @@
-import React, { useCallback, useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
 
-import styled from "styled-components/macro";
+import React, { useCallback, useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Box, Pagination as MuiPagination } from "@mui/material";
 
-import ProductCard from "@pages/Products/components/ProductCard";
+import ArchiveProductCard from "@pages/Archive/components/ArchiveProductCard";
 import ProductsPerPageSelect from "@pages/Products/components/ProductsPerPageSelect";
 
 import { productsApi } from "@store/apis/products.api";
 
 import { PAGE_PATH, ROWS_PER_PAGE_OPTIONS } from "@utils/constants/common.constants";
 import { usePagination } from "@utils/hooks/usePagination.hook";
-import { CardsContainerStyled } from "@utils/styles/Cards.styled";
 import { Request } from "@utils/typings/enums/common.enums";
 
 import BackButton from "@components/BackButton";
-import Button from "@components/Button";
 import NoDataMessage from "@components/NoDataMessage";
 import SearchField from "@components/SearchField";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
-
-import CreateProductModal from "../../App/Modals/CreateProductModal/CreateProductModal";
-import { useModal } from "../../App/Modals/Modal/useModal.hook";
 
 const Pagination = styled(MuiPagination)`
     margin: 0 auto;
@@ -40,34 +34,31 @@ const LeftContainer = styled(Box)`
     gap: 8px;
 `;
 
-const RightContainer = styled(Box)`
+const CardsContainer = styled(Box)`
     display: flex;
-    justify-content: center;
-    align-items: end;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;
+    overflow: auto;
+    margin-bottom: auto;
+    padding: 8px;
     gap: 8px;
-
-    @media (max-width: 768px) {
-        flex-direction: column-reverse;
-    }
 `;
 
-const Products = () => {
-    const modalHook = useModal();
+const Archive = () => {
     const navigate = useNavigate();
-    const { shelfId = "", name } = useParams();
-    const { t } = useTranslation();
+    const { name } = useParams();
     const { rowsPerPage, page, handleChangePage, handleChangeRowsPerPage } = usePagination({ rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS });
-    const { data, isFetching, isError, refetch } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page, limit: rowsPerPage, name }, { skip: !shelfId });
+    const { data, isFetching, isError, refetch } = productsApi.useGetArchivedProductsQuery({ page, limit: rowsPerPage, name });
 
     const handleChange = useCallback(
         (newName: string) => {
-            navigate(`${PAGE_PATH.products.main}/${page}/${newName}`);
+            navigate(`${PAGE_PATH.archive}/${page}/${newName}`);
         },
         [navigate]
     );
 
-    const leftPartToolBar = useMemo(
+    const leftPart = useMemo(
         () => (
             <LeftContainer>
                 <SearchField
@@ -83,38 +74,26 @@ const Products = () => {
         [rowsPerPage]
     );
 
-    const rightPartToolBar = useMemo(
-        () => (
-            <RightContainer>
-                <BackButton />
-                <Button size="small" onClick={modalHook.openModal}>
-                    {t("general.addProduct")}
-                </Button>
-            </RightContainer>
-        ),
-        []
-    );
+    const rightPart = <BackButton />;
+
+    const products = data?.products.map((product) => <ArchiveProductCard key={product.id} {...product} />);
 
     if (!data?.products?.length && !isFetching) {
         return (
             <>
-                <ToolBar leftPart={leftPartToolBar} rightPart={rightPartToolBar} />
+                <ToolBar leftPart={leftPart} rightPart={rightPart} />
                 <NoDataMessage />;
-                <CreateProductModal modalHook={modalHook} shelfId={+shelfId} />
             </>
         );
     }
 
-    const products = data?.products.map((product) => <ProductCard key={product.id} {...product} />);
-
     return (
         <>
-            <ToolBar leftPart={leftPartToolBar} rightPart={rightPartToolBar} />
-            {isFetching ? <SelfCenterLoader isLoading={isFetching} isError={isError} /> : <CardsContainerStyled>{products}</CardsContainerStyled>}
+            <ToolBar leftPart={leftPart} rightPart={rightPart} />
+            {isFetching ? <SelfCenterLoader isLoading={isFetching} isError={isError} /> : <CardsContainer>{products}</CardsContainer>}
             <Pagination count={data?.totalPages} onChange={handleChangePage} />
-            <CreateProductModal modalHook={modalHook} shelfId={+shelfId} />
         </>
     );
 };
 
-export default Products;
+export default Archive;

@@ -33,15 +33,25 @@ const TotalStatistics: FC<TotalStatisticsProps> = ({ products }) => {
         return null;
     }
 
-    const totalAmount = products.reduce((sum, product) => sum + product.amount, 0);
+    const totalAmount = products.reduce((sum, product) => sum + product.initialAmount, 0);
 
     const totalUnitAmount = products.length;
 
-    const totalVolume = products.reduce((sum, { width, length, height, amount }) => sum + calculateVolume({ width, length, height, amount }), 0);
+    const totalVolume = products.reduce(
+        (sum, { width, length, height, initialAmount }) =>
+            sum +
+            calculateVolume({
+                width,
+                length,
+                height,
+                amount: initialAmount
+            }),
+        0
+    );
 
-    const totalWeight = products.reduce((sum, product) => sum + product.weightPerUnit * product.amount, 0);
+    const totalWeight = products.reduce((sum, product) => sum + product.weightPerUnit * product.initialAmount, 0);
 
-    const totalPrice = products.reduce((sum, product) => sum + product.pricePerUnit * product.amount, 0);
+    const totalPrice = products.reduce((sum, product) => sum + product.pricePerUnit * product.initialAmount, 0);
 
     const suppliersCount = new Set(products.map((product) => product.supplierId)).size;
 

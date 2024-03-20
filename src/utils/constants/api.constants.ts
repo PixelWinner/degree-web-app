@@ -1,4 +1,4 @@
-import { GetProductsQuery } from "@utils/typings/types/products/products.types";
+import { GetArchivedProductsQuery, GetProductsQuery } from "@utils/typings/types/products/products.types";
 import { GetStatisticsDto } from "@utils/typings/types/supplier/supplier.types";
 
 const PAGE_ORIGIN = import.meta.env.VITE_API_URL;
@@ -27,7 +27,13 @@ export const API_URLS = {
 
             return query.name ? `${baseUrl}&name=${query.name}` : baseUrl;
         },
-        search: (name: string) => `${PAGE_ORIGIN}/api/products/search/?name=${name}`
+        getArchived: (query: GetArchivedProductsQuery) => {
+            const baseUrl = `${PAGE_ORIGIN}/api/products/archive/?page=${query.page}&limit=${query.limit}`;
+
+            return query.name ? `${baseUrl}&name=${query.name}` : baseUrl;
+        },
+        search: (name: string) => `${PAGE_ORIGIN}/api/products/search/?name=${name}`,
+        archive: `${PAGE_ORIGIN}/api/products/archive`
     },
     suppliers: {
         main: `${PAGE_ORIGIN}/api/suppliers/`,

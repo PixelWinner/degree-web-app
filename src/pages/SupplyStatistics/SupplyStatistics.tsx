@@ -33,6 +33,7 @@ const Container = styled(Box)`
     padding: 16px;
     flex-direction: column;
     overflow: auto;
+    gap: 8px;
     height: 100%;
 `;
 

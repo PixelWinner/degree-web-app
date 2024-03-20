@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { format } from "date-fns";
 
+import ArchiveIcon from "@mui/icons-material/Archive";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import InfoIcon from "@mui/icons-material/Info";
@@ -17,6 +18,7 @@ import { Product } from "@utils/typings/types/products/products.types";
 import { DropdownMenuItem } from "@components/DropdownMenu";
 import { Body1Typography, Body2Typography } from "@components/Typography";
 
+import AddToArchiveModal from "../../../App/Modals/AddToArchiveModal/AddToArchiveModal";
 import ConfirmModal from "../../../App/Modals/ConfirmModal/ConfirmModal";
 import EditProductModal from "../../../App/Modals/EditProductModal/EditProductModal";
 import { useModal } from "../../../App/Modals/Modal/useModal.hook";
@@ -27,6 +29,7 @@ const ProductCard: FC<Product> = (product) => {
     const infoModalHook = useModal();
     const changeModalHook = useModal();
     const deleteModalHook = useModal();
+    const archiveModalHook = useModal();
     const [deleteProduct] = productsApi.useDeleteProductMutation();
 
     const handleDelete = async () => {
@@ -43,6 +46,11 @@ const ProductCard: FC<Product> = (product) => {
             icon: <EditIcon color="primary" />,
             titleTranslationKey: "general.edit",
             onClick: changeModalHook.openModal
+        },
+        {
+            icon: <ArchiveIcon color="primary" />,
+            titleTranslationKey: "general.addArchive",
+            onClick: archiveModalHook.openModal
         },
         {
             icon: <DeleteIcon color="primary" />,
@@ -79,6 +87,8 @@ const ProductCard: FC<Product> = (product) => {
             <EditProductModal modalHook={changeModalHook} product={product} />
 
             <ProductInfoModal modalHook={infoModalHook} product={product} />
+
+            <AddToArchiveModal modalHook={archiveModalHook} productId={product.id} />
         </CardContainer>
     );
 };

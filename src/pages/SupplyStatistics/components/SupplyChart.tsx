@@ -31,7 +31,7 @@ const SupplyChart: FC<SupplyChartProps> = ({ products }) => {
 
     const priceFormatter = useCallback((value: number) => getValueWithCurrency(value, t), [t]);
 
-    const dataSet = useMemo(() => products && groupByMonth(products), [products]);
+    const dataSet = useMemo(() => groupByMonth(products ?? []), [products]);
 
     const series = useMemo(
         () => [
@@ -43,7 +43,7 @@ const SupplyChart: FC<SupplyChartProps> = ({ products }) => {
 
     const xAxis = useMemo(() => [{ scaleType: "band" as const, dataKey: "month" }], []);
 
-    if (!products) {
+    if (!products?.length) {
         return null;
     }
 
@@ -63,8 +63,8 @@ function groupByMonth(products: Product[]): ChartData[] {
         if (!acc[month]) {
             acc[month] = { month: month, totalAmount: 0, totalCost: 0 };
         }
-        acc[month].totalAmount += item.amount;
-        acc[month].totalCost += item.amount * item.pricePerUnit;
+        acc[month].totalAmount += item.initialAmount;
+        acc[month].totalCost += item.initialAmount * item.pricePerUnit;
         return acc;
     }, {});
 

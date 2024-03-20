@@ -8,9 +8,12 @@ import { HttpMethod, ProvidedTag } from "@utils/typings/enums/api.enums";
 import { ExtendedSearchProductSchema, GetProductsResponseSchema } from "@utils/typings/schemas/products/products.schemas";
 import { MessageResponse } from "@utils/typings/types/api.types";
 import {
+    AddToArchiveDto,
     CreateProductDto,
+    DeleteArchiveRecordDto,
     DeleteProductDto,
     ExtendedSearchProduct,
+    GetArchivedProductsQuery,
     GetProductsQuery,
     GetProductsResponse,
     UpdateProductDto
@@ -34,6 +37,14 @@ export const productsApi = baseApi.injectEndpoints({
             providesTags: (_, __, { shelfId }) => [{ type: ProvidedTag.PRODUCTS, id: shelfId }],
             transformResponse: handleTransformGetProductsResponse
         }),
+        getArchivedProducts: build.query<GetProductsResponse, GetArchivedProductsQuery>({
+            query: (query) => ({
+                url: API_URLS.products.getArchived(query),
+                method: HttpMethod.GET
+            }),
+            providesTags: [ProvidedTag.ARCHIVE],
+            transformResponse: handleTransformGetProductsResponse
+        }),
         createProduct: build.mutation<MessageResponse, CreateProductDto>({
             query: (body) => ({
                 url: API_URLS.products.main,
@@ -49,7 +60,7 @@ export const productsApi = baseApi.injectEndpoints({
                 method: HttpMethod.PUT,
                 body
             }),
-            invalidatesTags: (_, __, { shelfId }) => [{ type: ProvidedTag.PRODUCTS, id: shelfId }],
+            invalidatesTags: (_, __, { shelfId }) => [{ type: ProvidedTag.PRODUCTS, id: shelfId }, ProvidedTag.ARCHIVE],
             transformResponse: handleTransformMessageResponse
         }),
         deleteProduct: build.mutation<MessageResponse, DeleteProductDto>({
@@ -58,7 +69,7 @@ export const productsApi = baseApi.injectEndpoints({
                 method: HttpMethod.DELETE,
                 body: { id }
             }),
-            invalidatesTags: (_, __, { shelfId }) => [{ type: ProvidedTag.PRODUCTS, id: shelfId }],
+            invalidatesTags: (_, __, { shelfId }) => [{ type: ProvidedTag.PRODUCTS, id: shelfId }, ProvidedTag.ARCHIVE],
             transformResponse: handleTransformMessageResponse
         }),
         searchProduct: build.query<ExtendedSearchProduct[], string>({
@@ -67,6 +78,24 @@ export const productsApi = baseApi.injectEndpoints({
                 method: HttpMethod.GET
             }),
             transformResponse: handleTransformSearchProductResponse
+        }),
+        addToArchive: build.mutation<MessageResponse, AddToArchiveDto>({
+            query: (body) => ({
+                url: API_URLS.products.archive,
+                method: HttpMethod.POST,
+                body
+            }),
+            invalidatesTags: [ProvidedTag.PRODUCTS, ProvidedTag.ARCHIVE],
+            transformResponse: handleTransformMessageResponse
+        }),
+        deleteArchiveRecord: build.mutation<MessageResponse, DeleteArchiveRecordDto>({
+            query: (body) => ({
+                url: API_URLS.products.archive,
+                method: HttpMethod.DELETE,
+                body
+            }),
+            invalidatesTags: [ProvidedTag.PRODUCTS, ProvidedTag.ARCHIVE],
+            transformResponse: handleTransformMessageResponse
         })
     })
 });

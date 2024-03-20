@@ -8,6 +8,7 @@
     "storageName": "Назва сховища",
     "shelfName": "Назва полиці",
     "email": "Електронна пошта",
+    "reason": "Причина",
     "password": "Пароль",
     "signIn": "Увійти",
     "createAccount": "Створити обліковий запис",
@@ -79,7 +80,10 @@
     "numberOfProducts": "Кількість поставлених продуктів",
     "amountUnitsProducts": "Кількість поставлених одиниць",
     "suppliersCount": "Кількість постачальників",
-    "productsList":"Список продуктів"
+    "productsList": "Список продуктів",
+    "addArchive": "Додати до архіву",
+    "productIsAvailable": "Продукт ще наявний на складі",
+    "initialAmount": "Початкова кількість"
   },
   "units": {
     "weight": "кг",
@@ -97,7 +101,8 @@
     "home": "Головна",
     "productsSearch": "Пошук продуктів",
     "productsSupply": "Поставка продуктів",
-    "supplyStatistics": "Статистика поставок"
+    "supplyStatistics": "Статистика поставок",
+    "archive": "Архів"
   },
   "modal": {
     "createStorage": {
@@ -139,6 +144,13 @@
     },
     "editProduct": {
       "title": "Введіть нове ім'я або параметри продутку"
+    },
+    "addToArchive": {
+      "title": "Архівація продуктів",
+      "description": "Введіть причину архіваціїї та кількість продуктів."
+    },
+    "deleteFromArchive": {
+      "title": "Ви впевнені, що хочете видалити запис з архіву?"
     }
   },
   "validation": {
@@ -150,6 +162,7 @@
     "invalidAmount": "Некоректна кілкість",
     "invalidPrice": "Некоректна ціна",
     "invalidPhoneNumber": "Некоректний номер телефону",
-    "passwordDoNotMatch": "Паролі не співпадають"
+    "passwordDoNotMatch": "Паролі не співпадають",
+    "invalidReason": "Некоректна причина"
   }
 }

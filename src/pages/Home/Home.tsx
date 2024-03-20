@@ -2,6 +2,7 @@ import React from "react";
 
 import styled from "styled-components/macro";
 
+import ArchiveIcon from "@mui/icons-material/Archive";
 import ProductsTableIcon from "@mui/icons-material/Article";
 import SupplyStatisticsIcon from "@mui/icons-material/InsertChart";
 import SupplyIcon from "@mui/icons-material/NoteAdd";
@@ -33,6 +34,7 @@ const Home = () => {
             <PageLink titleTranslationKey="routes.productsTable" href={PAGE_PATH.products.table} icon={<ProductsTableIcon />} />
             <PageLink titleTranslationKey="routes.supplyStatistics" href={PAGE_PATH.supplyStatistics} icon={<SupplyStatisticsIcon />} />
             <PageLink titleTranslationKey="routes.productsSearch" href={PAGE_PATH.products.search} icon={<SearchIcon />} />
+            <PageLink titleTranslationKey="routes.archive" href={PAGE_PATH.archive} icon={<ArchiveIcon />} />
         </Container>
     );
 };

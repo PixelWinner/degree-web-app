@@ -45,7 +45,7 @@ type ProductInfoModalProps = {
 
 const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => {
     const { t } = useTranslation();
-    const { name, length, width, height, amount, pricePerUnit, weightPerUnit, createdAt, updatedAt, properties, supplier } = product;
+    const { name, length, width, height, amount, pricePerUnit, weightPerUnit, createdAt, updatedAt, properties, supplier, initialAmount } = product;
 
     const volume = calculateVolume({ length, width, height });
     const totalVolume = calculateVolume({ length, width, height, amount });
@@ -78,6 +78,8 @@ const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => 
             <InfoTypography label={t("general.weightPerUnit")} value={getValueWithWeightUnit(weightPerUnit, t)} />
 
             <InfoTypography label={t("general.amount")} value={amount} />
+
+            <InfoTypography label={t("general.initialAmount")} value={initialAmount} />
 
             <InfoTypography label={t("general.totalPrice")} value={getValueWithCurrency(totalPrice, t)} />
 

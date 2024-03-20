@@ -4,21 +4,36 @@ import { getTranslatedValidationMessage } from "@utils/helpers/getTranslatedMess
 import { DateStringSchema, DynamicFieldSchema, StringSchema } from "@utils/typings/schemas/common.schemas";
 import { CreateSupplierDtoSchema, SupplierSchema } from "@utils/typings/schemas/supplier/supplier.schema";
 
+export const AddToArchiveDtoSchema = z.object({
+    productId: z.number(),
+    reason: StringSchema.min(3, getTranslatedValidationMessage("invalidReason")),
+    amount: z.number().min(1, getTranslatedValidationMessage("invalidAmount")),
+    date: z.date()
+});
+
+export const ArchiveRecordSchema = z.object({
+    reason: z.string().min(3, getTranslatedValidationMessage("invalidReason")),
+    amount: z.number().min(1, getTranslatedValidationMessage("invalidAmount")),
+    date: DateStringSchema
+});
+
 export const ProductSchema = z.object({
     id: z.number(),
     shelfId: z.number(),
     name: StringSchema,
-    amount: z.number().min(1, getTranslatedValidationMessage("invalidAmount")),
+    amount: z.number(),
     pricePerUnit: z.number().min(0.001, getTranslatedValidationMessage("invalidPrice")),
     weightPerUnit: z.number().min(1, getTranslatedValidationMessage("invalidWeight")),
     length: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
     width: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
     height: z.number().min(0.001, getTranslatedValidationMessage("invalidSize")),
     properties: z.array(DynamicFieldSchema),
+    archiveRecords: z.array(ArchiveRecordSchema).nullable(),
     supplierId: z.number(),
     supplier: SupplierSchema,
     createdAt: DateStringSchema,
-    updatedAt: DateStringSchema
+    updatedAt: DateStringSchema,
+    initialAmount: z.number().min(0, getTranslatedValidationMessage("invalidAmount"))
 });
 
 export const GetProductsResponseSchema = z.object({

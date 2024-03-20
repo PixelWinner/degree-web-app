@@ -25,6 +25,7 @@ const ProductsTable = lazy(() => import("@pages/ProductsTable/ProductsTable"));
 const ProductsSearch = lazy(() => import("@pages/ProductsSearch/ProductsSearch"));
 const ProductsSupply = lazy(() => import("@pages/ProductsSupply/ProductsSupply"));
 const SupplyStatistics = lazy(() => import("@pages/SupplyStatistics/SupplyStatistics"));
+const Archive = lazy(() => import("@pages/Archive/Archive"));
 
 const AppPages = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -76,6 +77,10 @@ const AppPages = () => {
         {
             path: PAGE_PATH.supplyStatistics,
             element: <SupplyStatistics />
+        },
+        {
+            path: `${PAGE_PATH.archive}/:page?/:name?`,
+            element: <Archive />
         }
     ].map(({ path, element }, index) => <Route key={index} path={path} element={<Suspense fallback={Loader}>{element}</Suspense>} />);
 

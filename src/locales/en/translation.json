@@ -8,6 +8,7 @@
     "storageName": "Storage title",
     "shelfName": "Shelf title",
     "email": "Email",
+    "reason": "Reason",
     "password": "Password",
     "signIn": "Sign In",
     "createAccount": "Create account",
@@ -76,10 +77,13 @@
     "dateRange": "Date range",
     "supplyInfo": "Supply information",
     "suppliersList": "Suppliers list",
-    "amountProducts":"Amount of products supplied",
-    "amountUnitsProducts":"Amount of supplied units",
-    "suppliersCount":"Suppliers count",
-    "productsList":"Products list"
+    "amountProducts": "Amount of products supplied",
+    "amountUnitsProducts": "Amount of supplied units",
+    "suppliersCount": "Suppliers count",
+    "productsList": "Products list",
+    "addArchive": "Add to archive",
+    "productIsAvailable": "Product is still in stock",
+    "initialAmount": "Initial amount"
   },
   "units": {
     "weight": "kg",
@@ -97,7 +101,8 @@
     "home": "Home",
     "productsSearch": "Search products",
     "productsSupply": "Products supply",
-    "supplyStatistics": "Supply statistics"
+    "supplyStatistics": "Supply statistics",
+    "archive": "Archive"
   },
   "modal": {
     "createStorage": {
@@ -136,6 +141,13 @@
     },
     "editProduct": {
       "title": "Enter a new name or parameters of the product"
+    },
+    "addToArchive": {
+      "title": "Product archiving",
+      "description": "Enter the reason for archiving and the number of products."
+    },
+    "deleteFromArchive": {
+      "title": "Are you sure you want to delete the record from the archive?"
     }
   },
   "validation": {
@@ -147,6 +159,7 @@
     "invalidAmount": "Invalid amount",
     "invalidPrice": "Invalid price",
     "invalidPhoneNumber": "Invalid phone number",
-    "passwordDoNotMatch": "Passwords do not match"
+    "passwordDoNotMatch": "Passwords do not match",
+    "invalidReason": "Invalid reason"
   }
 }

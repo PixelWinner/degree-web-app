@@ -22,5 +22,6 @@ export enum ProvidedTag {
     SHELVES = "shelves",
     PRODUCTS = "products",
     STORAGE_SHELF_LIST = "storageShelfList",
-    SUPPLIERS = "suppliers"
+    SUPPLIERS = "suppliers",
+    ARCHIVE = "archive"
 }

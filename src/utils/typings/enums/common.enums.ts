@@ -30,7 +30,8 @@ export enum Field {
     LEGAL_ADDRESS = "legalAddress",
     TIN = "TIN", //ENG: Taxpayer Identification Number
     USREOU = "USREOU", //ENG: Unified State Register of Enterprises and Organizations of Ukraine"
-    PHONE_NUMBER = "phoneNumber"
+    PHONE_NUMBER = "phoneNumber",
+    REASON = "reason"
 }
 
 export enum Request {

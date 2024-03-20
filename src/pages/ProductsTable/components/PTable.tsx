@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { productsApi } from "@store/apis/products.api";
 
+import { ROWS_PER_PAGE_OPTIONS } from "@utils/constants/common.constants";
 import { usePagination } from "@utils/hooks/usePagination.hook";
 import { Product } from "@utils/typings/types/products/products.types";
 
@@ -19,8 +20,6 @@ const COLUMNS: TableColumn<ExtendedProduct>[] = [
     { key: "pricePerUnit", titleTranslationKey: "general.pricePerUnit", unitsTranslationKey: "currencies.uah" },
     { key: "totalPrice", titleTranslationKey: "general.totalPrice", unitsTranslationKey: "currencies.uah" }
 ];
-
-const ROWS_PER_PAGE_OPTIONS: number[] = [5, 10, 25];
 
 type ExtendedProduct = Product & { totalPrice: number };
 

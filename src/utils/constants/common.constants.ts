@@ -12,7 +12,8 @@ export const PAGE_PATH = {
         search: "/productsSearch",
         supply: "/productsSupply"
     },
-    supplyStatistics: "/supplyStatistics"
+    supplyStatistics: "/supplyStatistics",
+    archive: "/archive"
 };
 
 export const DATE_TIME_FORMAT = {
@@ -22,3 +23,5 @@ export const DATE_TIME_FORMAT = {
 };
 
 export const MS_IN_SECOND = 1000;
+
+export const ROWS_PER_PAGE_OPTIONS: number[] = [5, 25, 50];

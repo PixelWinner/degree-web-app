@@ -10,6 +10,8 @@
     "email": "Електронна пошта",
     "reason": "Причина",
     "password": "Пароль",
+    "newPassword": "Новий пароль",
+    "oldPassword": "Старий пароль",
     "signIn": "Увійти",
     "createAccount": "Створити обліковий запис",
     "toRegister": "Зареєструватися",
@@ -83,7 +85,11 @@
     "productsList": "Список продуктів",
     "addArchive": "Додати до архіву",
     "productIsAvailable": "Продукт ще наявний на складі",
-    "initialAmount": "Початкова кількість"
+    "initialAmount": "Початкова кількість",
+    "changePassword": "Змінити пароль",
+    "forgotPassword": "Забули пароль?",
+    "passwordRecovery": "Відновлення паролю",
+    "recoveryCode": "Код відновлення"
   },
   "units": {
     "weight": "кг",
@@ -163,6 +169,8 @@
     "invalidPrice": "Некоректна ціна",
     "invalidPhoneNumber": "Некоректний номер телефону",
     "passwordDoNotMatch": "Паролі не співпадають",
-    "invalidReason": "Некоректна причина"
+    "passwordsMustNotMatch": "Паролі не повинні співпадати",
+    "invalidReason": "Некоректна причина",
+    "invalidRecoveryCode": "Некоректний код відновлення"
   }
 }

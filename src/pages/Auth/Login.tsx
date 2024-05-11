@@ -39,12 +39,18 @@ const Login = () => {
     return (
         <FormContainer onSubmit={formikHook.handleSubmit}>
             <H3Typography>{t("general.login")}</H3Typography>
+
             <TextField {...getTextFieldProps({ field: Field.EMAIL, formikHook, t })} />
+
             <TextField {...getTextFieldProps({ field: Field.PASSWORD, formikHook, t })} />
+
             <Button type="submit" isLoading={isLoading}>
                 {t("general.signIn")}
             </Button>
+
             <Link to={PAGE_PATH.register}>{t("general.toRegister")}</Link>
+
+            <Link to={PAGE_PATH.recovery}>{t("general.forgotPassword")}</Link>
         </FormContainer>
     );
 };

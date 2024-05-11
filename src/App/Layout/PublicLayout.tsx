@@ -4,7 +4,7 @@ import { PAGE_PATH } from "@utils/constants/common.constants";
 import { useAppSelector } from "@store/store.hooks";
 import { selectIsAuthenticated } from "@store/slices/auth/auth.selectors";
 
-const AUTH_PAGES = [PAGE_PATH.login, PAGE_PATH.register];
+const AUTH_PAGES = [PAGE_PATH.login, PAGE_PATH.register, PAGE_PATH.reset, PAGE_PATH.recovery];
 const PublicLayout = () => {
     const { pathname } = useLocation();
     const isAuthenticated = useAppSelector(selectIsAuthenticated);

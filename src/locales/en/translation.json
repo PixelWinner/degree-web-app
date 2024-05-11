@@ -10,6 +10,8 @@
     "email": "Email",
     "reason": "Reason",
     "password": "Password",
+    "newPassword": "New password",
+    "oldPassword": "Old password",
     "signIn": "Sign In",
     "createAccount": "Create account",
     "toRegister": "Register",
@@ -83,7 +85,11 @@
     "productsList": "Products list",
     "addArchive": "Add to archive",
     "productIsAvailable": "Product is still in stock",
-    "initialAmount": "Initial amount"
+    "initialAmount": "Initial amount",
+    "changePassword": "Change password",
+    "forgotPassword": "Forgot your password?",
+    "passwordRecovery": "Password recovery",
+    "recoveryCode": "Recovery code"
   },
   "units": {
     "weight": "kg",
@@ -160,6 +166,8 @@
     "invalidPrice": "Invalid price",
     "invalidPhoneNumber": "Invalid phone number",
     "passwordDoNotMatch": "Passwords do not match",
-    "invalidReason": "Invalid reason"
+    "passwordsMustNotMatch":"Passwords must not match",
+    "invalidReason": "Invalid reason",
+    "invalidRecoveryCode": "Invalid recovery code"
   }
 }

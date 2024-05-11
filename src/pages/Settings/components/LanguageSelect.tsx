@@ -15,6 +15,7 @@ const Container = styled(Box)`
     align-items: center;
     justify-content: flex-start;
     gap: 8px;
+    padding: 0 0 4px 0;
 `;
 
 const LanguageSelect = () => {

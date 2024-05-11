@@ -63,7 +63,7 @@ const getTextFieldType = (formikHook: FormikValues, field: string | Field): stri
         return "email";
     }
 
-    if (field === Field.PASSWORD || field === Field.REPEAT_PASSWORD) {
+    if (field === Field.PASSWORD || field === Field.REPEAT_PASSWORD || field === Field.OLD_PASSWORD || field === Field.NEW_PASSWORD) {
         return "password";
     }
 

@@ -44,13 +44,19 @@ const Register = () => {
     return (
         <FormContainer onSubmit={formikHook.handleSubmit}>
             <H3Typography>{t("general.register")}</H3Typography>
+
             <TextField {...getTextFieldProps({ field: Field.Name, formikHook, t })} />
+
             <TextField {...getTextFieldProps({ field: Field.EMAIL, formikHook, t })} />
+
             <TextField {...getTextFieldProps({ field: Field.PASSWORD, formikHook, t })} />
+
             <TextField {...getTextFieldProps({ field: Field.REPEAT_PASSWORD, formikHook, t })} />
+
             <Button type="submit" isLoading={isLoading}>
                 {t("general.createAccount")}
             </Button>
+
             <Link to={PAGE_PATH.login}>{t("general.toLogin")}</Link>
         </FormContainer>
     );

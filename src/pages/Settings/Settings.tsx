@@ -10,6 +10,9 @@ import ThemeSwitch from "@pages/Settings/components/ThemeSwitch";
 
 import BackButton from "@components/BackButton";
 import { H5Typography } from "@components/Typography";
+import ChangePasswordForm from "@pages/Settings/components/ChangePasswordForm";
+import { useAppSelector } from "@store/store.hooks";
+import { selectIsAuthenticated } from "@store/slices/auth/auth.selectors";
 
 const Container = styled(Paper)`
     display: flex;
@@ -24,7 +27,7 @@ const Divider = styled(MuiDivider)`
     width: 100%;
 `;
 
-const Header = styled(Box)`
+const Title = styled(Box)`
     display: flex;
     width: 100%;
     align-items: center;
@@ -34,18 +37,25 @@ const Header = styled(Box)`
 `;
 
 const Settings = () => {
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
     const { t } = useTranslation();
 
     return (
         <Container variant="elevation">
-            <Header>
+            <Title>
                 <H5Typography>{t("general.settings")}</H5Typography>
                 <BackButton />
-            </Header>
+            </Title>
 
             <Divider />
+
             <ThemeSwitch />
+
             <LanguageSelect />
+
+            <Divider />
+
+            {isAuthenticated && <ChangePasswordForm />}
         </Container>
     );
 };

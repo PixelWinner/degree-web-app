@@ -2,6 +2,8 @@ export const PAGE_PATH = {
     main: "/",
     login: "/login",
     register: "/register",
+    reset: "/reset",
+    recovery: "/recovery",
     home: "/home",
     storages: "/storages",
     shelves: "/shelves",

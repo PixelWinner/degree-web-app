@@ -6,9 +6,14 @@ const PAGE_ORIGIN = import.meta.env.VITE_API_URL;
 export const API_URLS = {
     auth: {
         login: `${PAGE_ORIGIN}/api/auth/login`,
-        register: `${PAGE_ORIGIN}/api/auth/register`
+        register: `${PAGE_ORIGIN}/api/auth/register`,
+        reset: `${PAGE_ORIGIN}/api/auth/reset`,
+        recovery: `${PAGE_ORIGIN}/api/auth/recovery`,
     },
-    getUserData: `${PAGE_ORIGIN}/api/users`,
+    users:{
+        getUserData: `${PAGE_ORIGIN}/api/users`,
+        changePassword: `${PAGE_ORIGIN}/api/users/changePassword`
+    },
     storages: {
         main: `${PAGE_ORIGIN}/api/storages`,
         getById: (id: number) => `${PAGE_ORIGIN}/api/storages/${id}`,

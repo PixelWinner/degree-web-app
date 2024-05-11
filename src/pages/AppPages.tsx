@@ -26,6 +26,8 @@ const ProductsSearch = lazy(() => import("@pages/ProductsSearch/ProductsSearch")
 const ProductsSupply = lazy(() => import("@pages/ProductsSupply/ProductsSupply"));
 const SupplyStatistics = lazy(() => import("@pages/SupplyStatistics/SupplyStatistics"));
 const Archive = lazy(() => import("@pages/Archive/Archive"));
+const Recovery = lazy(() => import("@pages/Auth/Recovery"));
+const Reset = lazy(() => import("@pages/Auth/Reset"));
 
 const AppPages = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -96,6 +98,14 @@ const AppPages = () => {
         {
             path: PAGE_PATH.settings,
             element: <Settings />
+        },
+        {
+            path: PAGE_PATH.recovery,
+            element: <Recovery />
+        },
+        {
+            path: PAGE_PATH.reset,
+            element: <Reset />
         }
     ].map(({ path, element }, index) => <Route key={index} path={path} element={<Suspense fallback={Loader}>{element}</Suspense>} />);
 

@@ -21,16 +21,18 @@ const Recovery = () => {
     const navigate = useNavigate();
 
     const initialValues: RecoverPasswordDto = {
-        [Field.EMAIL]: "",
+        [Field.EMAIL]: ""
     };
 
     const formikHook = useFormik({
         initialValues,
         validationSchema,
         onSubmit: async (values: RecoverPasswordDto) => {
-          await recover(values).unwrap();
+            await recover(values).unwrap();
 
-          navigate(PAGE_PATH.reset)
+            const path = `${PAGE_PATH.reset}/${values.email}`;
+
+            navigate(path);
         }
     });
 

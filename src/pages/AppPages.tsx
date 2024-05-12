@@ -104,7 +104,7 @@ const AppPages = () => {
             element: <Recovery />
         },
         {
-            path: PAGE_PATH.reset,
+            path: `${PAGE_PATH.reset}/:email`,
             element: <Reset />
         }
     ].map(({ path, element }, index) => <Route key={index} path={path} element={<Suspense fallback={Loader}>{element}</Suspense>} />);

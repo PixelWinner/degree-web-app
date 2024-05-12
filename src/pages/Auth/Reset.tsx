@@ -13,15 +13,16 @@ import { Link } from "@components/Link";
 import { PAGE_PATH } from "@utils/constants/common.constants";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { ResetPasswordDtoSchema } from "@utils/typings/schemas/auth/auth.schemas";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Reset = () => {
     const { t } = useTranslation();
     const [reset, { isLoading }] = authApi.useResetMutation();
     const navigate = useNavigate();
+    const { email } = useParams();
 
     const initialValues: ResetPasswordDto = {
-        [Field.EMAIL]: "",
+        [Field.EMAIL]: email ?? "",
         [Field.RECOVERY_CODE]: "",
         [Field.NEW_PASSWORD]: ""
     };

@@ -18,8 +18,12 @@ import { Request } from "@utils/typings/enums/common.enums";
 import { ApiError } from "@utils/typings/types/api.types";
 
 import TextField from "@components/TextField";
+import styled from "styled-components/macro";
 
 const DEBOUNCE_TIME = 0.5 * MS_IN_SECOND;
+
+const StyledTextField = styled(TextField)`
+    width: 260px;`
 
 type TQueryDefinition = QueryDefinition<
     // eslint-disable-next-line
@@ -120,7 +124,7 @@ const SearchField: FC<SearchFieldProps> = ({ labelTranslationKey, initialValue, 
     );
 
     return (
-        <TextField
+        <StyledTextField
             name={t(labelTranslationKey)}
             label={t(labelTranslationKey)}
             value={value}

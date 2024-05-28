@@ -77,6 +77,7 @@ const SupplyStatistics = () => {
                 <SupplyChart products={data} />
 
                 <ProductsList products={data} />
+
                 <SuppliersList products={data} />
             </Container>
         </>

@@ -45,11 +45,27 @@ const ArchiveProductCard: FC<Product> = (product) => {
         return await deleteProduct({ id: product.id, shelfId: product.shelfId }).unwrap();
     };
 
-    const isDisabled = product.amount !== 0;
+
+    const hasAmount = !!product.amount;
+    const hasShipments = !!product.shipments.length;
+
+    const isDisabled = hasAmount || hasShipments;
 
     const records = product.archiveRecords?.map((record) => <ArchiveRecordsList key={record.date} productId={product.id} record={record} />);
 
-    const tooltipTitle = isDisabled ? t("general.productIsAvailable") : null;
+    const tooltipTitle = (()=>{
+        if(!isDisabled){
+            return
+        }
+
+        if(hasShipments){
+            return t("general.productCannotBeDeleted", {shipmentsAmount: product.shipments.length})
+        }
+
+        if(hasAmount){
+            return t("general.productIsAvailable")
+        }
+    })()
 
     return (
         <Container>

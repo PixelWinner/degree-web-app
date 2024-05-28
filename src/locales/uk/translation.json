@@ -4,7 +4,10 @@
     "pageName": "InventoGuard",
     "login": "Вхід до облікового запису",
     "register": "Створення свого облікового запису",
+    "title": "Назва",
     "name": "Ім'я",
+    "surname": "Прізвище",
+    "patronymic": "По батькові",
     "storageName": "Назва сховища",
     "shelfName": "Назва полиці",
     "email": "Електронна пошта",
@@ -62,7 +65,7 @@
     "shelf": "Полиця",
     "selectStorageAndShelf": "Оберіть сховище та полицю",
     "productsPerPage": "Продуктів на сторінці",
-    "enterNameForSearch": "Введіть ім'я для пошуку",
+    "enterNameForSearch": "Введіть назву для пошуку",
     "searchResults": "Результати пошуку",
     "nothingFound": "Нічого не знайдено",
     "supplierInfo": "Інформація про постачальника",
@@ -89,7 +92,19 @@
     "changePassword": "Змінити пароль",
     "forgotPassword": "Забули пароль?",
     "passwordRecovery": "Відновлення паролю",
-    "recoveryCode": "Код відновлення"
+    "recoveryCode": "Код відновлення",
+    "shipmentsSearch": "Пошук відвантажень",
+    "shipmentsOnPage": "Відвантажень на сторінці",
+    "productCannotBeDeleted": "Неможливо видалити продукт, оскільки у нього є пов'язані відвантаження. Кількість відвантажень: {{shipmentsAmount}}.",
+    "productShipment": "Відвантаженя продукту",
+    "shipmentCode": "Код відвантаження",
+    "customerAddress": "Адреса замовника",
+    "shippedProductAmount": "Кількість відвантажених продуктів",
+    "productInfo": "Інформація про продукт",
+    "createShipment": "Створити відвантаження",
+    "customerInfo": "Інформація про замовника",
+    "addedProducts": "Додані продукти",
+    "remainder": "Залишок"
   },
   "units": {
     "weight": "кг",
@@ -108,7 +123,9 @@
     "productsSearch": "Пошук продуктів",
     "productsSupply": "Поставка продуктів",
     "supplyStatistics": "Статистика поставок",
-    "archive": "Архів"
+    "archive": "Архів",
+    "shipmentsStatistics": "Статистика відвантажень",
+    "productsShipment": "Відвантаження продуктів"
   },
   "modal": {
     "createStorage": {
@@ -157,6 +174,13 @@
     },
     "deleteFromArchive": {
       "title": "Ви впевнені, що хочете видалити запис з архіву?"
+    },
+    "createShipment": {
+      "title": "Створення відвантаження продукту \"{{name}}\"",
+      "description": "Введіть інформацію про замовника, кількість відватанженого продукту"
+    },
+    "shipmentProductSearch": {
+      "title": "Пошук продуктів для відвантаження"
     }
   },
   "validation": {

@@ -12,6 +12,7 @@ import { suppliersApi } from "@store/apis/suppliers.api";
 import { userDataApi } from "@store/apis/userData.api";
 import { authSlice } from "@store/slices/auth/auth.slice";
 import { userDataSlice } from "@store/slices/userData/userData.slice";
+import { shipmentsApi } from "@store/apis/shipments.api";
 
 const sliceReducers = {
     auth: authSlice.reducer,
@@ -24,7 +25,8 @@ const apiReducers = {
     [storagesApi.reducerPath]: storagesApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
     [shelvesApi.reducerPath]: shelvesApi.reducer,
-    [suppliersApi.reducerPath]: suppliersApi.reducer
+    [suppliersApi.reducerPath]: suppliersApi.reducer,
+    [shipmentsApi.reducerPath]: shipmentsApi.reducer
 };
 
 const blacklist = [...Object.keys(apiReducers)];
@@ -40,7 +42,7 @@ const appReducer = combineReducers({
     ...apiReducers
 });
 
-export const RESET_STORE_ACTION_TYPE = "resetStore" as const;
+export const RESET_STORE_ACTION_TYPE = "resetStore";
 
 export const rootReducer = (state: ReturnType<typeof appReducer>, action: AnyAction) => {
     //Reset store on logOut

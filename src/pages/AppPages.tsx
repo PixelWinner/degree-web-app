@@ -28,6 +28,8 @@ const SupplyStatistics = lazy(() => import("@pages/SupplyStatistics/SupplyStatis
 const Archive = lazy(() => import("@pages/Archive/Archive"));
 const Recovery = lazy(() => import("@pages/Auth/Recovery"));
 const Reset = lazy(() => import("@pages/Auth/Reset"));
+const ShipmentsStatistic = lazy(() => import("@pages/ShipmentsStatistic/ShipmentsStatistic"));
+const ProductsShipment = lazy(() => import("@pages/ProductsShipment/ProductsShipment"));
 
 const AppPages = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -81,8 +83,16 @@ const AppPages = () => {
             element: <SupplyStatistics />
         },
         {
-            path: `${PAGE_PATH.archive}/:page?/:name?`,
+            path: `${PAGE_PATH.archive}/:name?`,
             element: <Archive />
+        },
+        {
+            path: PAGE_PATH.shipmentsStatistic,
+            element: <ShipmentsStatistic />
+        },
+        {
+            path: PAGE_PATH.productsShipment,
+            element:<ProductsShipment/>
         }
     ].map(({ path, element }, index) => <Route key={index} path={path} element={<Suspense fallback={Loader}>{element}</Suspense>} />);
 

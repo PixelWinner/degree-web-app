@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { productsApi } from "@store/apis/products.api";
 
-import { ROWS_PER_PAGE_OPTIONS } from "@utils/constants/common.constants";
+import { ITEMS_PER_PAGE_OPTIONS } from "@utils/constants/common.constants";
 import { usePagination } from "@utils/hooks/usePagination.hook";
 import { Product } from "@utils/typings/types/products/products.types";
 
@@ -25,8 +25,8 @@ type ExtendedProduct = Product & { totalPrice: number };
 
 const PTable = () => {
     const { shelfId = "" } = useParams();
-    const { page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = usePagination({ rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS });
-    const { data, isFetching, isError } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page, limit: rowsPerPage }, { skip: !shelfId });
+    const { page, itemsPerPage, handleChangePage, handleChangeItemsPerPage } = usePagination({ itemsPerPageOptions: ITEMS_PER_PAGE_OPTIONS });
+    const { data, isFetching, isError } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page, limit: itemsPerPage }, { skip: !shelfId });
     const [modalProduct, setModalProduct] = useState<ExtendedProduct | null>(null);
 
     const handleClick: RowsProps<ExtendedProduct>["onClick"] = useCallback((item: ExtendedProduct) => {
@@ -78,11 +78,11 @@ const PTable = () => {
                 rowsProps={rowsProps}
                 paginationProps={{
                     rowsCount: data.totalProducts,
-                    rowsPerPage,
-                    rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS,
+                    itemsPerPage: itemsPerPage,
+                    rowsPerPageOptions: ITEMS_PER_PAGE_OPTIONS,
                     page,
                     handleChangePage,
-                    handleChangeRowsPerPage
+                    handleChangeItemsPerPage
                 }}
             />
             {modalProduct && <ProductInfoModal modalHook={modalHook} product={modalProduct} />}

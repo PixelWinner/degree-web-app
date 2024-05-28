@@ -1,5 +1,6 @@
 import { GetArchivedProductsQuery, GetProductsQuery } from "@utils/typings/types/products/products.types";
 import { GetStatisticsDto } from "@utils/typings/types/supplier/supplier.types";
+import { GetShipmentProductsQuery } from "@utils/typings/types/shipments/shipments.types";
 
 const PAGE_ORIGIN = import.meta.env.VITE_API_URL;
 
@@ -8,9 +9,9 @@ export const API_URLS = {
         login: `${PAGE_ORIGIN}/api/auth/login`,
         register: `${PAGE_ORIGIN}/api/auth/register`,
         reset: `${PAGE_ORIGIN}/api/auth/reset`,
-        recovery: `${PAGE_ORIGIN}/api/auth/recovery`,
+        recovery: `${PAGE_ORIGIN}/api/auth/recovery`
     },
-    users:{
+    users: {
         getUserData: `${PAGE_ORIGIN}/api/users`,
         changePassword: `${PAGE_ORIGIN}/api/users/changePassword`
     },
@@ -27,15 +28,15 @@ export const API_URLS = {
     },
     products: {
         main: `${PAGE_ORIGIN}/api/products/`,
-        getAll: (query: GetProductsQuery) => {
-            const baseUrl = `${PAGE_ORIGIN}/api/products/?shelfId=${query.shelfId}&page=${query.page}&limit=${query.limit}`;
+        getAll: ({ shelfId, name, limit, page }: GetProductsQuery) => {
+            const baseUrl = `${PAGE_ORIGIN}/api/products/?shelfId=${shelfId}&page=${page}&limit=${limit}`;
 
-            return query.name ? `${baseUrl}&name=${query.name}` : baseUrl;
+            return name ? `${baseUrl}&name=${name}` : baseUrl;
         },
-        getArchived: (query: GetArchivedProductsQuery) => {
-            const baseUrl = `${PAGE_ORIGIN}/api/products/archive/?page=${query.page}&limit=${query.limit}`;
+        getArchived: ({ page, limit, name }: GetArchivedProductsQuery) => {
+            const baseUrl = `${PAGE_ORIGIN}/api/products/archive/?page=${page}&limit=${limit}`;
 
-            return query.name ? `${baseUrl}&name=${query.name}` : baseUrl;
+            return name ? `${baseUrl}&name=${name}` : baseUrl;
         },
         search: (name: string) => `${PAGE_ORIGIN}/api/products/search/?name=${name}`,
         archive: `${PAGE_ORIGIN}/api/products/archive`
@@ -43,5 +44,14 @@ export const API_URLS = {
     suppliers: {
         main: `${PAGE_ORIGIN}/api/suppliers/`,
         getStatistics: ({ startDate, endDate }: GetStatisticsDto) => `${PAGE_ORIGIN}/api/suppliers/statistics?startDate=${startDate}&endDate=${endDate}`
+    },
+    shipments: {
+        main: `${PAGE_ORIGIN}/api/shipments/`,
+        getAll: ({ startDate, endDate, page, limit, productName }: GetShipmentProductsQuery) => {
+            const baseUrl = `${PAGE_ORIGIN}/api/shipments/?startDate=${startDate}&endDate=${endDate}&page=${page}&limit=${limit}`;
+
+            return productName ? `${baseUrl}&name=${productName}` : baseUrl;
+        },
+        delete: (id: number) => `${PAGE_ORIGIN}/api/shipments/${id}`
     }
 };

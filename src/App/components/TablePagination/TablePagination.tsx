@@ -13,7 +13,7 @@ type TablePaginationProps = {
     rowsPerPage: number;
     page: number;
     handleChangePage: UsePaginationReturns["handleChangePage"];
-    handleChangeRowsPerPage: UsePaginationReturns["handleChangeRowsPerPage"];
+    handleChangeRowsPerPage: UsePaginationReturns["handleChangeItemsPerPage"];
 };
 
 const TablePagination: FC<TablePaginationProps> = ({

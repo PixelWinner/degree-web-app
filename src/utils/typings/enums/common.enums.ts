@@ -15,6 +15,9 @@ export enum LocalStorage {
 
 export enum Field {
     Name = "name",
+    TITLE = "title",
+    SURNAME = "surname",
+    PATRONYMIC = "patronymic",
     EMAIL = "email",
     PASSWORD = "password",
     NEW_PASSWORD = "newPassword",

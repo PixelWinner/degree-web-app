@@ -8,6 +8,8 @@ import SupplyStatisticsIcon from "@mui/icons-material/InsertChart";
 import SupplyIcon from "@mui/icons-material/NoteAdd";
 import SearchIcon from "@mui/icons-material/Search";
 import StorageIcon from "@mui/icons-material/WarehouseOutlined";
+import ShipmentIcon from '@mui/icons-material/LocalShipping';
+import AddShipmentIcon from '@mui/icons-material/PostAdd';
 import { Box } from "@mui/material";
 
 import PageLink from "@pages/Home/components/PageLink";
@@ -34,6 +36,8 @@ const Home = () => {
             <PageLink titleTranslationKey="routes.productsTable" href={PAGE_PATH.products.table} icon={<ProductsTableIcon />} />
             <PageLink titleTranslationKey="routes.supplyStatistics" href={PAGE_PATH.supplyStatistics} icon={<SupplyStatisticsIcon />} />
             <PageLink titleTranslationKey="routes.productsSearch" href={PAGE_PATH.products.search} icon={<SearchIcon />} />
+            <PageLink titleTranslationKey="routes.shipmentsStatistics" href={PAGE_PATH.shipmentsStatistic} icon={<ShipmentIcon />} />
+            <PageLink titleTranslationKey="routes.productsShipment" href={PAGE_PATH.productsShipment} icon={<AddShipmentIcon />} />
             <PageLink titleTranslationKey="routes.archive" href={PAGE_PATH.archive} icon={<ArchiveIcon />} />
         </Container>
     );

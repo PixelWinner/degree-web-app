@@ -36,9 +36,9 @@ const TableFooter = <T extends object>({ paginationProps, columns }: TableFooter
                     page={paginationProps.page}
                     rowsCount={paginationProps.rowsCount}
                     columnsCount={columns.length}
-                    rowsPerPage={paginationProps.rowsPerPage}
+                    rowsPerPage={paginationProps.itemsPerPage}
                     handleChangePage={(_, newPage) => paginationProps.handleChangePage(_, newPage + 1)}
-                    handleChangeRowsPerPage={paginationProps.handleChangeRowsPerPage}
+                    handleChangeRowsPerPage={paginationProps.handleChangeItemsPerPage}
                 />
             </TableRow>
         </StyledTableFooter>

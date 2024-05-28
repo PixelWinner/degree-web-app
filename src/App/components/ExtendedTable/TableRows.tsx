@@ -17,8 +17,9 @@ const TableRows = <T extends object>({ rows, rowsProps, columnKeys }: TableRowsP
     const renderTableCells = useCallback(
         (item: T, columns: ExtendedTableProps<T>["columns"]) => {
             return columns.map((column, index) => {
+
                 const value = item[column.key];
-                const isValidValue = value && (isString(value) || isNumber(value));
+                const isValidValue = (isString(value) || isNumber(value));
 
                 if (isValidValue) {
                     return (
@@ -47,7 +48,7 @@ const TableRows = <T extends object>({ rows, rowsProps, columnKeys }: TableRowsP
                     </TableRow>
                 );
             }),
-        [rows, columnKeys, rowsProps]
+        [rows, columnKeys, rowsProps, renderTableCells]
     );
 };
 

@@ -4,7 +4,10 @@
     "pageName": "InventoGuard",
     "login": "Log In to Your Account",
     "register": "Create Your Account",
+    "title": "Title",
     "name": "Name",
+    "surname": "Surname",
+    "patronymic": "Patronymic",
     "storageName": "Storage title",
     "shelfName": "Shelf title",
     "email": "Email",
@@ -89,7 +92,19 @@
     "changePassword": "Change password",
     "forgotPassword": "Forgot your password?",
     "passwordRecovery": "Password recovery",
-    "recoveryCode": "Recovery code"
+    "recoveryCode": "Recovery code",
+    "shipmentsSearch": "Search for shipments",
+    "shipmentsOnPage": "Shipments on the page",
+    "productCannotBeDeleted": "The product cannot be deleted because it has associated shipments. Count of shipments: {{shipmentsAmount}}.",
+    "productShipment": "Product shipment",
+    "shipmentCode": "Shipping code",
+    "customerAddress": "Customer address",
+    "shippedProductAmount": "Amount of shipped products",
+    "productInfo": "Product information",
+    "createShipment": "Create a shipment",
+    "customerInfo": "Customer information",
+    "addedProducts": "Added products",
+    "remainder": "Remainder"
   },
   "units": {
     "weight": "kg",
@@ -108,7 +123,9 @@
     "productsSearch": "Search products",
     "productsSupply": "Products supply",
     "supplyStatistics": "Supply statistics",
-    "archive": "Archive"
+    "archive": "Archive",
+    "shipmentsStatistics": "Shipments statistics",
+    "productsShipment": "Products shipment"
   },
   "modal": {
     "createStorage": {
@@ -154,6 +171,13 @@
     },
     "deleteFromArchive": {
       "title": "Are you sure you want to delete the record from the archive?"
+    },
+    "createShipment": {
+      "title": "Creating a shipment of the product \"{{name}}\"",
+      "description": "Enter information about the customer, the amount of product shipped"
+    },
+    "shipmentProductSearch": {
+      "title": "Search for products to ship"
     }
   },
   "validation": {
@@ -166,7 +190,7 @@
     "invalidPrice": "Invalid price",
     "invalidPhoneNumber": "Invalid phone number",
     "passwordDoNotMatch": "Passwords do not match",
-    "passwordsMustNotMatch":"Passwords must not match",
+    "passwordsMustNotMatch": "Passwords must not match",
     "invalidReason": "Invalid reason",
     "invalidRecoveryCode": "Invalid recovery code"
   }

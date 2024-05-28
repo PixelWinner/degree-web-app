@@ -7,10 +7,12 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 import { useDateFnsLocale } from "@utils/hooks/useDateFnsLocale.hook";
 
+
 type DateRangePickerProps = {
     value: DateRange<Date>;
     onChange: (range: DateRange<Date>) => void;
 };
+
 
 const DateRangePicker: FC<DateRangePickerProps> = ({ value, onChange }) => {
     const { t } = useTranslation();
@@ -19,6 +21,7 @@ const DateRangePicker: FC<DateRangePickerProps> = ({ value, onChange }) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={locale}>
             <MuiDateRangePicker
+                slotProps={{ textField: { size: "small" } }}
                 slots={{ field: SingleInputDateRangeField }}
                 autoFocus={false}
                 value={value}

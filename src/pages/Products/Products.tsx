@@ -7,11 +7,10 @@ import styled from "styled-components/macro";
 import { Box, Pagination as MuiPagination } from "@mui/material";
 
 import ProductCard from "@pages/Products/components/ProductCard";
-import ProductsPerPageSelect from "@pages/Products/components/ProductsPerPageSelect";
 
 import { productsApi } from "@store/apis/products.api";
 
-import { PAGE_PATH, ROWS_PER_PAGE_OPTIONS } from "@utils/constants/common.constants";
+import { PAGE_PATH, ITEMS_PER_PAGE_OPTIONS } from "@utils/constants/common.constants";
 import { usePagination } from "@utils/hooks/usePagination.hook";
 import { CardsContainerStyled } from "@utils/styles/Cards.styled";
 import { Request } from "@utils/typings/enums/common.enums";
@@ -25,6 +24,7 @@ import ToolBar from "@components/ToolBar";
 
 import CreateProductModal from "../../App/Modals/CreateProductModal/CreateProductModal";
 import { useModal } from "../../App/Modals/Modal/useModal.hook";
+import ItemsPerPageSelect from "@components/ItemsPerPageSelect";
 
 const Pagination = styled(MuiPagination)`
     margin: 0 auto;
@@ -57,12 +57,12 @@ const Products = () => {
     const navigate = useNavigate();
     const { shelfId = "", name } = useParams();
     const { t } = useTranslation();
-    const { rowsPerPage, page, handleChangePage, handleChangeRowsPerPage } = usePagination({ rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS });
-    const { data, isFetching, isError, refetch } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page, limit: rowsPerPage, name }, { skip: !shelfId });
+    const { itemsPerPage, page, handleChangePage, handleChangeItemsPerPage } = usePagination({ itemsPerPageOptions: ITEMS_PER_PAGE_OPTIONS });
+    const { data, isFetching, isError, refetch } = productsApi.useGetProductsQuery({ shelfId: +shelfId, page, limit: itemsPerPage, name }, { skip: !shelfId });
 
     const handleChange = useCallback(
         (newName: string) => {
-            navigate(`${PAGE_PATH.products.main}/${page}/${newName}`);
+            navigate(`${PAGE_PATH.products.main}/${shelfId}/${newName}`);
         },
         [navigate]
     );
@@ -77,10 +77,11 @@ const Products = () => {
                     onChange={handleChange}
                     initialValue={name}
                 />
-                <ProductsPerPageSelect rowsPerPageOptions={ROWS_PER_PAGE_OPTIONS} rowsPerPage={rowsPerPage} handleChangeRowsPerPage={handleChangeRowsPerPage} />
+                <ItemsPerPageSelect titleTranslationKey="general.productsPerPage" itemsPerPageOptions={ITEMS_PER_PAGE_OPTIONS} itemsPerPage={itemsPerPage}
+                                    handleChangeItemsPerPage={handleChangeItemsPerPage} />
             </LeftContainer>
         ),
-        [rowsPerPage]
+        [itemsPerPage]
     );
 
     const rightPartToolBar = useMemo(

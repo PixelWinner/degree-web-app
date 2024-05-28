@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { getTranslatedValidationMessage } from "@utils/helpers/getTranslatedMessage.helper";
 import { Field } from "@utils/typings/enums/common.enums";
-import { DateStringSchema, DynamicFieldSchema, EmailSchema, PhoneNumber, StringSchema } from "@utils/typings/schemas/common.schemas";
+import { DateStringSchema, DynamicFieldSchema, EmailSchema, PhoneNumberSchema, StringSchema } from "@utils/typings/schemas/common.schemas";
 
 export const SupplierSchema = z.object({
     [Field.FULL_COMPANY_NAME]: StringSchema,
@@ -10,7 +10,7 @@ export const SupplierSchema = z.object({
     [Field.TIN]: StringSchema,
     [Field.USREOU]: StringSchema,
     [Field.EMAIL]: EmailSchema,
-    [Field.PHONE_NUMBER]: PhoneNumber,
+    [Field.PHONE_NUMBER]: PhoneNumberSchema,
     createdAt: DateStringSchema,
     updatedAt: DateStringSchema
 });

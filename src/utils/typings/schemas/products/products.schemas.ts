@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getTranslatedValidationMessage } from "@utils/helpers/getTranslatedMessage.helper";
 import { DateStringSchema, DynamicFieldSchema, StringSchema } from "@utils/typings/schemas/common.schemas";
 import { CreateSupplierDtoSchema, SupplierSchema } from "@utils/typings/schemas/supplier/supplier.schema";
+import { ShipmentSchema } from "@utils/typings/schemas/shipments/shipments.schemas";
 
 export const AddToArchiveDtoSchema = z.object({
     productId: z.number(),
@@ -33,6 +34,7 @@ export const ProductSchema = z.object({
     supplier: SupplierSchema,
     createdAt: DateStringSchema,
     updatedAt: DateStringSchema,
+    shipments:z.array(ShipmentSchema),
     initialAmount: z.number().min(0, getTranslatedValidationMessage("invalidAmount"))
 });
 

@@ -24,6 +24,7 @@ import EditProductModal from "../../../App/Modals/EditProductModal/EditProductMo
 import { useModal } from "../../../App/Modals/Modal/useModal.hook";
 import ProductInfoModal from "../../../App/Modals/ProductInfoModal/ProductInfoModal";
 
+
 const ProductCard: FC<Product> = (product) => {
     const { t } = useTranslation();
     const infoModalHook = useModal();
@@ -35,6 +36,8 @@ const ProductCard: FC<Product> = (product) => {
     const handleDelete = async () => {
         await deleteProduct({ id: product.id, shelfId: product.shelfId }).unwrap();
     };
+
+    const hasShipments = !!product.shipments.length;
 
     const menuItems: DropdownMenuItem[] = [
         {
@@ -55,7 +58,12 @@ const ProductCard: FC<Product> = (product) => {
         {
             icon: <DeleteIcon color="primary" />,
             titleTranslationKey: "general.delete",
-            onClick: deleteModalHook.openModal
+            onClick: deleteModalHook.openModal,
+            isDisabled: hasShipments,
+            tooltipProps: {
+                messageTranslationKey: "general.productCannotBeDeleted",
+                messageTranslationValues: { shipmentsAmount: String(product.shipments.length) }
+            }
         }
     ];
 

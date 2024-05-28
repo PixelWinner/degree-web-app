@@ -4,7 +4,7 @@ import React, { FC } from "react";
 import { useTranslation } from "react-i18next";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Paper } from "@mui/material";
+import { Accordion, AccordionDetails as MuiAccordionDetails, AccordionSummary, Box, Paper } from "@mui/material";
 
 import { Product } from "@utils/typings/types/products/products.types";
 
@@ -26,6 +26,11 @@ const DetailsRow = styled(Box)`
 const DetailsContainer = styled(Paper)`
     padding: 4px 8px;
 `;
+
+const AccordionDetails = styled(MuiAccordionDetails)`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;`
 
 type SuppliersListProps = {
     products?: Product[];

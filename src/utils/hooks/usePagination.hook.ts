@@ -3,45 +3,45 @@ import { ChangeEvent, ReactNode, useState } from "react";
 import { SelectChangeEvent } from "@mui/material";
 
 type UsePaginationProps = {
-    rowsPerPageOptions: number[];
+    itemsPerPageOptions: number[];
     onChangePage?: () => void;
-    onChangeRowsPerPage?: () => void;
+    onChangeItemsPerPage?: () => void;
 };
 
 export type UsePaginationReturns = {
     page: number;
-    rowsPerPage: number;
+    itemsPerPage: number;
     handleChangePage: (event: unknown, newPage: number) => void;
-    handleChangeRowsPerPage: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<number>, child?: ReactNode) => void;
+    handleChangeItemsPerPage: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<number>, child?: ReactNode) => void;
 };
 
 type UsePagination = (props: UsePaginationProps) => UsePaginationReturns;
 
-export const usePagination: UsePagination = ({ rowsPerPageOptions, onChangePage, onChangeRowsPerPage }) => {
+export const usePagination: UsePagination = ({ itemsPerPageOptions, onChangePage, onChangeItemsPerPage }) => {
     const [page, setPage] = useState<number>(1);
-    const [rowsPerPage, setRowsPerPage] = useState<number>(rowsPerPageOptions[0]);
+    const [itemsPerPage, setItemsPerPage] = useState<number>(itemsPerPageOptions[0]);
 
     const handleChangePage: UsePaginationReturns["handleChangePage"] = (_, newPage) => {
         setPage(newPage);
         onChangePage?.();
     };
 
-    const handleChangeRowsPerPage: UsePaginationReturns["handleChangeRowsPerPage"] = (event) => {
+    const handleChangeItemsPerPage: UsePaginationReturns["handleChangeItemsPerPage"] = (event) => {
         const value = +event.target.value;
 
         if (isNaN(value)) {
             throw new Error("Value must be a number");
         }
 
-        setRowsPerPage(value);
+        setItemsPerPage(value);
         setPage(1);
-        onChangeRowsPerPage?.();
+        onChangeItemsPerPage?.();
     };
 
     return {
         page,
-        rowsPerPage,
+        itemsPerPage,
         handleChangePage,
-        handleChangeRowsPerPage
+        handleChangeItemsPerPage
     };
 };

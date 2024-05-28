@@ -7,7 +7,7 @@ import { format } from "date-fns";
 
 import MuiCloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Divider as MuiDivider } from "@mui/material";
+import { Accordion, AccordionDetails as MuiAccordionDetails, AccordionSummary, Box, Divider as MuiDivider, Paper } from "@mui/material";
 
 import { DATE_TIME_FORMAT } from "@utils/constants/common.constants";
 import { calculateVolume } from "@utils/helpers/calculateVolume.helper";
@@ -36,6 +36,11 @@ const AccordionsContainer = styled(Box)`
     & h6 {
         text-align: start;
     }
+`;
+
+const AccordionDetails = styled(MuiAccordionDetails)`
+    border: ${({ theme }) => `${theme.palette.divider} 1px solid`};
+    border-top: none;
 `;
 
 type ProductInfoModalProps = {
@@ -93,8 +98,8 @@ const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => 
 
             <AccordionsContainer>
                 {!!propertyValues.length && (
-                    <Accordion elevation={3}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Accordion>
+                        <AccordionSummary component={Paper} elevation={1} expandIcon={<ExpandMoreIcon />}>
                             <H6Typography>{t("general.additionalParameters")}</H6Typography>
                         </AccordionSummary>
 
@@ -102,8 +107,8 @@ const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => 
                     </Accordion>
                 )}
 
-                <Accordion elevation={3}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Accordion>
+                    <AccordionSummary component={Paper} elevation={1} expandIcon={<ExpandMoreIcon />}>
                         <H6Typography>{t("general.supplierInfo")}</H6Typography>
                     </AccordionSummary>
 

@@ -22,9 +22,18 @@ type CreateModalProps = {
     formikHook: FormikValues;
     fields: Field[];
     isLoading: boolean;
+    titleTranslationValues?: { [key in string]: string };
 };
 
-const CreateModal: FC<CreateModalProps> = ({ modalHook, titleTranslationKey, descriptionTranslationKey, formikHook, fields, isLoading }) => {
+const CreateModal: FC<CreateModalProps> = ({
+                                               modalHook,
+                                               titleTranslationKey,
+                                               titleTranslationValues,
+                                               descriptionTranslationKey,
+                                               formikHook,
+                                               fields,
+                                               isLoading
+                                           }) => {
     const { t } = useTranslation();
     const formId = useId();
 
@@ -32,7 +41,7 @@ const CreateModal: FC<CreateModalProps> = ({ modalHook, titleTranslationKey, des
 
     return (
         <Modal {...modalHook.modalProps}>
-            <H5Typography>{t(titleTranslationKey)}</H5Typography>
+            <H5Typography>{t(titleTranslationKey, titleTranslationValues)}</H5Typography>
 
             <Body2Typography align="left" color="text.secondary">
                 <Trans

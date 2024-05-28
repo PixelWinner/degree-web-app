@@ -6,11 +6,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Box, Pagination as MuiPagination } from "@mui/material";
 
 import ArchiveProductCard from "@pages/Archive/components/ArchiveProductCard";
-import ProductsPerPageSelect from "@pages/Products/components/ProductsPerPageSelect";
 
 import { productsApi } from "@store/apis/products.api";
 
-import { PAGE_PATH, ROWS_PER_PAGE_OPTIONS } from "@utils/constants/common.constants";
+import { PAGE_PATH, ITEMS_PER_PAGE_OPTIONS } from "@utils/constants/common.constants";
 import { usePagination } from "@utils/hooks/usePagination.hook";
 import { Request } from "@utils/typings/enums/common.enums";
 
@@ -19,6 +18,7 @@ import NoDataMessage from "@components/NoDataMessage";
 import SearchField from "@components/SearchField";
 import { SelfCenterLoader } from "@components/SelfCenterLoader";
 import ToolBar from "@components/ToolBar";
+import ItemsPerPageSelect from "@components/ItemsPerPageSelect";
 
 const Pagination = styled(MuiPagination)`
     margin: 0 auto;
@@ -48,12 +48,12 @@ const CardsContainer = styled(Box)`
 const Archive = () => {
     const navigate = useNavigate();
     const { name } = useParams();
-    const { rowsPerPage, page, handleChangePage, handleChangeRowsPerPage } = usePagination({ rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS });
-    const { data, isFetching, isError, refetch } = productsApi.useGetArchivedProductsQuery({ page, limit: rowsPerPage, name });
+    const { itemsPerPage, page, handleChangePage, handleChangeItemsPerPage } = usePagination({ itemsPerPageOptions: ITEMS_PER_PAGE_OPTIONS });
+    const { data, isFetching, isError, refetch } = productsApi.useGetArchivedProductsQuery({ page, limit: itemsPerPage, name });
 
     const handleChange = useCallback(
         (newName: string) => {
-            navigate(`${PAGE_PATH.archive}/${page}/${newName}`);
+            navigate(`${PAGE_PATH.archive}/${newName}`);
         },
         [navigate]
     );
@@ -68,10 +68,10 @@ const Archive = () => {
                     onChange={handleChange}
                     initialValue={name}
                 />
-                <ProductsPerPageSelect rowsPerPageOptions={ROWS_PER_PAGE_OPTIONS} rowsPerPage={rowsPerPage} handleChangeRowsPerPage={handleChangeRowsPerPage} />
+                <ItemsPerPageSelect titleTranslationKey="general.productsPerPage" itemsPerPageOptions={ITEMS_PER_PAGE_OPTIONS} itemsPerPage={itemsPerPage} handleChangeItemsPerPage={handleChangeItemsPerPage} />
             </LeftContainer>
         ),
-        [rowsPerPage]
+        [itemsPerPage]
     );
 
     const rightPart = <BackButton />;

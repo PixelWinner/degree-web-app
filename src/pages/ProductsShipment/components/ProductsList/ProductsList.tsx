@@ -63,9 +63,11 @@ const ProductsList: FC<ProductsListProps> = ({ formikHook }) => {
                 <AddIcon fontSize="large" color="primary" onClick={modalHook.openModal} />
             </Header>
 
-            <Wrapper>
-                {productsList}
-            </Wrapper>
+            {!!productsList.length &&
+                <Wrapper>
+                    {productsList}
+                </Wrapper>
+            }
 
             <ShipmentProductSearchModal modalHook={modalHook} formikHook={formikHook} />
         </Container>

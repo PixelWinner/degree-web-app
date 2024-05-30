@@ -38,7 +38,7 @@ const Wrapper = styled(Box)`
     gap: 8px;
     min-height: 48px;
     width: 100%;
-    max-height: 600px;
+    max-height: 216px;
     overflow-y: auto;
     padding: 8px;
     border: ${({ theme }) => `${theme.palette.divider} 1px solid`};
@@ -89,7 +89,7 @@ const ShipmentProductSearchModal: FC<ShipmentProductSearchModalProps> = ({ modal
                 <H6Typography>{t("general.searchResults")}</H6Typography>
 
                 <Wrapper>
-                    {isFetching ? <SelfCenterLoader isLoading={isFetching} /> : (searchResult)}
+                    {isFetching ? <SelfCenterLoader isLoading={isFetching} /> : searchResult}
                 </Wrapper>
 
                 <H6Typography>{t("general.addedProducts")}</H6Typography>

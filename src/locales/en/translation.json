@@ -104,7 +104,15 @@
     "createShipment": "Create a shipment",
     "customerInfo": "Customer information",
     "addedProducts": "Added products",
-    "remainder": "Remainder"
+    "remainder": "Remainder",
+    "shipments": "Shipments",
+    "shipmentsInfo": "Shipments information",
+    "totalPriceOfShippedProducts": "Total price of shipped products",
+    "shipmentsAmount": "Shipments amount",
+    "shippedUnitsAmount": "Amount of shipped units",
+    "totalShippedProducts": "Amount of shipped products",
+    "shipmentsList": "Shipments list",
+    "shipment": "Shipment"
   },
   "units": {
     "weight": "kg",
@@ -124,7 +132,7 @@
     "productsSupply": "Products supply",
     "supplyStatistics": "Supply statistics",
     "archive": "Archive",
-    "shipmentsStatistics": "Shipments statistics",
+    "shipmentsStatistic": "Shipments statistic",
     "productsShipment": "Products shipment"
   },
   "modal": {

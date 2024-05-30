@@ -47,10 +47,8 @@ export const API_URLS = {
     },
     shipments: {
         main: `${PAGE_ORIGIN}/api/shipments/`,
-        getAll: ({ startDate, endDate, page, limit, productName }: GetShipmentProductsQuery) => {
-            const baseUrl = `${PAGE_ORIGIN}/api/shipments/?startDate=${startDate}&endDate=${endDate}&page=${page}&limit=${limit}`;
-
-            return productName ? `${baseUrl}&name=${productName}` : baseUrl;
+        getAll: ({ startDate, endDate }: GetShipmentProductsQuery) => {
+            return `${PAGE_ORIGIN}/api/shipments/?startDate=${startDate}&endDate=${endDate}`;
         },
         delete: (id: number) => `${PAGE_ORIGIN}/api/shipments/${id}`
     }

@@ -1,7 +1,8 @@
 import { z } from "zod";
 import { DateStringSchema, EmailSchema, NameSchema, PhoneNumberSchema, StringSchema } from "@utils/typings/schemas/common.schemas";
 import { getTranslatedValidationMessage } from "@utils/helpers/getTranslatedMessage.helper";
-import { ExtendedSearchProductSchema } from "@utils/typings/schemas/products/products.schemas";
+import { ExtendedSearchProductSchema, ProductSchema } from "@utils/typings/schemas/products/products.schemas";
+
 
 export const ShipmentSchema = z.object({
     id: z.number(),
@@ -15,8 +16,6 @@ export const ShipmentSchema = z.object({
     updatedAt: DateStringSchema
 });
 
-const ShipmentProductsSchema = z.array(z.object({ productId: z.number(), amount: z.number().min(1, getTranslatedValidationMessage("invalidAmount")) }));
-
 export const CustomerFormSchema = z.object({
     name: NameSchema,
     surname: NameSchema,
@@ -26,6 +25,7 @@ export const CustomerFormSchema = z.object({
     address: StringSchema
 });
 
+const ShipmentProductsSchema = z.array(z.object({ productId: z.number(), amount: z.number().min(1, getTranslatedValidationMessage("invalidAmount")) }));
 
 export const CreateShipmentDtoSchema = z.object({
     products: ShipmentProductsSchema
@@ -38,3 +38,20 @@ export const ShippedProductSchema = z.lazy(() => (z.object({ shippedAmount: z.nu
 }));
 
 export const CreateShipmentFormSchema = z.object({ products: z.array(ShippedProductSchema) }).merge(CustomerFormSchema);
+
+const ShipmentProductsResponseSchema = z.object({
+    id: z.number(),
+    shipmentId: z.number(),
+    productId: z.number(),
+    amount: z.number().min(1, getTranslatedValidationMessage("invalidAmount")),
+    createdAt: DateStringSchema,
+    updatedAt: DateStringSchema
+});
+
+export const GetShipmentResponseItemSchema = ShipmentSchema.merge(
+    z.object({
+            products: z.array(z.lazy(() => ProductSchema.merge(z.object({ ShipmentProducts: ShipmentProductsResponseSchema}))))
+        }
+    ))
+
+export const GetShipmentsResponseSchema = z.array(GetShipmentResponseItemSchema);

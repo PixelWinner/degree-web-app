@@ -8,7 +8,7 @@ import { ShipmentSchema } from "@utils/typings/schemas/shipments/shipments.schem
 export const AddToArchiveDtoSchema = z.object({
     productId: z.number(),
     reason: StringSchema.min(3, getTranslatedValidationMessage("invalidReason")),
-    amount: z.number().min(1, getTranslatedValidationMessage("invalidAmount")),
+    amount: z.number().min(0, getTranslatedValidationMessage("invalidAmount")),
     date: z.date()
 });
 

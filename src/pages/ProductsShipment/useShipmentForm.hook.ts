@@ -31,7 +31,7 @@ export const useShipmentForm: UseShipmentFormHook = () => {
             const products = values.products.map((product) => ({ amount: product.shippedAmount, productId: product.id }));
 
             const createShipmentDto: CreateShipmentDto = { ...values, products };
-            console.log(createShipmentDto);
+
             await createShipment(createShipmentDto).unwrap();
         }
     });

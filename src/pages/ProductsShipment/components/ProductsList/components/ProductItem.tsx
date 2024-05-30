@@ -62,6 +62,7 @@ const ProductItem: FC<ProductItemProps> = ({ product, formikHook, index }) => {
     const modalHook = useModal();
     const pathToValue = `products[${index}].shippedAmount`;
     const remainder = formikHook.values.products[index].amount - formikHook.values.products[index].shippedAmount;
+    const totalCost = formikHook.values.products[index].shippedAmount * formikHook.values.products[index].pricePerUnit;
 
     const handleDelete = () => {
         const newProducts = [...formikHook.values.products];
@@ -90,10 +91,13 @@ const ProductItem: FC<ProductItemProps> = ({ product, formikHook, index }) => {
                     <strong>{t("general.remainder")}:</strong> {remainder}
                 </Body1Typography>
 
+                <Body1Typography>
+                    <strong> {t("general.totalPrice")}:</strong> {totalCost} {t("currencies.uah")}
+                </Body1Typography>
+
                 <TextField fullWidth {...getTextFieldProps({ formikHook, t, field: Field.AMOUNT, pathToValue })}
                            InputProps={{ inputProps: { min: 0, max: product.amount } }} />
             </Wrapper>
-
 
             <ProductInfoModal modalHook={modalHook} product={product} />
         </Container>

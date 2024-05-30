@@ -104,7 +104,15 @@
     "createShipment": "Створити відвантаження",
     "customerInfo": "Інформація про замовника",
     "addedProducts": "Додані продукти",
-    "remainder": "Залишок"
+    "remainder": "Залишок",
+    "shipments": "Відвантаження",
+    "shipmentsInfo": "Інформація про відвантаження",
+    "totalPriceOfShippedProducts": "Загальна ціна відвантажених продуктів",
+    "shipmentsAmount": "Кількість відвантажень",
+    "shippedUnitsAmount": "Кількість відвантажених одиниць",
+    "totalShippedProducts": "Кількість відвантажених продуктів",
+    "shipmentsList": "Список відвантажень",
+    "shipment": "Відвантаження"
   },
   "units": {
     "weight": "кг",
@@ -124,7 +132,7 @@
     "productsSupply": "Поставка продуктів",
     "supplyStatistics": "Статистика поставок",
     "archive": "Архів",
-    "shipmentsStatistics": "Статистика відвантажень",
+    "shipmentsStatistic": "Статистика відвантажень",
     "productsShipment": "Відвантаження продуктів"
   },
   "modal": {

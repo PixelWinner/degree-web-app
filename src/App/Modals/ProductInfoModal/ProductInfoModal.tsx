@@ -20,6 +20,7 @@ import { H5Typography, H6Typography } from "@components/Typography";
 import { Modal } from "../Modal/Modal";
 import { ModalHookReturns } from "../modal.types";
 
+
 const CloseIcon = styled(MuiCloseIcon)`
     align-self: flex-end;
     cursor: pointer;
@@ -50,7 +51,7 @@ type ProductInfoModalProps = {
 
 const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => {
     const { t } = useTranslation();
-    const { name, length, width, height, amount, pricePerUnit, weightPerUnit, createdAt, updatedAt, properties, supplier, initialAmount } = product;
+    const { name, length, width, height, amount, pricePerUnit, weightPerUnit, createdAt, updatedAt, properties, supplier, initialAmount, shipments } = product;
 
     const volume = calculateVolume({ length, width, height });
     const totalVolume = calculateVolume({ length, width, height, amount });
@@ -91,6 +92,8 @@ const ProductInfoModal: FC<ProductInfoModalProps> = ({ modalHook, product }) => 
             <InfoTypography label={t("general.totalVolume")} value={getValueWithVolumeUnit(totalVolume, t)} />
 
             <InfoTypography label={t("general.totalWeight")} value={getValueWithWeightUnit(totalWeight, t)} />
+
+            <InfoTypography label={t("general.shipmentsAmount")} value={shipments.length}/>
 
             <InfoTypography label={t("general.createdAt")} value={format(new Date(createdAt), DATE_TIME_FORMAT.fullDate)} />
 

@@ -11,7 +11,8 @@ const Container = styled(Box)`
     flex-direction: column;
     gap: 16px;
     text-align: center;
-    overflow: auto
+    overflow: auto;
+    min-height: 500px;
 `;
 
 const Wrapper = styled(Paper)`
